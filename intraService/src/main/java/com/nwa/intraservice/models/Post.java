@@ -5,10 +5,9 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -35,4 +34,7 @@ public class Post extends AbstractEntity{
 
     @Column(name = "nbrlike")
     private Long nbrLike;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy="post")
+    private List<Comment> comments;
 }
