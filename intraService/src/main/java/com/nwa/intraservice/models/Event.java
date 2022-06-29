@@ -5,10 +5,9 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -33,4 +32,13 @@ public class Event extends AbstractEntity{
     @Column(name = "enddate")
     private Date endDate;
 
+    @ManyToOne(fetch = FetchType.EAGER ,cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "iduser")
+    private User user;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "user_event", joinColumns = {
+            @JoinColumn(name = "idevent") }, inverseJoinColumns = {
+            @JoinColumn(name = "iduser") })
+    private List<User> users;
 }

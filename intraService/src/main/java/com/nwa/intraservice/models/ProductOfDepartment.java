@@ -17,12 +17,9 @@ import java.util.List;
 public class ProductOfDepartment extends AbstractEntity {
         @Column(name="nameproduct")
         private String nameProduct;
-
-
-
-    @ManyToOne(fetch = FetchType.EAGER ,cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "idDepartment")
-    private Department department;
+        @ManyToOne(fetch = FetchType.EAGER ,cascade = CascadeType.REMOVE)
+        @JoinColumn(name = "idDepartment")
+        private Department department;
 
     }
 

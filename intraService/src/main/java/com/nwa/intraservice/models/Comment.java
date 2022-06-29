@@ -20,4 +20,8 @@ public class Comment extends AbstractEntity {
     @ManyToOne(fetch = FetchType.EAGER ,cascade = CascadeType.REMOVE)
     @JoinColumn(name = "idPost")
     private Post post;
+
+    @ManyToOne(fetch = FetchType.EAGER ,cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "iduser")
+    private User user;
 }

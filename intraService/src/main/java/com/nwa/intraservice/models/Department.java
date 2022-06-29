@@ -24,4 +24,7 @@ public class Department extends AbstractEntity{
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy="department")
     private List<Tools> toolss;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy="department")
+    private List<User> users;
 }

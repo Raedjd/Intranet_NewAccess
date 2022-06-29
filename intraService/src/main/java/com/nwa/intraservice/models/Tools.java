@@ -23,4 +23,8 @@ public class Tools extends  AbstractEntity{
     @ManyToOne(fetch = FetchType.EAGER ,cascade = CascadeType.REMOVE)
     @JoinColumn(name = "idDepartment")
     private Department department;
+
+    @ManyToOne(fetch = FetchType.EAGER ,cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "iduser")
+    private User user;
 }

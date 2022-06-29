@@ -37,4 +37,8 @@ public class Post extends AbstractEntity{
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy="post")
     private List<Comment> comments;
+
+    @ManyToOne(fetch = FetchType.EAGER ,cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "iduser")
+    private User user;
 }
