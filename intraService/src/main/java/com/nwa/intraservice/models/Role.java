@@ -5,9 +5,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -19,4 +18,7 @@ public class Role extends AbstractEntity{
 
     @Column(name = "role")
     private String role;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy="role")
+    private List<User> users;
 }
