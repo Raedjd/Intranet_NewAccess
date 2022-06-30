@@ -8,6 +8,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Data
@@ -16,15 +17,15 @@ import java.util.Date;
 public class AbstractEntity implements Serializable {
     @Id
     @GeneratedValue
-    private Integer id;
+    private Long id;
 
     @CreatedDate
-    @Column(name = "creationDate", nullable = false)
+    @Column(name = "creationDate")
     @JsonIgnore
-    private Date creationDate;
+    private LocalDate creationDate= LocalDate.now();
 
     @LastModifiedDate
     @Column(name = "LastModifiedDate")
     @JsonIgnore
-    private Date lastUpdateDate;
+    private LocalDate lastUpdateDate= LocalDate.now();
 }
