@@ -19,8 +19,9 @@ public class Department extends AbstractEntity{
     @Column(name = "namedepart")
     private String nameDepart;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy="department")
-    private List<ProductOfDepartment> ProductOfDepartment;
+    @OneToMany(mappedBy="department",
+            cascade={CascadeType.PERSIST, CascadeType.REMOVE})
+    private List<Product> products;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy="department")
     private List<Tools> toolss;

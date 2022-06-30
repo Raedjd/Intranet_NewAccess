@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -36,7 +37,7 @@ public class DepartmentServiceImpl implements IDepartmentService {
         if(departmentRepository.findById(id).isPresent()){
             Department department = departmentRepository.findById(id).get();
             department.setNameDepart(dep.getNameDepart());
-
+            department.setLastUpdateDate(LocalDate.now());
             return departmentRepository.save(department);
         }
         return null;
