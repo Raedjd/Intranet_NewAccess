@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -32,4 +33,35 @@ public class ProductServiceImpl implements IProductService{
             productRepository.save(product);
         }
     }
+
+    @Override
+    public List<Product> findAll() {
+        return productRepository.findAll();
+    }
+
+    @Override
+    public Product findById(Long id) {
+        return productRepository.findById(id).get();
+    }
+
+    @Override
+    public Product updateProduct(Product prod, Long id) {
+        if(productRepository.findById(id).isPresent()){
+            Product product = productRepository.findById(id).get();
+            product.setNameProduct(prod.getNameProduct());
+            product.setLastUpdateDate(LocalDate.now());
+            return productRepository.save(product);
+        }
+
+        return null;
+    }
+
+    @Override
+    public void deleteProduct(long id) {
+
+        productRepository.deleteById(id);
+
+    }
+
+
 }

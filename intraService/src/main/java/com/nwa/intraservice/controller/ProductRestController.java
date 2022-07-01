@@ -26,8 +26,36 @@ public class ProductRestController {
         return prod;
 
     }
-    @PostMapping("/addproduct/{id}")
+    @PostMapping("/add/{id}")
+    @ResponseBody
     public void addProdAndAssignToDep(@RequestBody List<Product> prod, @PathVariable("id") Long idDepartemnt){
         iProductService.addProductAndAssignToDepartment(prod ,idDepartemnt);
+    }
+
+    @GetMapping("/findAll")
+    @ResponseBody
+    public List<Product> list() {
+
+        return iProductService.findAll();
+    }
+
+    @GetMapping("/findOne/{id}")
+    @ResponseBody
+    public Product findById(@PathVariable("id") Long id) {
+
+        return iProductService.findById(id);
+    }
+
+    @PutMapping("/update/{id}")
+    @ResponseBody
+    public Product modify(@RequestBody Product prod,@PathVariable("id") Long id) {
+        return iProductService.updateProduct(prod ,id);
+    }
+
+    @DeleteMapping("delete/{id}")
+    @ResponseBody
+    public void delete(@PathVariable("id") Long id) {
+        iProductService.deleteProduct(id);
+        log.info("Department removed!");
     }
 }

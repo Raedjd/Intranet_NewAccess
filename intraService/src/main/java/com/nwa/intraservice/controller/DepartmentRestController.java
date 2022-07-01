@@ -17,7 +17,7 @@ public class DepartmentRestController {
     @Autowired
     IDepartmentService idepService;
 
-    @PostMapping("/adddep")
+    @PostMapping("/add")
     @ResponseBody
     public Department add(@RequestBody Department d) {
         Department dep = idepService.addDepartment(d);
@@ -38,13 +38,13 @@ public class DepartmentRestController {
         return idepService.findById(id);
     }
 
-    @PutMapping("/updateDep/{id}")
+    @PutMapping("/update/{id}")
     @ResponseBody
     public Department modify(@RequestBody Department dep,@PathVariable("id") Long id) {
         return idepService.updateDepartment(dep, id);
     }
 
-    @DeleteMapping("deleteDep/{id}")
+    @DeleteMapping("delete/{id}")
     @ResponseBody
     public void delete(@PathVariable("id") Long id) {
         idepService.deleteDepartment(id);

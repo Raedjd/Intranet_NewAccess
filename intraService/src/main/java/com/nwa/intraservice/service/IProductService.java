@@ -10,4 +10,13 @@ public interface IProductService {
     Product addProduct(Product product);
 
     void addProductAndAssignToDepartment(List<Product> pd, Long idDep);
+
+    List<Product> findAll();
+
+    Product findById(Long id);
+
+    Product updateProduct(Product prod, Long id);
+    void deleteProduct(long id);
+
+
 }

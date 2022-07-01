@@ -32,14 +32,20 @@ public class User extends AbstractEntity{
     @Column(name ="birthdate")
     private Date birthdate;
 
-    @Column(name =" adresse")
-    private String adresse;
+    @Column(name ="nationnality")
+    private String nationnality;
+
+    @Column(name ="poste")
+    private String poste;
 
     @Column(name ="phone")
     private Long phone;
 
     @Column(name = "picture")
     private String picture;
+
+    @Column(name = "password")
+    private String password;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy="user")
     private List<Tools> toolss;
@@ -58,7 +64,7 @@ public class User extends AbstractEntity{
             @JoinColumn(name = "idevent") })
     private List<Event> eventsusers;
 
-    @ManyToOne(fetch = FetchType.EAGER ,cascade = CascadeType.REMOVE)
+    @ManyToOne(fetch = FetchType.EAGER )
     @JoinColumn(name = "idDepartment")
     private Department department;
 
