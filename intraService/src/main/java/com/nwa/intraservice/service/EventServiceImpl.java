@@ -35,6 +35,7 @@ public class EventServiceImpl implements IEventService{
         return eventRepository.findAll();
     }
 
+
     @Override
     public Event updateEvent(Event event, Long id) {
         if(eventRepository.findById(id).isPresent()) {
@@ -51,6 +52,27 @@ public class EventServiceImpl implements IEventService{
 
     @Override
     public void deleteEvent(Long id) {
+             eventRepository.deleteById(id);
+    }
+
+    @Override
+    public void UserPartEvent(Long idUser, List<Long> idEvents) {
+
+        User user = userRepository.findById(idUser).orElse(null);
+
+        for (Long idEvent : idEvents){
+            Event event =eventRepository.findById(idEvent).orElse(null);
+            event.getUsers().add(user);
+        }
+    }
+
+    @Override
+    public void UserToEvent(Long idUser, Long idEvent) {
+        User user = userRepository.findById(idUser).orElse(null);
+        Event event = eventRepository.findById(idEvent).orElse(null);
+
+        event.getUsers().add(user);
+        eventRepository.save(event);
 
     }
 }

@@ -1,5 +1,6 @@
 package com.nwa.intraservice.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -21,11 +22,15 @@ public class Department extends AbstractEntity{
 
     @OneToMany(mappedBy="department",
             cascade={CascadeType.PERSIST, CascadeType.REMOVE})
+    @JsonIgnore
     private List<Product> products;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy="department")
+    @OneToMany(mappedBy="department",
+            cascade={CascadeType.PERSIST, CascadeType.REMOVE})
+    @JsonIgnore
     private List<Tools> toolss;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy="department")
+    @JsonIgnore
     private List<User> users;
 }

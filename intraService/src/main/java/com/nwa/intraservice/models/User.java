@@ -1,5 +1,6 @@
 package com.nwa.intraservice.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -30,6 +31,7 @@ public class User extends AbstractEntity{
     private String mail;
 
     @Column(name ="birthdate")
+    @Temporal(TemporalType.DATE)
     private Date birthdate;
 
     @Column(name ="nationnality")
@@ -62,13 +64,15 @@ public class User extends AbstractEntity{
     @JoinTable(name = "user_event", joinColumns = {
             @JoinColumn(name = "iduser") }, inverseJoinColumns = {
             @JoinColumn(name = "idevent") })
-    private List<Event> eventsusers;
+    private List<Event> eventss;
 
     @ManyToOne(fetch = FetchType.EAGER )
+    @JsonIgnore
     @JoinColumn(name = "idDepartment")
     private Department department;
 
-    @ManyToOne(fetch = FetchType.EAGER ,cascade = CascadeType.REMOVE)
+    @ManyToOne(fetch = FetchType.EAGER )
+    @JsonIgnore
     @JoinColumn(name = "idRole")
     private Role role;
 }

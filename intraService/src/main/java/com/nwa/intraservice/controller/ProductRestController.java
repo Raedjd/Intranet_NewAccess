@@ -2,6 +2,7 @@ package com.nwa.intraservice.controller;
 
 import com.nwa.intraservice.models.Department;
 import com.nwa.intraservice.models.Product;
+import com.nwa.intraservice.models.Tools;
 import com.nwa.intraservice.service.IDepartmentService;
 import com.nwa.intraservice.service.IProductService;
 import lombok.extern.slf4j.Slf4j;
@@ -44,6 +45,11 @@ public class ProductRestController {
     public Product findById(@PathVariable("id") Long id) {
 
         return iProductService.findById(id);
+    }
+
+    @GetMapping("/productbydepart/{iddepart}")
+    public List<Product> getProductsByDEpart(@PathVariable("iddepart") Long iddep) {
+        return iProductService.getProductByDepartement(iddep);
     }
 
     @PutMapping("/update/{id}")

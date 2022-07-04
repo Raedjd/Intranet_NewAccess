@@ -25,12 +25,33 @@ public class EventRestController {
        iEventService.addEventAndAssignToUser(event , iduser);
     }
 
-    @GetMapping("/findAll")
-    @ResponseBody
-    public List<Event> list() {
+   @GetMapping("/findAll")
+   @ResponseBody
+   public List<Event> list() {
 
-        return iEventService.findAll();
+      return iEventService.findAll();
+   }
+
+    @PutMapping("/update/{id}")
+    @ResponseBody
+    public Event modify(@RequestBody Event event,@PathVariable("id") Long id) {
+        return iEventService.updateEvent(event , id);
     }
 
+    @DeleteMapping("delete/{id}")
+    @ResponseBody
+    public void delete(@PathVariable("id") Long id) {
+        iEventService.deleteEvent(id);
+    }
+
+    @PutMapping("/participation/{idUser}/{idEvents}")
+    public void UserParEvent(@PathVariable("idUser")Long idUser, @PathVariable("idEvents")List<Long> idEvents){
+        iEventService.UserPartEvent(idUser ,idEvents);
+    }
+
+    @PatchMapping("/participation/{iduser}/{idevent}")
+    public void UserToEvent(@PathVariable("iduser") Long idUser, @PathVariable("idevent") Long idEvent){
+        iEventService.UserToEvent(idUser , idEvent);
+    }
 
 }

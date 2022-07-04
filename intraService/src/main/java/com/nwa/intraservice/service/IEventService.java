@@ -14,4 +14,8 @@ public interface IEventService {
     Event updateEvent(Event event, Long id);
 
     void deleteEvent(Long id);
+
+    void UserPartEvent (Long idUser ,List<Long> idEvents);
+
+    void UserToEvent (Long idUser , Long idEvent);
 }

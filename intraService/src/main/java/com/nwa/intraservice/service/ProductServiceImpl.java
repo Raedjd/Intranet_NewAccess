@@ -45,6 +45,11 @@ public class ProductServiceImpl implements IProductService{
     }
 
     @Override
+    public List<Product> getProductByDepartement(Long idDep) {
+        return productRepository.ProductByDep(idDep);
+    }
+
+    @Override
     public Product updateProduct(Product prod, Long id) {
         if(productRepository.findById(id).isPresent()){
             Product product = productRepository.findById(id).get();
