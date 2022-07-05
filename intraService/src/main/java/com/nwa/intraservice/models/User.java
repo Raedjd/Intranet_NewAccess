@@ -50,20 +50,25 @@ public class User extends AbstractEntity{
     private String password;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy="user")
+    @JsonIgnore
     private List<Tools> toolss;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy="user")
+    @JsonIgnore
     private List<Post> posts;
     @OneToMany(cascade = CascadeType.ALL, mappedBy="user")
+    @JsonIgnore
     private List<Comment> comments;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy="user")
+    @JsonIgnore
     private List<Event> events;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_event", joinColumns = {
             @JoinColumn(name = "iduser") }, inverseJoinColumns = {
             @JoinColumn(name = "idevent") })
+    @JsonIgnore
     private List<Event> eventss;
 
     @ManyToOne(fetch = FetchType.EAGER )

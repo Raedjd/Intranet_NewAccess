@@ -1,5 +1,6 @@
 package com.nwa.intraservice.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -23,22 +24,15 @@ public class Post extends AbstractEntity{
     @Column(name ="visiblity")
     private boolean visibility;
 
-    @Column(name = "startdate")
-    private Date startDate;
-
-    @Column(name = "enddate")
-    private Date endDate;
-
-    @Column(name = "picture")
-    private Date picture;
 
     @Column(name = "nbrlike")
     private Long nbrLike;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy="post")
+    @JsonIgnore
     private List<Comment> comments;
 
     @ManyToOne(fetch = FetchType.EAGER ,cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "iduser")
+    @JsonIgnore
     private User user;
 }

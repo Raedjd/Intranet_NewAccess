@@ -17,11 +17,11 @@ public class Comment extends AbstractEntity {
 
     private String comment;
 
-    @ManyToOne(fetch = FetchType.EAGER ,cascade = CascadeType.REMOVE)
+    @ManyToOne
     @JoinColumn(name = "idPost")
     private Post post;
 
-    @ManyToOne(fetch = FetchType.EAGER ,cascade = CascadeType.REMOVE)
+    @ManyToOne
     @JoinColumn(name = "iduser")
     private User user;
 }

@@ -42,11 +42,9 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>javax</groupId>
-            <artifactId>javaee-api</artifactId>
-            <version>6.0</version>
-            <scope>provided</scope>
-            <type>pom</type>
+            <groupId>com.flickr4java</groupId>
+            <artifactId>flickr4java</artifactId>
+            <version>3.0.4</version>
         </dependency>
     </dependencies>
 
