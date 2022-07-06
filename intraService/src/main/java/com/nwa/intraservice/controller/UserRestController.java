@@ -4,6 +4,7 @@ import com.nwa.intraservice.models.Department;
 import com.nwa.intraservice.models.Product;
 import com.nwa.intraservice.models.User;
 import com.nwa.intraservice.service.IUserService;
+import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/user")
+@Api("/user")
 @Slf4j
 public class UserRestController {
     @Autowired
