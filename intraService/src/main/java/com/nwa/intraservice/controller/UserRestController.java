@@ -2,6 +2,7 @@ package com.nwa.intraservice.controller;
 
 import com.nwa.intraservice.models.Department;
 import com.nwa.intraservice.models.Product;
+import com.nwa.intraservice.models.Role;
 import com.nwa.intraservice.models.User;
 import com.nwa.intraservice.service.IUserService;
 import io.swagger.annotations.Api;
@@ -28,10 +29,19 @@ public class UserRestController {
 
     }
 
-    @PostMapping("/add/{id}")
+    @PostMapping("/addrole")
     @ResponseBody
-    public void addUserAndAssignToDep(@RequestBody List<User> user, @PathVariable("id") Long idDepartemnt){
-        iUserService.addUserAndAssignToDepartment(user ,idDepartemnt);
+    public Role add(@RequestBody Role r) {
+        Role role = iUserService.addRole(r);
+
+        return role;
+
+    }
+
+    @PostMapping("/add/{idDep}/{idRole}")
+    @ResponseBody
+    public void addUserAndAssignToDep(@RequestBody List<User> user, @PathVariable("idDep") Long idDepartemnt ,@PathVariable("idRole") Long idRole){
+        iUserService.addUserAndAssignToDepartment(user ,idDepartemnt, idRole);
     }
 
     @GetMapping("/findAll")
