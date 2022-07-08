@@ -24,7 +24,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @Transactional
 @Slf4j
-public class UserServiceImpl implements IUserService , UserDetailsService {
+public class UserServiceImpl implements IUserService  {
 
     @Autowired
     private UserRepository userRepository;
@@ -34,8 +34,7 @@ public class UserServiceImpl implements IUserService , UserDetailsService {
     @Autowired
     private RoleRepository roleRepository;
 
-   @Autowired
-   private PasswordEncoder bcryptEncoder;
+
 
 
 
@@ -57,7 +56,7 @@ public class UserServiceImpl implements IUserService , UserDetailsService {
         for(User user:u){
             user.setDepartment(department);
             user.setRole(role);
-            user.setPassword(bcryptEncoder.encode(user.getPassword()));
+
             userRepository.save(user);
         }
     }
@@ -95,19 +94,5 @@ public class UserServiceImpl implements IUserService , UserDetailsService {
     }
 
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username);
 
-        if(user == null){
-            log.error("User not found in the database");
-            throw new UsernameNotFoundException("User not found in the database");
-        }
-        else{
-            log.info("User found in the databse:" , username);
-        }
-        Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
-
-        return new org.springframework.security.core.userdetails.User(user.getUsername() , user.getPassword() , authorities);
-    }
 }
