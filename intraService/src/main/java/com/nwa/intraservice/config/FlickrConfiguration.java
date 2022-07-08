@@ -1,5 +1,4 @@
-package com.nwa.intraservice.repository.config;
-
+package com.nwa.intraservice.config;
 import com.flickr4java.flickr.Flickr;
 import com.flickr4java.flickr.FlickrException;
 import com.flickr4java.flickr.REST;
@@ -16,6 +15,7 @@ import org.springframework.context.annotation.Configuration;
 import java.io.IOException;
 import java.util.Scanner;
 import java.util.concurrent.ExecutionException;
+
 
 //@Configuration
 public class FlickrConfiguration {
@@ -45,8 +45,8 @@ public class FlickrConfiguration {
         final String authVerfiy = scanner.nextLine();
         OAuth1AccessToken accessToken = service.getAccessToken(request ,authVerfiy);
 
-         System.out.println((accessToken.getToken()));
-         System.out.println(accessToken.getTokenSecret());
+        System.out.println((accessToken.getToken()));
+        System.out.println(accessToken.getTokenSecret());
 
         Auth auth = flickr.getAuthInterface().checkToken(accessToken);
 
@@ -55,7 +55,4 @@ public class FlickrConfiguration {
 
         return flickr;
     }
-
-
-
 }
