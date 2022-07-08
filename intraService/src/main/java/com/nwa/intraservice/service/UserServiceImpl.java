@@ -1,5 +1,6 @@
 package com.nwa.intraservice.service;
 
+
 import com.nwa.intraservice.models.Department;
 import com.nwa.intraservice.models.Role;
 import com.nwa.intraservice.models.User;
@@ -9,14 +10,15 @@ import com.nwa.intraservice.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -24,17 +26,19 @@ import java.util.List;
 @RequiredArgsConstructor
 @Transactional
 @Slf4j
-public class UserServiceImpl implements IUserService  {
+public class UserServiceImpl implements IUserService , UserDetailsService {
 
+
+        @Autowired
+        private UserRepository userRepository;
+        @Autowired
+        private DepartmentRepository departmentRepository;
+       @Autowired
+       private RoleRepository roleRepository;
     @Autowired
-    private UserRepository userRepository;
-    @Autowired
-    private DepartmentRepository departmentRepository;
-
-    @Autowired
-    private RoleRepository roleRepository;
-
-
+    public BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
 
 
@@ -56,7 +60,7 @@ public class UserServiceImpl implements IUserService  {
         for(User user:u){
             user.setDepartment(department);
             user.setRole(role);
-
+            user.setPassword(passwordEncoder().encode(user.getPassword()));
             userRepository.save(user);
         }
     }
@@ -93,6 +97,22 @@ public class UserServiceImpl implements IUserService  {
         userRepository.deleteById(id);
     }
 
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = userRepository.findByUsername(username);
+
+        if(user == null){
+            log.error("User not found in the database");
+            throw new UsernameNotFoundException("User not found in the database");
+        }
+        else{
+            log.info("User found in the databse:" , username);
+        }
+        Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
+
+        return new org.springframework.security.core.userdetails.User(user.getUsername() , user.getPassword() , authorities);
+    }
 
 
 }

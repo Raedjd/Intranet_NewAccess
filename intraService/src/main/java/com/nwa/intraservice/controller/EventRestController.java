@@ -2,9 +2,7 @@ package com.nwa.intraservice.controller;
 
 
 import com.nwa.intraservice.models.Event;
-import com.nwa.intraservice.models.Product;
 import com.nwa.intraservice.service.IEventService;
-import com.nwa.intraservice.service.IUserService;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.beans.factory.annotation.Autowired;

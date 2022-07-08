@@ -1,7 +1,5 @@
 package com.nwa.intraservice.controller;
 
-import com.nwa.intraservice.models.Department;
-import com.nwa.intraservice.models.Product;
 import com.nwa.intraservice.models.Role;
 import com.nwa.intraservice.models.User;
 import com.nwa.intraservice.service.IUserService;
