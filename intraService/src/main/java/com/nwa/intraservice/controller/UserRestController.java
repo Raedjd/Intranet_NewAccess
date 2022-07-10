@@ -6,6 +6,7 @@ import com.nwa.intraservice.service.IUserService;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -66,6 +67,10 @@ public class UserRestController {
     public void delete(@PathVariable("id") Long id) {
         iUserService.deleteUser(id);
 
+    }
+    @RequestMapping(value = "findByToken", method = RequestMethod.GET)
+    public User findUserByToken() {
+        return iUserService.findByUserByToken(SecurityContextHolder.getContext().getAuthentication().getName());
     }
 
 

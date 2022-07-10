@@ -17,6 +17,8 @@ public interface IUserService {
     User updateUser(User user, Long id);
     void deleteUser(long id);
 
+    User findByUserByToken(String username);
+
 
 
 }

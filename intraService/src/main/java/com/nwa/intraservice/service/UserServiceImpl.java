@@ -97,6 +97,11 @@ public class UserServiceImpl implements IUserService , UserDetailsService {
         userRepository.deleteById(id);
     }
 
+    @Override
+    public User findByUserByToken(String username) {
+        return userRepository.findByUsername(username);
+    }
+
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
