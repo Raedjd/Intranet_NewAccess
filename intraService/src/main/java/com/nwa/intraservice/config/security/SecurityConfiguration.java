@@ -4,16 +4,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
@@ -41,12 +39,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         httpSecurity.csrf().disable();
         httpSecurity.sessionManagement().sessionCreationPolicy(STATELESS);
 
-        httpSecurity.addFilter(new CustomAuthFilter(authenticationManagerBean()));
-        CustomAuthFilter customAuthFilter = new CustomAuthFilter(authenticationManagerBean());
-        customAuthFilter.setFilterProcessesUrl("/api/login");
-        httpSecurity.authorizeRequests().antMatchers("/api/login").permitAll();
-        httpSecurity.authorizeRequests().anyRequest().permitAll();
+        httpSecurity.addFilter(new CustomAuthenticationFilter(authenticationManagerBean()));
+        CustomAuthenticationFilter customAuthFilter = new CustomAuthenticationFilter(authenticationManagerBean());
+        customAuthFilter.setFilterProcessesUrl("/intranet/login");
+        httpSecurity.authorizeRequests().antMatchers("/intranet/login").permitAll();
+        httpSecurity.authorizeRequests().anyRequest().authenticated();
         httpSecurity.addFilter(customAuthFilter);
+        httpSecurity.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
 
     }
 
