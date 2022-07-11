@@ -1,14 +1,11 @@
 package com.nwa.intraservice.controller;
 
 
-import com.nwa.intraservice.security.SecurityConfig;
-import com.nwa.intraservice.security.TokenProvider;
+import com.nwa.intraservice.config.security.TokenProvider;
 import com.nwa.intraservice.service.UserServiceImpl;
 import com.nwa.intraservice.utils.JwtRespone;
 import com.nwa.intraservice.utils.LoginModel;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Import;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

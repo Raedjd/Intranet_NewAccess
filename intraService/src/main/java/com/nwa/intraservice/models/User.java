@@ -43,8 +43,6 @@ public class User extends AbstractEntity{
     @Column(name ="phone")
     private Long phone;
 
-    @Column(name = "picture")
-    private String picture;
 
     @Column(name = "password")
     private String password;
@@ -80,4 +78,8 @@ public class User extends AbstractEntity{
     @JsonIgnore
     @JoinColumn(name = "idRole")
     private Role role;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "idimage")
+    private Image image;
 }

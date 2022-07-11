@@ -1,4 +1,4 @@
-package com.nwa.intraservice.security;
+package com.nwa.intraservice.config.security;
 import io.jsonwebtoken.*;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;

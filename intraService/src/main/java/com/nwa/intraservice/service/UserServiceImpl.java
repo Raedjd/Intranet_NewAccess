@@ -19,6 +19,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -39,7 +43,6 @@ public class UserServiceImpl implements IUserService , UserDetailsService {
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
 
 
 
@@ -79,6 +82,7 @@ public class UserServiceImpl implements IUserService , UserDetailsService {
 
     @Override
     public User updateUser(User user, Long id) {
+
         if(userRepository.findById(id).isPresent()) {
             User u = userRepository.findById(id).get();
             u.setFirstName(user.getFirstName());
@@ -96,6 +100,13 @@ public class UserServiceImpl implements IUserService , UserDetailsService {
     public void deleteUser(long id) {
         userRepository.deleteById(id);
     }
+
+    @Override
+    public User udatePicture(User user,Long id, String url) {
+
+        return null;
+    }
+
 
     @Override
     public User findByUserByToken(String username) {

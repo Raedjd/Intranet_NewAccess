@@ -1,4 +1,4 @@
-package com.nwa.intraservice.security;
+package com.nwa.intraservice.config.security;
 import com.nwa.intraservice.service.UserServiceImpl;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.SignatureException;
