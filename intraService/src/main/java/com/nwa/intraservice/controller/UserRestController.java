@@ -2,14 +2,21 @@ package com.nwa.intraservice.controller;
 
 import com.nwa.intraservice.models.Role;
 import com.nwa.intraservice.models.User;
+import com.nwa.intraservice.repository.UserRepository;
 import com.nwa.intraservice.service.IUserService;
+import com.nwa.intraservice.service.UserServiceImpl;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
+import javax.xml.ws.Response;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/user")
@@ -18,6 +25,11 @@ import java.util.List;
 public class UserRestController {
     @Autowired
     IUserService iUserService;
+    @Autowired
+    UserRepository userRepository;
+
+    @Autowired
+    private UserServiceImpl userDetailsService;
 
     @PostMapping("/add")
     @ResponseBody
@@ -39,8 +51,15 @@ public class UserRestController {
 
     @PostMapping("/add/{idDep}/{idRole}")
     @ResponseBody
-    public void addUserAndAssignToDep(@RequestBody List<User> user, @PathVariable("idDep") Long idDepartemnt ,@PathVariable("idRole") Long idRole){
-        iUserService.addUserAndAssignToDepartment(user ,idDepartemnt, idRole);
+    public ResponseEntity<Map> addUserAndAssignToDep(@RequestBody User user, @PathVariable("idDep") Long idDepartemnt , @PathVariable("idRole") Long idRole){
+            User username=userRepository.findByUsername(user.getUsername());
+          if( username ==null ) {
+              iUserService.addUserAndAssignToDepartment(user, idDepartemnt, idRole);
+              return new ResponseEntity("User created and assigned", HttpStatus.CREATED);
+
+          }
+        return new ResponseEntity("User alerady exist", HttpStatus.FOUND);
+
     }
 
     @GetMapping("/findAll")

@@ -2,7 +2,9 @@ package com.nwa.intraservice.service;
 
 import com.nwa.intraservice.models.Role;
 import com.nwa.intraservice.models.User;
+import org.springframework.http.ResponseEntity;
 
+import javax.xml.ws.Response;
 import java.util.List;
 
 public interface IUserService {
@@ -11,7 +13,7 @@ public interface IUserService {
 
     Role addRole(Role role);
 
-    void addUserAndAssignToDepartment(List<User> u, Long idDep ,Long idRole);
+    Response addUserAndAssignToDepartment(User user, Long idDep , Long idRole);
     List<User> findAll();
     User findById(Long id);
     User updateUser(User user, Long id);

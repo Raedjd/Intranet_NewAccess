@@ -10,19 +10,17 @@ import com.nwa.intraservice.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import javax.xml.ws.Response;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -57,15 +55,18 @@ public class UserServiceImpl implements IUserService , UserDetailsService {
     }
 
     @Override
-    public void addUserAndAssignToDepartment(List<User> u, Long idDep , Long idRole) {
+    public Response addUserAndAssignToDepartment(User user, Long idDep , Long idRole) {
         Department department = departmentRepository.findById(idDep).orElse(null);
         Role role = roleRepository.findById(idRole).orElse(null);
-        for(User user:u){
-            user.setDepartment(department);
+
+         user.setDepartment(department);
             user.setRole(role);
             user.setPassword(passwordEncoder().encode(user.getPassword()));
             userRepository.save(user);
-        }
+
+
+
+        return null;
     }
 
 
@@ -117,7 +118,6 @@ public class UserServiceImpl implements IUserService , UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(username);
-
         if(user == null){
             log.error("User not found in the database");
             throw new UsernameNotFoundException("User not found in the database");
