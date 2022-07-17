@@ -21,12 +21,12 @@ const Event= () => {
     return (
         <Container>
             <Box className="breadcrumb">
-                <Breadcrumb routeSegments={[{ name: "Products", path: "/add && liste" }, { name: "Products" }]} />
+                <Breadcrumb routeSegments={[{ name: "Events", path: "/add && liste" }, { name: "Event" }]} />
             </Box>
 
             <Stack spacing={3}>
-                <SimpleCard title="Add product">
-                    <Eventcalender/>
+                <SimpleCard title="Add event">
+
                 </SimpleCard>
 
 

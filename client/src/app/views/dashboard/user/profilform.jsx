@@ -103,7 +103,7 @@ const Profilform = () => {
 
 
 
-        <Button color="primary" variant="contained" type="submit">
+        <Button color="secondary" variant="contained" type="submit">
           <Icon>send</Icon>
           <Span sx={{ pl: 1, textTransform: "capitalize" }}>Update profil</Span>
         </Button>
@@ -120,7 +120,7 @@ const Profilform = () => {
           />
         </Grid>
 
-        <Button color="primary" variant="contained" type="submit">
+        <Button color="secondary" variant="contained" type="submit">
           <Icon>send</Icon>
           <Span sx={{ pl: 1, textTransform: "capitalize" }}>Change avatar</Span>
         </Button>
@@ -153,7 +153,7 @@ const Profilform = () => {
 
 
 
-        <Button color="primary" variant="contained" type="submit">
+        <Button color="secondary" variant="contained" type="submit">
           <Icon>send</Icon>
           <Span sx={{ pl: 1, textTransform: "capitalize" }}>Change password</Span>
         </Button>

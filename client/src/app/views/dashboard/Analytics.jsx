@@ -64,7 +64,7 @@ const Analytics = () => {
                 />
 
               </Grid>
-              <Button color="primary" variant="contained" type="submit">
+              <Button color="secondary" variant="contained" type="submit">
                 <Icon>send</Icon>
                 <Span sx={{ pl: 1, textTransform: "capitalize" }}>Submit</Span>
               </Button>
@@ -82,7 +82,7 @@ const Analytics = () => {
                     label="Name of role"
 
                 />
-                <Button color="primary" variant="contained" type="submit">
+                <Button color="secondary" variant="contained" type="submit">
                   <Icon>send</Icon>
                   <Span sx={{ pl: 1, textTransform: "capitalize" }}>Submit</Span>
                 </Button>
@@ -91,7 +91,7 @@ const Analytics = () => {
             </Card>
 
             <Card sx={{ px: 3, py: 2, mb: 3 }}>
-              <Title>Add Role</Title>
+              <Title>Add user</Title>
               <Grid item lg={6} md={6} sm={12} xs={12} sx={{ mt: 2 }}>
                 <TextField
                     type="text"
@@ -116,7 +116,7 @@ const Analytics = () => {
 
 
                 />
-                <Button color="primary" variant="contained" type="submit">
+                <Button color="secondary" variant="contained" type="submit">
                   <Icon>send</Icon>
                   <Span sx={{ pl: 1, textTransform: "capitalize" }}>Submit</Span>
                 </Button>

@@ -34,8 +34,8 @@ const JWTRoot = styled(JustifyBox)(() => ({
 
 // inital login credentials
 const initialValues = {
-  email: 'jason@ui-lib.com',
-  password: 'dummyPass',
+  email: '',
+  password: '',
   remember: true,
 };
 
@@ -78,7 +78,7 @@ const JwtLogin = () => {
             <ContentBox>
               <Formik
                 onSubmit={handleFormSubmit}
-                initialValues={initialValues}
+
                 validationSchema={validationSchema}
               >
                 {({ values, errors, touched, handleChange, handleBlur, handleSubmit }) => (
@@ -91,8 +91,7 @@ const JwtLogin = () => {
                       label="Email"
                       variant="outlined"
                       onBlur={handleBlur}
-                      value={values.email}
-                      onChange={handleChange}
+
                       helperText={touched.email && errors.email}
                       error={Boolean(errors.email && touched.email)}
                       sx={{ mb: 3 }}
@@ -106,37 +105,18 @@ const JwtLogin = () => {
                       label="Password"
                       variant="outlined"
                       onBlur={handleBlur}
-                      value={values.password}
-                      onChange={handleChange}
+
                       helperText={touched.password && errors.password}
                       error={Boolean(errors.password && touched.password)}
                       sx={{ mb: 1.5 }}
                     />
 
-                    <FlexBox justifyContent="space-between">
-                      <FlexBox gap={1}>
-                        <Checkbox
-                          size="small"
-                          name="remember"
-                          onChange={handleChange}
-                          checked={values.remember}
-                          sx={{ padding: 0 }}
-                        />
 
-                        <Paragraph>Remember Me</Paragraph>
-                      </FlexBox>
 
-                      <NavLink
-                        to="/session/forgot-password"
-                        style={{ color: theme.palette.primary.main }}
-                      >
-                        Forgot password?
-                      </NavLink>
-                    </FlexBox>
 
                     <LoadingButton
                       type="submit"
-                      color="primary"
+                      color="secondary"
                       loading={loading}
                       variant="contained"
                       sx={{ my: 2 }}

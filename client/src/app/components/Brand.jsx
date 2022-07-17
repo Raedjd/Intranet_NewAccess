@@ -24,9 +24,11 @@ const Brand = ({ children }) => {
   return (
     <BrandRoot>
       <Box display="flex" alignItems="center">
-        <MatxLogo />
+
+              <img src="/assets/images/illustrations/newaccess.jfif" width="25%" alt="NWA"  />
+
         <StyledSpan mode={mode} className="sidenavHoverShow">
-          Matx
+         New Access
         </StyledSpan>
       </Box>
 
