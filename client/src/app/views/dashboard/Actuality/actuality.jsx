@@ -1,10 +1,6 @@
 import { Stack } from "@mui/material";
 import { Box, styled } from "@mui/system";
 import { Breadcrumb, SimpleCard } from "app/components";
-import CustomDateTimePicker from "./Eventform";
-
-
-
 
 
 const Container = styled("div")(({ theme }) => ({
@@ -16,25 +12,24 @@ const Container = styled("div")(({ theme }) => ({
     },
 }));
 
-
-const Event= () => {
+const AppForm = () => {
     return (
         <Container>
             <Box className="breadcrumb">
-                <Breadcrumb routeSegments={[{ name: "Events", path: "/add && liste" }, { name: "Event" }]} />
+                <Breadcrumb routeSegments={[{ name: "Actuality", path: "/post" }, { name: "Post" }]} />
             </Box>
 
             <Stack spacing={3}>
-                <SimpleCard title="Add event">
-<CustomDateTimePicker/>
+                <SimpleCard title="Write post">
+
                 </SimpleCard>
 
+                <SimpleCard title="All posts">
 
-
+                </SimpleCard>
             </Stack>
         </Container>
     );
 };
 
-
-export default Event;
+export default AppForm;

@@ -1,6 +1,16 @@
 export const navigations = [
   { name: 'Dashboard', path: '/dashboard', icon: 'dashboard' },
   { label: 'PAGES', type: 'label' },
+  { name: 'For Admin', path: '/dashboard/admin', icon: 'group_add' },
+  {
+    name: 'Actuality',
+    icon: 'crop_rotate',
+    children: [
+      { name: 'Posts', iconText: 'account_circle', path: '/dashboard/actuality',icon: 'border_color' },
+
+
+    ],
+  },
   {
     name: 'Users',
     icon: 'accessibility',
@@ -15,6 +25,7 @@ export const navigations = [
     icon: 'nature_people',
     children: [
       { name: 'Add event', iconText: 'account_circle', path: '/dashboard/event',icon: ' cake' },
+      { name: 'Show events', iconText: 'account_circle', path: '/dashboard/listevents',icon: ' casino' },
 
 
     ],
