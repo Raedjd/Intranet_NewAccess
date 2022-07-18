@@ -88,10 +88,10 @@ function ShoppingCart({ container }) {
   const theme = useTheme();
   const secondary = theme.palette.text.secondary;
 
-  if (!cartListLoaded) {
-    dispatch(getCartList(user.id));
-    cartListLoaded = true;
-  }
+  // if (!cartListLoaded) {
+  //   dispatch(getCartList(user.id));
+  //   cartListLoaded = true;
+  // }
 
   const handleDrawerToggle = () => {
     setPanelOpen(!panelOpen);

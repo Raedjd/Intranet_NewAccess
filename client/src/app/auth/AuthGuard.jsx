@@ -1,6 +1,7 @@
 import useAuth from 'app/hooks/useAuth';
 // import { flat } from 'app/utils/utils';
 import { Navigate, useLocation } from 'react-router-dom';
+import cookie from "js-cookie";
 // import AllPages from '../routes';
 
 // const userHasPermission = (pathname, user, routes) => {
@@ -16,8 +17,8 @@ import { Navigate, useLocation } from 'react-router-dom';
 
 const AuthGuard = ({ children }) => {
   let {
-    isAuthenticated,
-    // user
+    //isAuthenticated,
+     user
   } = useAuth();
   const { pathname } = useLocation();
 
@@ -29,7 +30,7 @@ const AuthGuard = ({ children }) => {
   // // IF YOU NEED ROLE BASED AUTHENTICATION,
   // // UNCOMMENT ABOVE LINES
   // // AND COMMENT OUT BELOW authenticated VARIABLE
-
+ let isAuthenticated = cookie.get("jwt")
   let authenticated = isAuthenticated;
 
   return (
@@ -37,7 +38,7 @@ const AuthGuard = ({ children }) => {
       {authenticated ? (
         children
       ) : (
-        <Navigate replace to="/session/signin" state={{ from: pathname }} />
+        <Navigate replace to="/login" state={{ from: pathname }} />
       )}
     </>
   );

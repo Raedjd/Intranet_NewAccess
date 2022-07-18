@@ -7,11 +7,13 @@ import useAuth from 'app/hooks/useAuth';
 import useSettings from 'app/hooks/useSettings';
 import { topBarHeight } from 'app/utils/constant';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import { Span } from '../../../components/Typography';
 import NotificationBar from '../../NotificationBar/NotificationBar';
 import ShoppingCart from '../../ShoppingCart';
-
+import axios from "axios";
+import cookie from "js-cookie";
+import {Navigate} from 'react-router-dom';
 const StyledIconButton = styled(IconButton)(({ theme }) => ({
   color: theme.palette.text.primary,
 }));
@@ -92,7 +94,19 @@ const Layout1Topbar = () => {
     }
     updateSidebarMode({ mode });
   };
+  const removeCookie = (key) => {
+    if (window !== "undefined") {
+      cookie.remove(key, { expires: 0 });
+    }
+  };
+  const navigate = useNavigate();
+  const handleLogout = async () => {
 
+    removeCookie("jwt");
+    navigate("/login");
+    window.location.reload();
+
+  }
   return (
     <TopbarRoot>
       <TopbarContainer>
@@ -130,10 +144,10 @@ const Layout1Topbar = () => {
               <UserMenu>
                 <Hidden xsDown>
                   <Span>
-                    Hi <strong>{user.name}</strong>
+                    Hi <strong>raaed</strong>
                   </Span>
                 </Hidden>
-                <Avatar src={user.avatar} sx={{ cursor: 'pointer' }} />
+                {/*<Avatar src={user.avatar} sx={{ cursor: 'pointer' }} />*/}
               </UserMenu>
             }
           >
@@ -158,7 +172,7 @@ const Layout1Topbar = () => {
 
             <StyledItem onClick={logout}>
               <Icon> power_settings_new </Icon>
-              <Span> Logout </Span>
+              <Span onClick={handleLogout}> Logout </Span>
             </StyledItem>
           </MatxMenu>
         </Box>

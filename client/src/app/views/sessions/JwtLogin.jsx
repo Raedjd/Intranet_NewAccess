@@ -5,9 +5,10 @@ import { Paragraph } from 'app/components/Typography';
 import useAuth from 'app/hooks/useAuth';
 import { Formik } from 'formik';
 import { useState } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import {Navigate, NavLink, useNavigate} from 'react-router-dom';
 import * as Yup from 'yup';
-
+import axios from "axios";
+import cookie from "js-cookie";
 const FlexBox = styled(Box)(() => ({ display: 'flex', alignItems: 'center' }));
 
 const JustifyBox = styled(FlexBox)(() => ({ justifyContent: 'center' }));
@@ -32,39 +33,39 @@ const JWTRoot = styled(JustifyBox)(() => ({
   },
 }));
 
-// inital login credentials
-const initialValues = {
-  email: '',
-  password: '',
-  remember: true,
-};
 
-// form field validation schema
-const validationSchema = Yup.object().shape({
-  password: Yup.string()
-    .min(6, 'Password must be 6 character length')
-    .required('Password is required!'),
-  email: Yup.string().email('Invalid Email address').required('Email is required!'),
-});
+
+
 
 const JwtLogin = () => {
   const theme = useTheme();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
-  const { login } = useAuth();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const handleLogin = async (e) => {
+    e.preventDefault();
 
-  const handleFormSubmit = async (values) => {
-    setLoading(true);
-    try {
-      await login(values.email, values.password);
-      navigate('/');
-    } catch (e) {
-      setLoading(false);
-    }
-  };
 
-  return (
+    await axios({
+      method: "post",
+      url: `http://localhost:8082/auth/login`,
+
+      data: {
+        username: username,
+        password: password,
+      },
+    })
+        .then((response) => {
+          console.log(response);
+       cookie.set("jwt", response.data.token);
+      navigate("/dashboard");
+        })
+  }
+
+  let token =cookie.get("jwt");
+  return !token ? (
     <JWTRoot>
       <Card className="card">
         <Grid container>
@@ -76,24 +77,22 @@ const JwtLogin = () => {
 
           <Grid item sm={6} xs={12}>
             <ContentBox>
-              <Formik
-                onSubmit={handleFormSubmit}
-
-                validationSchema={validationSchema}
-              >
+              <Formik>
                 {({ values, errors, touched, handleChange, handleBlur, handleSubmit }) => (
-                  <form onSubmit={handleSubmit}>
+                  <form onSubmit={handleLogin}>
                     <TextField
                       fullWidth
                       size="small"
-                      type="email"
-                      name="email"
-                      label="Email"
+                      type="username"
+                      name="username"
+                      label="Username"
                       variant="outlined"
                       onBlur={handleBlur}
-
-                      helperText={touched.email && errors.email}
-                      error={Boolean(errors.email && touched.email)}
+                      id="username"
+                      onChange={(e) => setUsername(e.target.value)}
+                      value={username}
+                      aria-describedby="inputGroupPrepend"
+                      required
                       sx={{ mb: 3 }}
                     />
 
@@ -105,9 +104,11 @@ const JwtLogin = () => {
                       label="Password"
                       variant="outlined"
                       onBlur={handleBlur}
-
-                      helperText={touched.password && errors.password}
-                      error={Boolean(errors.password && touched.password)}
+                      id="password"
+                      onChange={(e) => setPassword(e.target.value)}
+                      value={password}
+                      aria-describedby="inputGroupPrepend"
+                      required
                       sx={{ mb: 1.5 }}
                     />
 
@@ -120,6 +121,8 @@ const JwtLogin = () => {
                       loading={loading}
                       variant="contained"
                       sx={{ my: 2 }}
+                      sx={{ mx: 15 }}
+
                     >
                       Login
                     </LoadingButton>
@@ -141,6 +144,8 @@ const JwtLogin = () => {
         </Grid>
       </Card>
     </JWTRoot>
+  ):(
+      <Navigate to="*"/>
   );
 };
 

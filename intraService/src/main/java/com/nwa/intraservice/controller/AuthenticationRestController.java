@@ -14,6 +14,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+
 
 @RestController
 @CrossOrigin("*")
@@ -28,13 +31,14 @@ public class AuthenticationRestController {
 
     @Autowired
     private UserServiceImpl userDetailsService;
+    private Object response;
 
 //    @PostMapping("login/{isRemembered}")
 //    public ResponseEntity<?> authenticate(@RequestBody LoginModel loginModel, @PathVariable("isRemembered") boolean isRemembered){
 
 
     @PostMapping("/login")
-    public ResponseEntity<?> authenticate(@RequestBody LoginModel loginModel){
+    public ResponseEntity<?> authenticate(@RequestBody LoginModel loginModel ,       HttpServletResponse response ){
         final Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         loginModel.getUsername(),
@@ -46,10 +50,12 @@ public class AuthenticationRestController {
         UserDetails userDetails = userDetailsService.loadUserByUsername(loginModel.getUsername());
         SecurityContextHolder.getContext().setAuthentication(authentication);
         final String token;
-//        if (!isRemembered)
-        token = tokenProvider.generateToken(userDetails,1);
-//        else token = tokenProvider.generateToken(userDetails,9999);
 
+
+        token = tokenProvider.generateToken(userDetails,1);
+
+        Cookie cookie = new Cookie("jwt", token);
+        response.addCookie(cookie);
         return ResponseEntity.ok(new JwtRespone(token));
     }
 
