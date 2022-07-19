@@ -6,7 +6,7 @@ import { NotificationProvider } from 'app/contexts/NotificationContext';
 import useAuth from 'app/hooks/useAuth';
 import useSettings from 'app/hooks/useSettings';
 import { topBarHeight } from 'app/utils/constant';
-import React from 'react';
+import React, {useState} from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import { Span } from '../../../components/Typography';
 import NotificationBar from '../../NotificationBar/NotificationBar';
@@ -14,6 +14,7 @@ import ShoppingCart from '../../ShoppingCart';
 import axios from "axios";
 import cookie from "js-cookie";
 import {Navigate} from 'react-router-dom';
+import {fetchUserData} from "../../../auth/authRoles";
 const StyledIconButton = styled(IconButton)(({ theme }) => ({
   color: theme.palette.text.primary,
 }));
@@ -94,17 +95,29 @@ const Layout1Topbar = () => {
     }
     updateSidebarMode({ mode });
   };
+
+  const [userData,setUserData]=useState({});
+
+  React.useEffect(()=>{
+    fetchUserData().then((response)=>{
+      setUserData(response.data);
+    }).catch((e)=>{
+      removeCookie("jwt");
+      navigate("/login");
+    })
+  },[])
+
+  console.log(userData.role)
   const removeCookie = (key) => {
     if (window !== "undefined") {
-      cookie.remove(key, { expires: 0 });
+      cookie.remove(key, { expires: 1 });
     }
   };
   const navigate = useNavigate();
-  const handleLogout = async () => {
-
+  const handleLogout =  () => {
     removeCookie("jwt");
     navigate("/login");
-    window.location.reload();
+
 
   }
   return (
@@ -137,17 +150,16 @@ const Layout1Topbar = () => {
             <NotificationBar />
           </NotificationProvider>
 
-          <ShoppingCart />
 
           <MatxMenu
             menuButton={
               <UserMenu>
                 <Hidden xsDown>
                   <Span>
-                    Hi <strong>raaed</strong>
+                    Hi <strong>{userData.username}</strong>
                   </Span>
                 </Hidden>
-                {/*<Avatar src={user.avatar} sx={{ cursor: 'pointer' }} />*/}
+                <Avatar src={userData.image} sx={{ cursor: 'pointer' }} />
               </UserMenu>
             }
           >
@@ -159,7 +171,7 @@ const Layout1Topbar = () => {
             </StyledItem>
 
             <StyledItem>
-              <Link to="/page-layouts/user-profile">
+              <Link to="/dashboard/profil">
                 <Icon> person </Icon>
                 <Span> Profile </Span>
               </Link>
@@ -170,7 +182,7 @@ const Layout1Topbar = () => {
               <Span> Settings </Span>
             </StyledItem>
 
-            <StyledItem onClick={logout}>
+            <StyledItem onClick={() =>logout()}>
               <Icon> power_settings_new </Icon>
               <Span onClick={handleLogout}> Logout </Span>
             </StyledItem>

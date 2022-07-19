@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/user")
 @Api("/user")
 @Slf4j
@@ -49,16 +50,17 @@ public class UserRestController {
 
     }
 
-    @PostMapping("/add/{idDep}/{idRole}")
+    @PostMapping("/add/{nameDep}")
     @ResponseBody
-    public ResponseEntity<Map> addUserAndAssignToDep(@RequestBody User user, @PathVariable("idDep") Long idDepartemnt , @PathVariable("idRole") Long idRole){
+    public ResponseEntity addUserAndAssignToDep(@RequestBody User user, @PathVariable("nameDep") String nameDepart) {
             User username=userRepository.findByUsername(user.getUsername());
           if( username ==null ) {
-              iUserService.addUserAndAssignToDepartment(user, idDepartemnt, idRole);
-              return new ResponseEntity("User created and assigned", HttpStatus.CREATED);
+              iUserService.addUserAndAssignToDepartment(user, nameDepart);
+           return   ResponseEntity.ok("New user added in New Access");
 
           }
-        return new ResponseEntity("User alerady exist", HttpStatus.FOUND);
+        return   ResponseEntity.ok("User alerady exist");
+
 
     }
 

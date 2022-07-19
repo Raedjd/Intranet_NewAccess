@@ -14,11 +14,8 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name ="role")
-public class Role extends AbstractEntity{
+public class Role extends AbstractEntity {
 
-    @Column(name = "role")
-    private String role;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy="role")
-    private List<User> users;
+    @Column(name = "namerole")
+    private String nameRole;
 }

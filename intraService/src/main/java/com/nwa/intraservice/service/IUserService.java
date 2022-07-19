@@ -13,7 +13,7 @@ public interface IUserService {
 
     Role addRole(Role role);
 
-    Response addUserAndAssignToDepartment(User user, Long idDep , Long idRole);
+    Response addUserAndAssignToDepartment(User user, String nameDepart );
     List<User> findAll();
     User findById(Long id);
     User updateUser(User user, Long id);

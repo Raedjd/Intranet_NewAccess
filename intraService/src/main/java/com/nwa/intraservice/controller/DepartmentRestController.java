@@ -1,16 +1,16 @@
 package com.nwa.intraservice.controller;
 
-import ch.qos.logback.core.status.Status;
 import com.nwa.intraservice.models.Department;
 import com.nwa.intraservice.service.IDepartmentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.xml.ws.Response;
 import java.util.List;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/dep")
 @Slf4j
 public class DepartmentRestController {
@@ -19,10 +19,10 @@ public class DepartmentRestController {
 
     @PostMapping("/add")
     @ResponseBody
-    public Department add(@RequestBody Department d) {
+    public ResponseEntity add(@RequestBody Department d ) {
         Department dep = idepService.addDepartment(d);
 
-        return dep;
+        return ResponseEntity.ok("New department created in New Access");
 
     }
 

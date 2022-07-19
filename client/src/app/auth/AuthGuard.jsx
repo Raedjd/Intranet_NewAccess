@@ -16,10 +16,6 @@ import cookie from "js-cookie";
 // };
 
 const AuthGuard = ({ children }) => {
-  let {
-    //isAuthenticated,
-     user
-  } = useAuth();
   const { pathname } = useLocation();
 
   //   const routes = flat(AllPages);
@@ -33,7 +29,10 @@ const AuthGuard = ({ children }) => {
  let isAuthenticated = cookie.get("jwt")
   let authenticated = isAuthenticated;
 
-  return (
+
+
+
+    return (
     <>
       {authenticated ? (
         children

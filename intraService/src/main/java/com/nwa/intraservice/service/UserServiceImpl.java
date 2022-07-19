@@ -55,16 +55,12 @@ public class UserServiceImpl implements IUserService , UserDetailsService {
     }
 
     @Override
-    public Response addUserAndAssignToDepartment(User user, Long idDep , Long idRole) {
-        Department department = departmentRepository.findById(idDep).orElse(null);
-        Role role = roleRepository.findById(idRole).orElse(null);
-
+    public Response addUserAndAssignToDepartment(User user, String nameDepart ) {
+        Department department = departmentRepository.findDepartmentByNameDepart(nameDepart);
          user.setDepartment(department);
-            user.setRole(role);
+
             user.setPassword(passwordEncoder().encode(user.getPassword()));
             userRepository.save(user);
-
-
 
         return null;
     }

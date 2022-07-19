@@ -74,12 +74,11 @@ public class User extends AbstractEntity{
     @JoinColumn(name = "idDepartment")
     private Department department;
 
-    @ManyToOne(fetch = FetchType.EAGER )
-    @JsonIgnore
-    @JoinColumn(name = "idRole")
-    private Role role;
+    @Enumerated(EnumType.STRING)
+    private Rolee role;
 
     @OneToOne(cascade = CascadeType.ALL)
+    @JsonIgnore
     @JoinColumn(name = "idimage")
     private Image image;
 }
