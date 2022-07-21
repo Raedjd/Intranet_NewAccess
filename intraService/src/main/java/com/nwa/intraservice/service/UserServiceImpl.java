@@ -46,6 +46,7 @@ public class UserServiceImpl implements IUserService , UserDetailsService {
 
     @Override
     public User addUser(User user) {
+        user.setPassword(passwordEncoder().encode(user.getPassword()));
         return userRepository.save(user);
     }
 
@@ -108,6 +109,11 @@ public class UserServiceImpl implements IUserService , UserDetailsService {
     @Override
     public User findByUserByToken(String username) {
         return userRepository.findByUsername(username);
+    }
+
+    @Override
+    public List<User> getUserByDepartement(Long idDep) {
+        return userRepository.UserByDep(idDep);
     }
 
 

@@ -1,5 +1,6 @@
 package com.nwa.intraservice.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -16,7 +17,9 @@ import javax.persistence.*;
 public class Product extends AbstractEntity {{}
         @Column(name="nameproduct")
         private String nameProduct;
-        @ManyToOne
+        @ManyToOne(fetch = FetchType.EAGER)
+        @JoinColumn(name = "idDepartment")
+        @JsonIgnoreProperties({"department","product"})
         @JsonIgnore
         private Department department;
 

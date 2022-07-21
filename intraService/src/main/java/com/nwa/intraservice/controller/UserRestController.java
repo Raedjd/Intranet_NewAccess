@@ -1,5 +1,6 @@
 package com.nwa.intraservice.controller;
 
+import com.nwa.intraservice.models.Product;
 import com.nwa.intraservice.models.Role;
 import com.nwa.intraservice.models.User;
 import com.nwa.intraservice.repository.UserRepository;
@@ -93,7 +94,10 @@ public class UserRestController {
     public User findUserByToken() {
         return iUserService.findByUserByToken(SecurityContextHolder.getContext().getAuthentication().getName());
     }
-
+    @GetMapping("/userbydepart/{iddepart}")
+    public List<User> getUsersByDEpart(@PathVariable("iddepart") Long iddep) {
+        return iUserService.getUserByDepartement(iddep);
+    }
 
 
 

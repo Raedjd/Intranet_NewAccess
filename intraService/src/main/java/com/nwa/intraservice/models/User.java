@@ -1,6 +1,7 @@
 package com.nwa.intraservice.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -69,9 +70,10 @@ public class User extends AbstractEntity{
     @JsonIgnore
     private List<Event> eventss;
 
-    @ManyToOne(fetch = FetchType.EAGER )
-    @JsonIgnore
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idDepartment")
+    @JsonIgnoreProperties({"department","user"})
+    @JsonIgnore
     private Department department;
 
     @Enumerated(EnumType.STRING)

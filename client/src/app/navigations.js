@@ -1,7 +1,7 @@
 export const navigations = [
   { name: 'Dashboard', path: '/dashboard', icon: 'dashboard' },
   { label: 'PAGES', type: 'label' },
-  { name: 'For Admin', path: '/dashboard/admin', icon: 'group_add' },
+  { name: 'For Admin', path: '/dashboard/admin', icon: 'group_add'  },
   {
     name: 'Actuality',
     icon: 'crop_rotate',

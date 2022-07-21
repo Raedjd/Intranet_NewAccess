@@ -1,5 +1,6 @@
 package com.nwa.intraservice.service;
 
+import com.nwa.intraservice.models.Product;
 import com.nwa.intraservice.models.Role;
 import com.nwa.intraservice.models.User;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +23,6 @@ public interface IUserService {
      User udatePicture (User user,Long id , String url );
     User findByUserByToken(String username);
 
-
+    List<User> getUserByDepartement(Long idDep);
 
 }

@@ -21,18 +21,19 @@ public class ProductServiceImpl implements IProductService{
     private DepartmentRepository departmentRepository;
     @Override
     public Product addProduct(Product product) {
+
         return productRepository.save(product);
     }
 
     @Override
-    public void addProductAndAssignToDepartment(List<Product> pd, Long idDep) {
+    public void addProductAndAssignToDepartment(Product pd, Long idDep) {
         Department department = departmentRepository.findById(idDep).orElse(null);
 
-        for (Product product: pd){
-            product.setDepartment(department);
-            productRepository.save(product);
+
+            pd.setDepartment(department);
+            productRepository.save(pd);
         }
-    }
+
 
     @Override
     public List<Product> findAll() {

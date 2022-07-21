@@ -1,5 +1,6 @@
 package com.nwa.intraservice.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
@@ -19,10 +20,9 @@ public class AbstractEntity implements Serializable {
     @GeneratedValue
     private Long id;
 
-    @CreatedDate
-    @Column(name = "creationDate")
-    @JsonIgnore
-    private LocalDate creationDate= LocalDate.now();
+
+    @JsonFormat(pattern = "yyyy-MM-dd" )
+    private Date dateCreation= new Date();
 
     @LastModifiedDate
     @Column(name = "LastModifiedDate")

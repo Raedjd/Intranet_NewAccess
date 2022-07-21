@@ -1,6 +1,7 @@
 package com.nwa.intraservice.service;
 
 import com.nwa.intraservice.models.Department;
+import com.nwa.intraservice.models.User;
 import com.nwa.intraservice.repository.DepartmentRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,9 @@ import java.util.List;
 public class DepartmentServiceImpl implements IDepartmentService {
     @Autowired
     private DepartmentRepository  departmentRepository ;
+
+    @Autowired
+    private IUserService iUserService;
 
 
     @Override
@@ -37,7 +41,7 @@ public class DepartmentServiceImpl implements IDepartmentService {
         if(departmentRepository.findById(id).isPresent()){
             Department department = departmentRepository.findById(id).get();
             department.setNameDepart(dep.getNameDepart());
-            department.setLastUpdateDate(LocalDate.now());
+           // department.setLastUpdateDate(LocalDate.now());
             return departmentRepository.save(department);
         }
         return null;

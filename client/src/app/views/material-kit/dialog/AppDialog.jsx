@@ -9,7 +9,7 @@ import FullScreenDialog from './FullScreenDialog';
 import MaxWidthDialog from './OptimalSizeDialog';
 import ResponsiveDialog from './ResponsiveDialog';
 import AlertDialog from './SimpleAlerts';
-import SimpleDialogDemo from './SimpleDialog';
+import SimpleDialogDemo from '../../dashboard/admin/SimpleDialogProduct';
 
 const Container = styled('div')(({ theme }) => ({
   margin: '30px',

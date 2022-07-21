@@ -1,6 +1,7 @@
 package com.nwa.intraservice.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -22,9 +23,10 @@ public class Tools extends  AbstractEntity{
     @Column(name = "nbrtools")
     private String nbrTools;
 
-    @ManyToOne(fetch = FetchType.EAGER )
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "idDepartment")
+    @JsonIgnoreProperties({"department","tools"})
     @JsonIgnore
-    @JoinColumn(name = "idDepartment" )
     private Department department;
 
     @ManyToOne(fetch = FetchType.EAGER  )

@@ -10,10 +10,7 @@ import React, {useState} from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import { Span } from '../../../components/Typography';
 import NotificationBar from '../../NotificationBar/NotificationBar';
-import ShoppingCart from '../../ShoppingCart';
-import axios from "axios";
 import cookie from "js-cookie";
-import {Navigate} from 'react-router-dom';
 import {fetchUserData} from "../../../auth/authRoles";
 const StyledIconButton = styled(IconButton)(({ theme }) => ({
   color: theme.palette.text.primary,
@@ -107,7 +104,6 @@ const Layout1Topbar = () => {
     })
   },[])
 
-  console.log(userData.role)
   const removeCookie = (key) => {
     if (window !== "undefined") {
       cookie.remove(key, { expires: 1 });

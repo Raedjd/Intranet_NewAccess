@@ -10,7 +10,7 @@ public interface IProductService {
 
     Product addProduct(Product product);
 
-    void addProductAndAssignToDepartment(List<Product> pd, Long idDep);
+    void addProductAndAssignToDepartment(Product pd, Long idDep);
 
     List<Product> findAll();
 

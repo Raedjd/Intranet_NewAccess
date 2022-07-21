@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/product")
 @Slf4j
 public class ProductRestController {
@@ -29,7 +30,7 @@ public class ProductRestController {
     }
     @PostMapping("/add/{id}")
     @ResponseBody
-    public void addProdAndAssignToDep(@RequestBody List<Product> prod, @PathVariable("id") Long idDepartemnt){
+    public void addProdAndAssignToDep(@RequestBody Product prod, @PathVariable("id") Long idDepartemnt){
         iProductService.addProductAndAssignToDepartment(prod ,idDepartemnt);
     }
 

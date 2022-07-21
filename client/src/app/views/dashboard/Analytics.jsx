@@ -5,7 +5,7 @@ import DoughnutChart from './shared/Doughnut';
 import RowCards from './shared/RowCards';
 import StatCards from './shared/StatCards';
 import StatCards2 from './shared/StatCards2';
-import TopSellingDepartment from './shared/TopSellingDepartment';
+import TopSellingDepartment from './admin/TopSellingDepartment';
 import UpgradeCard from './shared/UpgradeCard';
 import {Span} from "../../components/Typography";
 
