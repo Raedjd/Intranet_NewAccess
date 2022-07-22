@@ -41,7 +41,7 @@ const H4 = styled('h4')(({ theme }) => ({
 
 
 
-const Admin = () => {
+export const Admin = () => {
     const { palette } = useTheme();
 
 
@@ -131,10 +131,7 @@ const Admin = () => {
             setUserData(response.data);
         })
     },[])
-
-console.log( userData.role =="Admin")
     return (
-         userData.role =="Admin" ? (
                 <Fragment >
                     <ContentBox className="analytics">
                         <Grid container spacing={3}>
@@ -246,9 +243,7 @@ console.log( userData.role =="Admin")
                         </Grid>
                     </ContentBox>
                 </Fragment>
-            ) : (
-                <Navigate replace to="*"  />
-            )
+
 
     );
 };

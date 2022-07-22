@@ -13,7 +13,7 @@ const Analytics = Loadable(lazy(() => import('./Analytics')));
 
 const dashboardRoutes = [
   { path: '/dashboard', element: <Analytics /> },
-  { path: '/dashboard/admin', element: <Admin />  },
+  { path: '/dashboard/admin', element: <Admin />    },
   { path: '/dashboard/actuality', element: <Actuality/>},
   { path: '/dashboard/listusers', element: <Listusers />},
   { path: '/dashboard/profil', element: <Profiluser />},

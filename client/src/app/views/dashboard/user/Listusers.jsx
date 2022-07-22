@@ -1,6 +1,27 @@
-import {Box, Icon, IconButton, styled, Table, TableBody, TableCell, TableHead, TableRow} from "@mui/material";
+import {
+    Box,
+    Fab,
+    Icon,
+    IconButton,
+    styled,
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TablePagination,
+    TableRow
+} from "@mui/material";
 import { Breadcrumb, SimpleCard } from "app/components";
 import SimpleTable from "../../material-kit/tables/SimpleTable";
+import Users from "../admin/SimpleDialogUsers";
+import Products from "../admin/SimpleDialogProduct";
+import Tool from "../admin/SimpleDialogTools";
+import FormDialogDep from "../admin/dialogDepartment";
+import React, {useState} from "react";
+import {fetchUserData, fetchUsersData} from "../../../auth/authRoles";
+import ListItemAvatar from "@mui/material/ListItemAvatar";
+import Avatar from "@mui/material/Avatar";
+import {blue} from "@mui/material/colors";
 
 
 const Container = styled("div")(({ theme }) => ({
@@ -26,36 +47,88 @@ const StyledTable = styled(Table)(({ theme }) => ({
 
 
 const Listusers = () => {
+
+
+    const [page, setPage] = useState(0);
+    const [rowsPerPage, setRowsPerPage] = useState(5);
+
+    const handleChangePage = (_, newPage) => {
+        setPage(newPage);
+    };
+    const handleChangeRowsPerPage = (event) => {
+        setRowsPerPage(+event.target.value);
+        setPage(0);
+    };
+    const [usersData,setUsersData]=useState({});
+
+    React.useEffect(()=>{
+        fetchUsersData().then((response)=>{
+            setUsersData(response.data);
+        })
+    },[])
+    const users = Object.keys(usersData).map((key) => usersData[key]);
+  console.log(users)
     return (
         <Container>
             <Box className="breadcrumb">
                 <Breadcrumb routeSegments={[{ name: "List", path: "/users" }, { name: "Users" }]} />
             </Box>
 
-            <SimpleCard title="Simple Table">
+            <SimpleCard title="All users">
                 <Box width="100%" overflow="auto">
+
                     <StyledTable>
+
                         <TableHead>
                             <TableRow>
-                                <TableCell align="left">Name</TableCell>
-                                <TableCell align="center">Company</TableCell>
-                                <TableCell align="center">Start Date</TableCell>
-                                <TableCell align="center">Status</TableCell>
-                                <TableCell align="center">Amount</TableCell>
-                                <TableCell align="right">Action</TableCell>
+                                <TableCell align="left">Number</TableCell>
+                                <TableCell align="left">Avatar</TableCell>
+                                <TableCell align="center">First name</TableCell>
+                                <TableCell align="center">Last name</TableCell>
+                                <TableCell align="center">Mail</TableCell>
+                                <TableCell align="center">Nationality</TableCell>
+                                <TableCell align="center">Birthdate</TableCell>
+                                <TableCell align="center">Phone</TableCell>
+                                <TableCell align="center">Post in New Access</TableCell>
+                                <TableCell align="center">Start Job</TableCell>
                             </TableRow>
                         </TableHead>
-
                         <TableBody>
+                            {users
+                                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                                .map((u, index) => (
+                                    <TableRow key={index}>
+                                        <TableCell align="left">   <Fab variant="extended" aria-label="Delete" className="button"  >{index+1}   </Fab></TableCell>
+                                        <TableCell align="center"><ListItemAvatar>
+                                            <Avatar sx={{ backgroundColor: blue[100], color: blue[600] }}>
+                                            </Avatar>
+                                        </ListItemAvatar></TableCell>
+                                        <TableCell align="center">{u.firstName}</TableCell>
+                                        <TableCell align="center">{u.lastName}</TableCell>
+                                        <TableCell align="center">{u.mail}</TableCell>
+                                        <TableCell align="center">{u.nationnality}</TableCell>
+                                        <TableCell align="center">{u.birthdate}</TableCell>
+                                        <TableCell align="center">{u.phone}</TableCell>
+                                        <TableCell align="center">{u.poste}</TableCell>
+                                        <TableCell align="center">{u.dateCreation}</TableCell>
 
-                                <TableRow >
-                                    <TableCell align="left"></TableCell>
-
-
-                                </TableRow>
-
+                                    </TableRow>
+                                ))}
                         </TableBody>
                     </StyledTable>
+
+                    <TablePagination
+                        sx={{ px: 2 }}
+                        page={page}
+                        component="div"
+                        rowsPerPage={rowsPerPage}
+                        count={users.length}
+                        onPageChange={handleChangePage}
+                        rowsPerPageOptions={[5, 10, 25]}
+                        onRowsPerPageChange={handleChangeRowsPerPage}
+                        nextIconButtonProps={{ "aria-label": "Next Page" }}
+                        backIconButtonProps={{ "aria-label": "Previous Page" }}
+                    />
                 </Box>
             </SimpleCard>
 

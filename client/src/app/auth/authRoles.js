@@ -21,6 +21,16 @@ export const fetchUserData=(authRequest)=> {
         }
     })
 }
+export const fetchUsersData=(authRequest)=> {
+    return axios({
+        method: 'GET',
+        url: `http://localhost:8082/user/findAll`,
+        headers: {
+            'Authorization': 'Bearer ' + getToken()
+        }
+    })
+}
+
 export const fetchDepartmentData=(authRequest)=> {
     return axios({
         method: 'GET',

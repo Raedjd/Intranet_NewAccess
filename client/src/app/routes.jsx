@@ -17,7 +17,7 @@ const routes = [
     children: [...dashboardRoutes, ...chartsRoute, ...materialRoutes],
   },
   ...sessionRoutes,
-  { path: '/', element: <Navigate to="login" /> },
+  { path: '/', element: <Navigate to="login" />},
   { path: '*', element: <NotFound /> },
 ];
 

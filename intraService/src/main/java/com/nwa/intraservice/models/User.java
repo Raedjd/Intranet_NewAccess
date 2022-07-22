@@ -80,7 +80,6 @@ public class User extends AbstractEntity{
     private Rolee role;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JsonIgnore
     @JoinColumn(name = "idimage")
     private Image image;
 }

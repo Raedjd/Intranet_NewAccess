@@ -98,6 +98,7 @@ const Layout1Topbar = () => {
   React.useEffect(()=>{
     fetchUserData().then((response)=>{
       setUserData(response.data);
+      console.log(response.data.image.imageUrl)
     }).catch((e)=>{
       removeCookie("jwt");
       navigate("/login");
@@ -113,9 +114,9 @@ const Layout1Topbar = () => {
   const handleLogout =  () => {
     removeCookie("jwt");
     navigate("/login");
-
-
   }
+
+
   return (
     <TopbarRoot>
       <TopbarContainer>
@@ -155,7 +156,7 @@ const Layout1Topbar = () => {
                     Hi <strong>{userData.username}</strong>
                   </Span>
                 </Hidden>
-                <Avatar src={userData.image} sx={{ cursor: 'pointer' }} />
+                <Avatar  sx={{ cursor: 'pointer' }} />
               </UserMenu>
             }
           >

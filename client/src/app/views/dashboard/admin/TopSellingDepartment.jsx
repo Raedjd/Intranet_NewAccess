@@ -62,10 +62,10 @@ const TopSellingDepartment = () => {
 
             <TableHead>
               <TableRow>
-                <TableCell align="left"></TableCell>
+                <TableCell align="left">Number</TableCell>
                 <TableCell align="center">Name of department</TableCell>
                 <TableCell align="center">Creation Date</TableCell>
-                <TableCell align="center">User belongs</TableCell>
+                <TableCell align="center">Users belongs</TableCell>
                 <TableCell align="center">Products belongs</TableCell>
                 <TableCell align="center">Tools belongs</TableCell>
                 <TableCell align="center">Update department</TableCell>
@@ -79,8 +79,8 @@ const TopSellingDepartment = () => {
 
 
                           <TableCell align="left">   <Fab variant="extended" aria-label="Delete" className="button"  >{index+1}   </Fab></TableCell>
-                        <TableCell align="left">   <Fab variant="extended" aria-label="Delete" className="button"  >{dep.nameDepart}  </Fab></TableCell>
-                        <TableCell align="left">   <Fab variant="extended" aria-label="Delete" className="button"  >{dep.dateCreation} </Fab></TableCell>
+                        <TableCell align="center">   <Fab variant="extended" aria-label="Delete" className="button"  >{dep.nameDepart}  </Fab></TableCell>
+                        <TableCell align="center">   <Fab variant="extended" aria-label="Delete" className="button"  >{dep.dateCreation} </Fab></TableCell>
                         <TableCell align="center"><Users key={index}  user={dep.id} ></Users></TableCell>
                         <TableCell align="center">  <Products   key={index}  product={dep.id} ></Products></TableCell>
                         <TableCell align="center">  <Tool   key={index}  tools={dep.id} ></Tool></TableCell>

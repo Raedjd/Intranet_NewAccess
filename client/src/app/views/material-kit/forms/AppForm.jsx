@@ -1,7 +1,7 @@
 import { Stack } from "@mui/material";
 import { Box, styled } from "@mui/system";
 import { Breadcrumb, SimpleCard } from "app/components";
-import Profilform from "../../dashboard/user/profilform";
+import Settings from "../../dashboard/user/settings";
 import StepperForm from "./StepperForm";
 
 const Container = styled("div")(({ theme }) => ({
@@ -22,7 +22,7 @@ const AppForm = () => {
 
       <Stack spacing={3}>
         <SimpleCard title="Simple Form">
-          <Profilform />
+          <Settings />
         </SimpleCard>
 
         <SimpleCard title="stepper form">
