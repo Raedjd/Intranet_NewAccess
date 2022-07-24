@@ -48,6 +48,7 @@ public class User extends AbstractEntity{
     @Column(name = "password")
     private String password;
 
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy="user")
     @JsonIgnore
     private List<Tools> toolss;

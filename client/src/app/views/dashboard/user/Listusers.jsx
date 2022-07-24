@@ -60,14 +60,14 @@ const Listusers = () => {
         setPage(0);
     };
     const [usersData,setUsersData]=useState({});
-
     React.useEffect(()=>{
         fetchUsersData().then((response)=>{
             setUsersData(response.data);
+
         })
     },[])
     const users = Object.keys(usersData).map((key) => usersData[key]);
-  console.log(users)
+
     return (
         <Container>
             <Box className="breadcrumb">
@@ -89,7 +89,7 @@ const Listusers = () => {
                                 <TableCell align="center">Nationality</TableCell>
                                 <TableCell align="center">Birthdate</TableCell>
                                 <TableCell align="center">Phone</TableCell>
-                                <TableCell align="center">Post in New Access</TableCell>
+                                <TableCell align="center">Post </TableCell>
                                 <TableCell align="center">Start Job</TableCell>
                             </TableRow>
                         </TableHead>
@@ -100,7 +100,7 @@ const Listusers = () => {
                                     <TableRow key={index}>
                                         <TableCell align="left">   <Fab variant="extended" aria-label="Delete" className="button"  >{index+1}   </Fab></TableCell>
                                         <TableCell align="center"><ListItemAvatar>
-                                            <Avatar sx={{ backgroundColor: blue[100], color: blue[600] }}>
+                                            <Avatar src={u.image.imageUrl}>
                                             </Avatar>
                                         </ListItemAvatar></TableCell>
                                         <TableCell align="center">{u.firstName}</TableCell>

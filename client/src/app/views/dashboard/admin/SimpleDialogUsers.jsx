@@ -54,6 +54,7 @@ export default function Users({user}) {
 
                         <TableHead>
                             <TableRow>
+                                <TableCell align="left"></TableCell>
                                 <TableCell align="left">Avatar</TableCell>
                                 <TableCell align="center">First Name</TableCell>
                                 <TableCell align="center">Last Name</TableCell>
@@ -64,9 +65,10 @@ export default function Users({user}) {
                             {users
                                 .map((u, index) => (
                                     <TableRow key={index}>
+                                        <TableCell align="center">{index+1}</TableCell>
                                         <TableCell align="center"><ListItemAvatar>
-                                            <Avatar sx={{ backgroundColor: blue[100], color: blue[600] }}>
-                                                {u.image}
+                                            <Avatar src={u.image.imageUrl}>
+
                                             </Avatar>
                                         </ListItemAvatar></TableCell>
                                         <TableCell align="center">{u.firstName}</TableCell>

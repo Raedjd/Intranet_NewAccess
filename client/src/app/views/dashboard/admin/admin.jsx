@@ -45,7 +45,8 @@ export const Admin = () => {
     const { palette } = useTheme();
 
 
-    const [nameDepart,setNameDepart]=useState('');
+    const [nameDepart,setNameDepart]=useState("");
+
     const addDepartment = async (e) => {
         e.preventDefault();
         const departSuccess = document.querySelector(".depart");
@@ -75,16 +76,13 @@ export const Admin = () => {
 
     ];
 
-    const [depData,setDepData]=useState({});
+    const [depData,setDepData]=useState([{}]);
 
     React.useEffect(()=>{
         fetchDepartmentData().then((response)=>{
             setDepData(response.data);
         })
     },[])
-
-
-
     const [username,setUsername]=useState('');
     const [mail, setMail] = useState("");
     const [role, setRole] = useState("");
@@ -124,14 +122,16 @@ export const Admin = () => {
     }
     }
 
-    const [userData,setUserData]=useState({});
-
+    const [userData,setUserData]=useState("");
+    const [rl,setRl]=useState(true);
     React.useEffect(()=>{
         fetchUserData().then((response)=>{
-            setUserData(response.data);
+            setUserData(response.data.role);
+            setRl(response.data.role=="Admin")
         })
     },[])
-    return (
+    console.log(rl)
+    return rl ? (
                 <Fragment >
                     <ContentBox className="analytics">
                         <Grid container spacing={3}>
@@ -155,6 +155,7 @@ export const Admin = () => {
                                                 id="nameDepart"
                                                 onChange={(e) =>setNameDepart(e.target.value)}
                                                 value={nameDepart}
+                                                sx={{ width: 200}}
 
                                             />
 
@@ -180,6 +181,7 @@ export const Admin = () => {
                                                 id="username"
                                                 onChange={(e) => setUsername(e.target.value)}
                                                 value={username}
+                                                sx={{ width: 200}}
 
                                             />
                                             <TextField
@@ -189,6 +191,7 @@ export const Admin = () => {
                                                 id="email"
                                                 onChange={(e) => setMail(e.target.value)}
                                                 value={mail}
+                                                sx={{ width: 200}}
 
                                             />
                                             <Autocomplete
@@ -197,6 +200,7 @@ export const Admin = () => {
                                                 onChange={(e , v) => setRole(v.label) }
                                                 renderInput={(params) => (
                                                     <TextField {...params} label="Role" variant="outlined" fullWidth
+                                                               sx={{ width: 200}}
                                                     />
                                                 ) }
                                             />
@@ -206,6 +210,7 @@ export const Admin = () => {
                                                 onChange={(e , v) => setNameDep(v.nameDepart) }
                                                 renderInput={(params) => (
                                                     <TextField {...params} label="Assign to department" variant="outlined" fullWidth
+                                                               sx={{ width: 200}}
                                                     />
                                                 )}
                                             />
@@ -216,6 +221,7 @@ export const Admin = () => {
                                                 id="password"
                                                 onChange={(e) => setPassword(e.target.value)}
                                                 value={password}
+                                                sx={{ width: 200}}
 
                                             />
                                             <TextField
@@ -226,6 +232,7 @@ export const Admin = () => {
                                                 id="confpassword"
                                                 onChange={(e) => setConfPassword(e.target.value)}
                                                 value={confPassword}
+                                                sx={{ width: 200}}
 
 
                                             />
@@ -245,7 +252,11 @@ export const Admin = () => {
                 </Fragment>
 
 
-    );
+    ):(
+        <Navigate to="*" />
+    )
+
+
 };
 
 export default Admin;

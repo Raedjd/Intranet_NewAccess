@@ -63,12 +63,12 @@ const TopSellingDepartment = () => {
             <TableHead>
               <TableRow>
                 <TableCell align="left">Number</TableCell>
-                <TableCell align="center">Name of department</TableCell>
+                <TableCell align="center">Name </TableCell>
                 <TableCell align="center">Creation Date</TableCell>
-                <TableCell align="center">Users belongs</TableCell>
-                <TableCell align="center">Products belongs</TableCell>
-                <TableCell align="center">Tools belongs</TableCell>
-                <TableCell align="center">Update department</TableCell>
+                <TableCell align="center">Users </TableCell>
+                <TableCell align="center">Products </TableCell>
+                <TableCell align="center">Tools </TableCell>
+                <TableCell align="center">Update </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>

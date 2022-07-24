@@ -2,6 +2,7 @@ package com.nwa.intraservice.service;
 
 
 import com.nwa.intraservice.models.Department;
+import com.nwa.intraservice.models.Image;
 import com.nwa.intraservice.models.Role;
 import com.nwa.intraservice.models.User;
 import com.nwa.intraservice.repository.DepartmentRepository;
@@ -59,8 +60,9 @@ public class UserServiceImpl implements IUserService , UserDetailsService {
     public Response addUserAndAssignToDepartment(User user, String nameDepart ) {
         Department department = departmentRepository.findDepartmentByNameDepart(nameDepart);
          user.setDepartment(department);
-
+            String avatar="https://cdn.icon-icons.com/icons2/2643/PNG/512/male_boy_person_people_avatar_icon_159358.png";
             user.setPassword(passwordEncoder().encode(user.getPassword()));
+            user.setImage(new Image("",avatar,""));
             userRepository.save(user);
 
         return null;
@@ -114,6 +116,17 @@ public class UserServiceImpl implements IUserService , UserDetailsService {
     @Override
     public List<User> getUserByDepartement(Long idDep) {
         return userRepository.UserByDep(idDep);
+    }
+
+    @Override
+    public Response ChangePassword(User user, Long id) {
+
+
+
+            User u = userRepository.findById(id).orElse(null);
+            u.setPassword(passwordEncoder().encode(user.getPassword()));
+            return (Response) userRepository.save(u);
+
     }
 
 

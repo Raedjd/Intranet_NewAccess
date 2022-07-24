@@ -21,7 +21,7 @@ public class Image extends AbstractEntity{
     private String name;
 
     @Column(name= "imageUrl")
-    private String imageUrl;
+    private String imageUrl ;
 
     @Column(name ="imageid")
     private String imageId;

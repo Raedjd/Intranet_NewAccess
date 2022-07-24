@@ -89,6 +89,7 @@ const Settings = () => {
                       value={firstName}
                       validators={["required"]}
                       errorMessages={["this field is required"]}
+                      sx={{ width: 400}}
                   />
                   <TextField
                       type="text"
@@ -98,6 +99,7 @@ const Settings = () => {
                       value={lastName}
                       validators={["required"]}
                       errorMessages={["this field is required"]}
+                      sx={{ width: 400}}
                   />
 
                   <TextField
@@ -108,6 +110,7 @@ const Settings = () => {
                       value={poste}
                       validators={["required"]}
                       errorMessages={["this field is required"]}
+                      sx={{ width: 400}}
                   />
                   <TextField
                       type="text"
@@ -117,6 +120,7 @@ const Settings = () => {
                       value={phone}
                       validators={["required"]}
                       errorMessages={["this field is required"]}
+                      sx={{ width: 400}}
 
                   />
                   <TextField
@@ -127,6 +131,7 @@ const Settings = () => {
                       value={birthdate}
                       validators={["required"]}
                       errorMessages={["this field is required"]}
+                      sx={{ width: 400}}
 
                   />
 
@@ -135,7 +140,7 @@ const Settings = () => {
 
                   <Autocomplete
                       id="country-select-demo"
-                      sx={{ width: 300 }}
+                      sx={{ width: 400}}
                       options={countries}
                       autoHighlight
                       getOptionLabel={(option) => option.label}

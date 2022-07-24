@@ -10,7 +10,7 @@ import {
     Icon,
     Radio,
     RadioGroup,
-    styled,
+    styled, useTheme,
 } from "@mui/material";
 import { Span } from "app/components/Typography";
 import React, { useEffect, useState } from "react";
@@ -40,6 +40,7 @@ const Setting = () => {
     const id=userData.id;
     const [state, setState] = useState({ date: new Date() });
 
+
     useEffect(() => {
         ValidatorForm.addValidationRule("isPasswordMatch", (value) => {
             if (value !== state.password) return false;
@@ -59,19 +60,6 @@ const Setting = () => {
         setState({ ...state, [event.target.name]: event.target.value });
     };
 
-    const handleDateChange = (date) => setState({ ...state, date });
-
-    const {
-        username,
-        firstName,
-        creditCard,
-        mobile,
-        password,
-        confirmPassword,
-        gender,
-        date,
-        email,
-    } = state;
 
 
     const [image, setImage] = useState("");
@@ -94,9 +82,41 @@ const Setting = () => {
         })
             .then((res) => {
                  console.log(res.data);
-
+                window.location.reload();
             })
     };
+
+    const [oldPassword,setOldPassword]=useState('');
+
+
+    const changePassword = async (e) => {
+        e.preventDefault();
+        const change = document.querySelector(".password");
+        await axios({
+            method: "put",
+            url: `http://localhost:8082/user/changepwd/${id}`,
+
+            data: {
+                oldPassword:oldPassword,
+                newPassword:password
+
+            },
+            headers: {
+                'Authorization': 'Bearer ' + getToken()
+            }
+        }).then((response)=>{
+            console.log(response);
+            change.innerHTML=response.data;
+
+        })
+
+    }
+    const {
+
+        password,
+        confirmPassword,
+
+    } = state;
 
     return (
 
@@ -109,7 +129,7 @@ const Setting = () => {
                         <input
                             name="avatar"
                             type="file"
-                            accept=".jpg, .jpeg, .png"
+                            accept=".jpg, .jpeg, .png, .jfif"
                             onChange={(e) => setImage(e.target.files[0])}
 
 
@@ -125,37 +145,40 @@ const Setting = () => {
                     <Span sx={{ pl: 1, textTransform: "capitalize" }}>Change avatar</Span>
                 </Button>
             </form>
-          {/*  <ValidatorForm  onError={() => null}>
+         <ValidatorForm onSubmit={changePassword}  onError={() => null}>
                 <Grid container spacing={6}>
                     <Grid item lg={6} md={6} sm={12} xs={12} sx={{ mt: 2 }}>
                         <TextField
-                            name="password"
+                            name="oldpassword"
                             type="password"
                             label="Old password"
-                            value={password || ""}
-                            onChange={handleChange}
+                            onChange={(e) =>setOldPassword(e.target.value)}
+                            value={oldPassword}
                             validators={["required"]}
                             errorMessages={["this field is required"]}
+                            sx={{ width: 400}}
                         />
 
 
                         <TextField
                             name="password"
                             type="password"
-                            label="New password"
-                            value={password || ""}
+                            label="Password"
+                            value={password }
                             onChange={handleChange}
                             validators={["required"]}
                             errorMessages={["this field is required"]}
+                            sx={{ width: 400}}
                         />
                         <TextField
                             type="password"
                             name="confirmPassword"
                             onChange={handleChange}
                             label="Confirm Password"
-                            value={confirmPassword || ""}
+                            value={confirmPassword }
                             validators={["required", "isPasswordMatch"]}
                             errorMessages={["this field is required", "password didn't match"]}
+                            sx={{ width: 400}}
                         />
 
                     </Grid>
@@ -165,7 +188,8 @@ const Setting = () => {
                     <Icon>send</Icon>
                     <Span sx={{ pl: 1, textTransform: "capitalize" }}>Change password</Span>
                 </Button>
-            </ValidatorForm>*/}
+             <div className="password text-success"></div>
+            </ValidatorForm>
 
         </div>
 

@@ -36,7 +36,7 @@ const NotFound = () => {
           color="primary"
           variant="contained"
           sx={{ textTransform: 'capitalize' }}
-          onClick={() => navigate(-1)}
+          onClick={() => navigate("dashboard")}
         >
           Go Back
         </Button>

@@ -25,4 +25,6 @@ public interface IUserService {
 
     List<User> getUserByDepartement(Long idDep);
 
+   Response ChangePassword(User user,Long id);
+
 }

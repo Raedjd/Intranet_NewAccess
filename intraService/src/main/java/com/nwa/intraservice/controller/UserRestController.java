@@ -1,23 +1,22 @@
 package com.nwa.intraservice.controller;
 
-import com.nwa.intraservice.models.Product;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.nwa.intraservice.models.Role;
 import com.nwa.intraservice.models.User;
 import com.nwa.intraservice.repository.UserRepository;
 import com.nwa.intraservice.service.IUserService;
 import com.nwa.intraservice.service.UserServiceImpl;
+import com.nwa.intraservice.utils.ChangePasswordModel;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-import javax.xml.ws.Response;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @CrossOrigin("*")
@@ -81,6 +80,7 @@ public class UserRestController {
     @PutMapping("/update/{id}")
     @ResponseBody
     public User modify(@RequestBody User u,@PathVariable("id") Long id) {
+
         return iUserService.updateUser(u ,id);
     }
 
@@ -98,7 +98,24 @@ public class UserRestController {
     public List<User> getUsersByDEpart(@PathVariable("iddepart") Long iddep) {
         return iUserService.getUserByDepartement(iddep);
     }
+    @Autowired
+    public BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+    PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    @PutMapping("/changepwd/{id}")
+    @ResponseBody
+    public ResponseEntity changepwd(@RequestBody ChangePasswordModel changePasswordModel, @PathVariable("id") Long id) {
 
-
+            User u=userRepository.findById(id).orElse(null);
+            Boolean isTrue =passwordEncoder.matches(changePasswordModel.getOldPassword(), u.getPassword());
+            if(isTrue) {
+                System.out.print(isTrue);
+                u.setPassword(passwordEncoder().encode(changePasswordModel.getNewPassword()));
+                userRepository.save(u);
+                return ResponseEntity.ok("Password changed");
+            }
+        return  ResponseEntity.ok("Old password invalid!");
+    }
 
 }
