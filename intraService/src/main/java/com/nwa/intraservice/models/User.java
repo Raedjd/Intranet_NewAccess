@@ -19,7 +19,7 @@ import java.util.List;
 @Table(name ="user")
 
 public class User extends AbstractEntity{
-    @Column(name = "username" ,unique=true)
+    @Column(name = "username")
     private String username;
 
     @Column(name= "firstname")
@@ -28,7 +28,7 @@ public class User extends AbstractEntity{
     @Column(name ="lastname")
     private String lastName;
 
-    @Column(name = "mail" ,unique=true)
+    @Column(name = "mail" )
     private String mail;
 
     @Column(name ="birthdate")

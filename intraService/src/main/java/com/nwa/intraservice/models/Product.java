@@ -17,6 +17,7 @@ import javax.persistence.*;
 public class Product extends AbstractEntity {{}
         @Column(name="nameproduct")
         private String nameProduct;
+        private String userid;
         @ManyToOne(fetch = FetchType.EAGER)
         @JoinColumn(name = "idDepartment")
         @JsonIgnoreProperties({"department","product"})

@@ -23,8 +23,8 @@ const StyledButton = styled(Button)(({ theme }) => ({
     margin: theme.spacing(1),
 }));
 
-export default function Users({user}) {
-
+export default function ProductbyUser({userAdd}) {
+console.log(userAdd)
     function SimpleDialog(props) {
         const { onClose, selectedValue, ...other } = props;
 
@@ -48,7 +48,8 @@ export default function Users({user}) {
 
                         <TableHead>
                             <TableRow>
-                                <TableCell align="left"></TableCell>
+
+
                                 <TableCell align="left">Avatar</TableCell>
                                 <TableCell align="center">First Name</TableCell>
                                 <TableCell align="center">Last Name</TableCell>
@@ -56,21 +57,20 @@ export default function Users({user}) {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {users
-                                .map((u, index) => (
-                                    <TableRow key={index}>
-                                        <TableCell align="center">{index+1}</TableCell>
+
+                                    <TableRow>
+
                                         <TableCell align="center"><ListItemAvatar>
-                                            <Avatar src={u.image.imageUrl}>
+                                            <Avatar src={userImageAction}>
 
                                             </Avatar>
                                         </ListItemAvatar></TableCell>
-                                        <TableCell align="center">{u.firstName}</TableCell>
-                                        <TableCell align="center">{u.lastName}</TableCell>
-                                        <TableCell align="center">{u.role}</TableCell>
+                                        <TableCell align="center">{userAction.firstName}</TableCell>
+                                        <TableCell align="center">{userAction.lastName}</TableCell>
+                                        <TableCell align="center">{userAction.role}</TableCell>
 
                                     </TableRow>
-                                ))}
+
                         </TableBody>
                     </StyledTable>
 
@@ -97,32 +97,29 @@ export default function Users({user}) {
         setOpen(false);
         setSelectedValue(value);
     };
-
-    const fetchUserByDep=(authRequest)=> {
-        return axios({
+    const [userAction,setUserAction]=useState({});
+    const [userImageAction,setUserImageAction]=useState({});
+    React.useEffect(()=>{
+        axios({
             method: 'GET',
-            url: `http://localhost:8082/user/userbydepart/${user}`,
+            url: `http://localhost:8082/user/findOne/${userAdd}`,
             headers: {
                 'Authorization': 'Bearer ' + getToken()
             }
-        })
-    }
-    const [userData,setUserData]=useState({});
+        }).then((response)=>{
+            setUserAction(response.data);
+            setUserImageAction(response.data.image.imageUrl)
 
-    React.useEffect(()=>{
-        fetchUserByDep().then((response)=>{
-            setUserData(response.data);
         })
     },[])
-    const users = Object.keys(userData).map((key) => userData[key]);
+
     return (
         <Box>
 
             <Fab variant="extended" aria-label="Delete" className="button"  onClick={handleClickOpen}>
-                users
+               show user
             </Fab>
             <SimpleDialog selectedValue={selectedValue} open={open} onClose={handleClose}/>
         </Box>
     );
 }
-

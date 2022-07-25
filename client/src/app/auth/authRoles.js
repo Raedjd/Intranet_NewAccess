@@ -41,3 +41,13 @@ export const fetchDepartmentData=(authRequest)=> {
     })
 }
 
+export const fetchProductsData=(authRequest)=> {
+    return axios({
+        method: 'GET',
+        url: `http://localhost:8082/product/findAll`,
+        headers: {
+            'Authorization': 'Bearer ' + getToken()
+        }
+    })
+}
+

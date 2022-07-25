@@ -37,7 +37,6 @@ export default function FormDialogDep({idDep}) {
                 'Authorization': 'Bearer ' + getToken()
             }
         }).then((response)=>{
-            console.log(response);
             window.location.reload();
         })
 

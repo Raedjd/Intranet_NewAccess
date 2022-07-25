@@ -2,8 +2,10 @@ package com.nwa.intraservice.service;
 
 import com.nwa.intraservice.models.Department;
 import com.nwa.intraservice.models.Product;
+import com.nwa.intraservice.models.User;
 import com.nwa.intraservice.repository.DepartmentRepository;
 import com.nwa.intraservice.repository.ProductRepository;
+import com.nwa.intraservice.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +21,8 @@ public class ProductServiceImpl implements IProductService{
     private ProductRepository productRepository;
     @Autowired
     private DepartmentRepository departmentRepository;
+    @Autowired
+    private UserRepository userRepository;
     @Override
     public Product addProduct(Product product) {
 
@@ -26,10 +30,8 @@ public class ProductServiceImpl implements IProductService{
     }
 
     @Override
-    public void addProductAndAssignToDepartment(Product pd, Long idDep) {
-        Department department = departmentRepository.findById(idDep).orElse(null);
-
-
+    public void addProductAndAssignToDepartment(Product pd, String nameDepart) {
+        Department department = departmentRepository.findDepartmentByNameDepart(nameDepart);
             pd.setDepartment(department);
             productRepository.save(pd);
         }

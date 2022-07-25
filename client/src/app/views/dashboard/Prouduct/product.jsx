@@ -1,8 +1,9 @@
 import { Stack } from "@mui/material";
 import { Box, styled } from "@mui/system";
 import { Breadcrumb, SimpleCard } from "app/components";
-import Productform from "./productform";
 import Productlist from "./productlist";
+import FormDialogProduct from "./productform";
+
 
 
 
@@ -16,8 +17,10 @@ const Container = styled("div")(({ theme }) => ({
     },
 }));
 
-
 const Product = () => {
+
+
+
     return (
         <Container>
             <Box className="breadcrumb">
@@ -26,9 +29,7 @@ const Product = () => {
 
             <Stack spacing={3}>
                 <SimpleCard title="Add product">
-                 <Productform/>
-                </SimpleCard>
-                <SimpleCard title="List products">
+                    <FormDialogProduct/>
                  <Productlist/>
                 </SimpleCard>
 

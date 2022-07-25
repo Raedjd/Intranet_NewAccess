@@ -54,12 +54,18 @@ public class UserRestController {
     @ResponseBody
     public ResponseEntity addUserAndAssignToDep(@RequestBody User user, @PathVariable("nameDep") String nameDepart) {
             User username=userRepository.findByUsername(user.getUsername());
-          if( username ==null ) {
-              iUserService.addUserAndAssignToDepartment(user, nameDepart);
-           return   ResponseEntity.ok("New user added in New Access");
+        User mail=userRepository.findByMail(user.getMail());
+          if( username !=null ) {
+              return   ResponseEntity.ok("Username alerady exist");
 
           }
-        return   ResponseEntity.ok("User alerady exist");
+        if( mail !=null ) {
+            return   ResponseEntity.ok("Mail alerady exist");
+
+        }
+
+        iUserService.addUserAndAssignToDepartment(user, nameDepart);
+        return   ResponseEntity.ok("New user added in New Access");
 
 
     }

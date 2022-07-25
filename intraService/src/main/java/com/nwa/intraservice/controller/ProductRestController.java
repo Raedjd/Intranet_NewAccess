@@ -28,10 +28,10 @@ public class ProductRestController {
         return prod;
 
     }
-    @PostMapping("/add/{id}")
+    @PostMapping("/add/{nameDep}")
     @ResponseBody
-    public void addProdAndAssignToDep(@RequestBody Product prod, @PathVariable("id") Long idDepartemnt){
-        iProductService.addProductAndAssignToDepartment(prod ,idDepartemnt);
+    public void addProdAndAssignToDep(@RequestBody Product prod,@PathVariable("nameDep") String nameDepart){
+        iProductService.addProductAndAssignToDepartment(prod ,nameDepart);
     }
 
     @GetMapping("/findAll")

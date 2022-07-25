@@ -1,14 +1,19 @@
-import {Autocomplete, Button, Card, Grid, Icon, styled, TextField, useTheme} from '@mui/material';
-import React, {Fragment, useEffect , useState} from 'react';
+import {Autocomplete, Button, Card, Grid, Icon, styled} from '@mui/material';
+import React, {Fragment , useState} from 'react';
 import TopSellingDepartment from './TopSellingDepartment';
 
 import {Span} from "../../../components/Typography";
 import axios from "../../../../axios";
 import {fetchDepartmentData, fetchUserData, getToken} from "../../../auth/authRoles";
 import {SimpleCard} from "../../../components";
-import PaginationTable from "../../material-kit/tables/PaginationTable";
 import {Navigate} from "react-router-dom";
+import { TextValidator, ValidatorForm } from "react-material-ui-form-validator";
+import Box from "@mui/material/Box";
 
+const TextField = styled(TextValidator)(() => ({
+    width: "100%",
+    marginBottom: "16px",
+}));
 
 
 
@@ -24,103 +29,111 @@ const Title = styled('span')(() => ({
     textTransform: 'capitalize',
 }));
 
-const SubTitle = styled('span')(({ theme }) => ({
-    fontSize: '0.875rem',
-    color: theme.palette.text.secondary,
-}));
 
-const H4 = styled('h4')(({ theme }) => ({
-    fontSize: '1rem',
-    fontWeight: '500',
-    marginBottom: '16px',
-    textTransform: 'capitalize',
-    color: theme.palette.text.secondary,
-}));
 
 
 
 
 
 export const Admin = () => {
-    const { palette } = useTheme();
+
+    const [state, setState] = useState({ date: new Date() });
+
+    React.useEffect(() => {
+        ValidatorForm.addValidationRule("isPasswordMatch", (value) => {
+            if (value !== state.password) return false;
+
+            return true;
+        });
+        return () => ValidatorForm.removeValidationRule("isPasswordMatch");
+    }, [state.password]);
 
 
-    const [nameDepart,setNameDepart]=useState("");
-
-    const addDepartment = async (e) => {
-        e.preventDefault();
-        const departSuccess = document.querySelector(".depart");
-
-        await axios({
-            method: "post",
-            url: `http://localhost:8082/dep/add`,
-
-            data: {
-                nameDepart: nameDepart
-
-            },
-            headers: {
-                'Authorization': 'Bearer ' + getToken()
-            }
-        }).then((response)=>{
-            console.log(response);
-            departSuccess.innerHTML =response.data;
-            window.location.reload();
-        })
-
-    }
-    const suggestions = [
-        { label: 'Admin' },
-        { label: 'RH' },
-        { label: 'Enginner' },
-
-    ];
-
-    const [depData,setDepData]=useState([{}]);
-
-    React.useEffect(()=>{
-        fetchDepartmentData().then((response)=>{
-            setDepData(response.data);
-        })
-    },[])
-    const [username,setUsername]=useState('');
-    const [mail, setMail] = useState("");
-    const [role, setRole] = useState("");
-    const [nameDep, setNameDep] = useState("");
-    const [password, setPassword] = useState("");
-    const [confPassword, setConfPassword] = useState("");
-
-    const addUser = async (e) => {
-        e.preventDefault();
-        const userSuccess = document.querySelector(".user");
-        const confpasswordError = document.querySelector(".confirm-password.error");
-        confpasswordError.innerHTML = "";
-        if (password !== confPassword)
-            confpasswordError.innerHTML = "Password does not matched!";
-          else{
-        await axios({
-            method: "post",
-            url: `http://localhost:8082/user/add/${nameDep}`,
-
-            data: {
-                username:username,
-                mail:mail,
-                password:password,
-                role:role
+    const handleChange = (event) => {
+        event.persist();
+        setState({ ...state, [event.target.name]: event.target.value });
+    };
 
 
-            },
-            headers: {
-                'Authorization': 'Bearer ' + getToken()
-            }
-        }).then((response)=>{
-            console.log(response);
-             userSuccess.innerHTML=response.data;
-            window.location.reload();
-        })
+    const {
+        namedepartment,
+        username,
+        password,
+        confirmPassword,
+        email,
 
-    }
-    }
+    } = state;
+
+
+
+
+
+        const addDepartment = async (e) => {
+            e.preventDefault();
+            const departSuccess = document.querySelector(".depart");
+
+            await axios({
+                method: "post",
+                url: `http://localhost:8082/dep/add`,
+
+                data: {
+                    nameDepart: namedepartment
+
+                },
+                headers: {
+                    'Authorization': 'Bearer ' + getToken()
+                }
+            }).then((response)=>{
+                console.log(response);
+                departSuccess.innerHTML =response.data;
+                window.location.reload();
+            })
+
+        }
+
+   const suggestions = [
+       { label: 'Admin' },
+       { label: 'RH' },
+       { label: 'Enginner' },
+
+   ];
+
+   const [depData,setDepData]=useState([{}]);
+   React.useEffect(()=>{
+       fetchDepartmentData().then((response)=>{
+           setDepData(response.data);
+       })
+   },[])
+
+    const [role,setRole]=useState("");
+    const [nameDep,setNameDep]=useState("");
+   const addUser = async (e) => {
+       e.preventDefault();
+       const userSuccess = document.querySelector(".user");
+       await axios({
+           method: "post",
+           url: `http://localhost:8082/user/add/${nameDep}`,
+
+           data: {
+               username:username,
+               mail:email,
+               password:password,
+               role:role
+
+
+           },
+           headers: {
+               'Authorization': 'Bearer ' + getToken()
+           }
+       }).then((response)=>{
+           console.log(response);
+            userSuccess.innerHTML=response.data;
+
+       })
+
+   }
+
+
 
     const [userData,setUserData]=useState("");
     const [rl,setRl]=useState(true);
@@ -130,7 +143,6 @@ export const Admin = () => {
             setRl(response.data.role=="Admin")
         })
     },[])
-    console.log(rl)
     return rl ? (
                 <Fragment >
                     <ContentBox className="analytics">
@@ -144,107 +156,122 @@ export const Admin = () => {
 
                             <Grid item lg={3} md={8} sm={10} xs={12}>
                                 <Card sx={{ px: 3, py: 2, mb: 3 }}>
-                                    <form onSubmit={addDepartment}>
-                                        <Title>Add department</Title>
-                                        <Grid item lg={6} md={6} sm={12} xs={12} sx={{ mt: 2 }}>
-                                            <TextField
-                                                type="text"
-                                                name="Name"
-                                                id="standard-basic"
-                                                label="Name of departemnt"
-                                                id="nameDepart"
-                                                onChange={(e) =>setNameDepart(e.target.value)}
-                                                value={nameDepart}
-                                                sx={{ width: 200}}
+                                    <ValidatorForm onSubmit={addDepartment} onError={() => null}>
+                                        <Grid container spacing={6}>
+                                            <Grid item lg={6} md={6} sm={12} xs={12} sx={{ mt: 2 }}>
+                                                <TextField
+                                                    type="text"
+                                                    name="namedepartment"
+                                                    id="standard-basic"
+                                                    value={namedepartment || ""}
+                                                    onChange={handleChange}
+                                                    errorMessages={["this field is required"]}
+                                                    label="Name of department"
+                                                    validators={["required"]}
+                                                    sx={{ width: 200}}
+                                                />
 
-                                            />
 
+
+                                            </Grid>
                                         </Grid>
-                                        <Button color="secondary" variant="contained" type="submit" disabled={!nameDepart}>
+
+                                        <Button color="primary" variant="contained" type="submit">
                                             <Icon>send</Icon>
                                             <Span sx={{ pl: 1, textTransform: "capitalize" }}>Submit</Span>
                                         </Button>
                                         <div className="depart text-success"></div>
-                                    </form>
-
+                                    </ValidatorForm>
                                 </Card>
 
-
-                                <Card sx={{ px: 3, py: 3, mb: 0 }}>
-                                    <form onSubmit={addUser}>
-                                        <Title>Add user</Title>
-                                        <Grid item lg={6} md={6} sm={12} xs={12} sx={{ mt: 2 }}>
-                                            <TextField
-                                                type="text"
-                                                name="username"
-                                                label="Username "
-                                                id="username"
-                                                onChange={(e) => setUsername(e.target.value)}
-                                                value={username}
-                                                sx={{ width: 200}}
-
-                                            />
-                                            <TextField
-                                                type="email"
-                                                name="email"
-                                                label="Mail "
-                                                id="email"
-                                                onChange={(e) => setMail(e.target.value)}
-                                                value={mail}
-                                                sx={{ width: 200}}
-
-                                            />
-                                            <Autocomplete
-                                                options={suggestions}
-                                                getOptionLabel={(option) => option.label}
-                                                onChange={(e , v) => setRole(v.label) }
-                                                renderInput={(params) => (
-                                                    <TextField {...params} label="Role" variant="outlined" fullWidth
-                                                               sx={{ width: 200}}
+                                    <Card sx={{ px: 3, py: 2, mb: 3 }}>
+                                        <ValidatorForm onSubmit={addUser} onError={() => null}>
+                                            <Grid container spacing={6}>
+                                                <Grid item lg={6} md={6} sm={12} xs={12} sx={{ mt: 2 }}>
+                                                    <TextField
+                                                        type="text"
+                                                        name="username"
+                                                        id="standard-basic"
+                                                        value={username || ""}
+                                                        onChange={handleChange}
+                                                        errorMessages={["this field is required"]}
+                                                        label="Username(Min length 4,Max length 9)"
+                                                        validators={["required", "minStringLength: 4", "maxStringLength: 9"]}
+                                                        sx={{ width: 200}}
                                                     />
-                                                ) }
-                                            />
-                                            <Autocomplete
-                                                options={depData}
-                                                getOptionLabel={(option) => option.nameDepart}
-                                                onChange={(e , v) => setNameDep(v.nameDepart) }
-                                                renderInput={(params) => (
-                                                    <TextField {...params} label="Assign to department" variant="outlined" fullWidth
-                                                               sx={{ width: 200}}
+                                                    <TextField
+                                                        type="email"
+                                                        name="email"
+                                                        label="Email (@newaccess.ch)"
+                                                        value={email || ""}
+                                                        onChange={handleChange}
+                                                        validators={["required", 'matchRegexp:^[A-Za-z0-9]+(.|_)+[A-Za-z0-9]+@+newaccess.ch$']}
+                                                        errorMessages={["this field is required", "email is not valid"]}
+                                                        sx={{ width: 200}}
                                                     />
-                                                )}
-                                            />
-                                            <TextField
-                                                name="password"
-                                                type="password"
-                                                label="Password"
-                                                id="password"
-                                                onChange={(e) => setPassword(e.target.value)}
-                                                value={password}
-                                                sx={{ width: 200}}
+                                                    <Autocomplete
+                                                        options={suggestions}
+                                                        getOptionLabel={(option) => option.label}
+                                                        onChange={(e , v) => setRole(v.label) }
+                                                        renderInput={(params) => (
+                                                            <TextField {...params} label="Role" variant="outlined" fullWidth
+                                                                       sx={{ width: 200}}
+                                                                       errorMessages={["this field is required"]}
+                                                                       onChange={handleChange}
+                                                                       value={role || ""}
+                                                                       validators={["required"]}
 
-                                            />
-                                            <TextField
-                                                type="password"
-                                                name="confirmPassword"
+                                                            />
+                                                        ) }
+                                                    />
+                                                    <Autocomplete
+                                                        options={depData}
+                                                        getOptionLabel={(option) => option.nameDepart}
+                                                        onChange={(e , v) => setNameDep(v.nameDepart) }
 
-                                                label="Confirm Password"
-                                                id="confpassword"
-                                                onChange={(e) => setConfPassword(e.target.value)}
-                                                value={confPassword}
-                                                sx={{ width: 200}}
+                                                        renderInput={(params) => (
+                                                            <TextField {...params} label="Assign to department" variant="outlined" fullWidth
+                                                                       sx={{ width: 200}}
+                                                                       errorMessages={["this field is required"]}
+                                                                       onChange={handleChange}
+                                                                       value={nameDep || ""}
+                                                                       validators={["required"]}
 
+                                                            />
+                                                        )}
+                                                    />
+                                                    <TextField
+                                                        name="password"
+                                                        type="password"
+                                                        label="Password"
+                                                        value={password || ""}
+                                                        onChange={handleChange}
+                                                        validators={["required", "minStringLength: 6"]}
+                                                        errorMessages={["this field is required","Min Length: 6"]}
+                                                        sx={{ width: 200}}
+                                                    />
+                                                    <TextField
+                                                        type="password"
+                                                        name="confirmPassword"
+                                                        onChange={handleChange}
+                                                        label="Confirm Password"
+                                                        value={confirmPassword || ""}
+                                                        validators={["required", "isPasswordMatch"]}
+                                                        errorMessages={["this field is required", "password didn't match"]}
+                                                        sx={{ width: 200}}
+                                                    />
 
-                                            />
-                                            <div className="confirm-password error text-danger"></div>
-                                            <Button color="secondary" variant="contained" type="submit" disabled={!username || !mail || !role || !nameDep || !password || !confPassword}>
+                                                </Grid>
+                                            </Grid>
+
+                                            <Button color="primary" variant="contained" type="submit">
                                                 <Icon>send</Icon>
                                                 <Span sx={{ pl: 1, textTransform: "capitalize" }}>Submit</Span>
                                             </Button>
                                             <div className="user text-success"></div>
-                                        </Grid>
-                                    </form>
-                                </Card>
+                                        </ValidatorForm>
+                                    </Card>
+
 
                             </Grid>
                         </Grid>

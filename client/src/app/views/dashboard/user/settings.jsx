@@ -1,15 +1,10 @@
 import {Autocomplete, DatePicker} from "@mui/lab";
 import Box from '@mui/material/Box';
-import AdapterDateFns from "@mui/lab/AdapterDateFns";
-import LocalizationProvider from "@mui/lab/LocalizationProvider";
+
 import {
   Button,
-  Checkbox,
-  FormControlLabel,
   Grid,
   Icon,
-  Radio,
-  RadioGroup,
   styled,
 } from "@mui/material";
 import { Span } from "app/components/Typography";
@@ -163,7 +158,10 @@ const Settings = () => {
                               label="Choose a country"
                               name="nationnality"
 
+                              errorMessages={["this field is required"]}
 
+                              value={nationnality || ""}
+                              validators={["required"]}
                               inputProps={{
                                 ...params.inputProps,
                                 autoComplete: 'new-password', // disable autocomplete and autofill
