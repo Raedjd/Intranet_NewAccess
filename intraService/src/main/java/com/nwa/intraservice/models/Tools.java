@@ -22,6 +22,7 @@ public class Tools extends  AbstractEntity{
 
     @Column(name = "nbrtools")
     private String nbrTools;
+    private String userid;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idDepartment")

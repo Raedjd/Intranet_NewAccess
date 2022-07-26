@@ -18,10 +18,9 @@ public class ToolsRestController {
     @Autowired
     IToolsService iToolsService;
 
-    @PostMapping("/add/{idUser}/{idDepart}")
-    public void addToolsAndAssignToUserAndDepart(@RequestBody Tools tools, @PathVariable("idUser") Long idUser,
-                                                 @PathVariable("idDepart") Long idDepart) {
-        iToolsService.addToolsAndAssignToUserAndToDepartment(tools , idUser ,idDepart);
+    @PostMapping("/add/{nameDep}")
+    public void addToolsAndAssignToUserAndDepart(@RequestBody Tools tools, @PathVariable("nameDep") String nameDepart) {
+        iToolsService.addToolsAndAssignToUserAndToDepartment(tools , nameDepart);
     }
 
     @GetMapping("/toolsbydepart/{iddepart}")

@@ -1,15 +1,16 @@
-import {Autocomplete, Box, Fab, Icon, styled} from '@mui/material';
+
+import {Box, Fab, Icon} from '@mui/material';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import TextField from '@mui/material/TextField';
-import React , {useState} from "react";
-import {fetchDepartmentData, fetchUserData, getToken} from "../../../auth/authRoles";
+import React, {useState} from 'react';
 import axios from "../../../../axios";
+import {fetchUserData, getToken} from "../../../auth/authRoles";
 
-export default function FormDialogEvent() {
+export default function FormDialogEventupdate({idEvent, Add}) {
     const [open, setOpen] = React.useState(false);
 
     function handleClickOpen() {
@@ -19,26 +20,18 @@ export default function FormDialogEvent() {
     function handleClose() {
         setOpen(false);
     }
-    const [userData,setUserData]=useState("");
-    const [rl,setRl]=useState(true);
-    React.useEffect(()=>{
-        fetchUserData().then((response)=>{
-            setUserData(response.data);
-            setRl(response.data.role=="RH");
-
-        })
-    },[])
 
     const [title,setTitle]=useState("");
     const [description,setDescription]=useState("");
     const [place,setPlace]=useState("");
     const [startDate,setStartDate]=useState("");
     const [endDate,setEndDate]=useState("");
-    const addEvent = async (e) => {
+    const updateEvent = async (e) => {
         e.preventDefault();
+
         await axios({
-            method: "post",
-            url: `http://localhost:8082/event/add`,
+            method: "put",
+            url: `http://localhost:8082/event/update/${idEvent}`,
 
             data: {
                 title:title,
@@ -46,30 +39,38 @@ export default function FormDialogEvent() {
                 place:place,
                 startDate:startDate,
                 endDate:endDate,
-                userid:userData.id
-
 
             },
             headers: {
                 'Authorization': 'Bearer ' + getToken()
             }
         }).then((response)=>{
-
+            window.location.reload();
         })
 
     }
+
+    const [yes,setYes]=useState(false);
+    React.useEffect(()=>{
+        fetchUserData().then((response)=>{
+            setYes(response.data.id==Add);
+
+
+        })
+    },[])
+
+    console.log(yes)
+
     return (
         <Box>
+            <Fab variant="outlined" aria-label="Edit" className="button" onClick={handleClickOpen} disabled={!yes}>
+                <Icon>edit_icon</Icon>
 
-            <Fab variant="extended" aria-label="Delete" className="button" onClick={handleClickOpen} disabled={!rl}>
-                <Icon sx={{ mr: 4 }}>add_circle_outline</Icon>
-                Add event (Except that HR)
             </Fab>
 
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+                <DialogTitle id="form-dialog-title">Update product</DialogTitle>
                 <form >
-                    <DialogTitle id="form-dialog-title">Add Event</DialogTitle>
-
                     <DialogContent>
 
                         <TextField
@@ -133,8 +134,8 @@ export default function FormDialogEvent() {
                         <Button variant="outlined" color="secondary" onClick={handleClose}>
                             Cancel
                         </Button>
-                        <Button onClick={addEvent} color="primary" disabled={!title || !description || !place || !startDate || !endDate}>
-                            save
+                        <Button onClick={updateEvent}   color="primary"  disabled={!title || !description || !place || !startDate || !endDate}>
+                            update
                         </Button>
 
                     </DialogActions>

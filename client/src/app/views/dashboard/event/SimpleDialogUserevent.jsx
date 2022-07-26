@@ -21,7 +21,7 @@ const StyledTable = styled(Table)(() => ({
 }));
 
 
-export default function ProductbyUser({userAdd}) {
+export default function EventbyUser({userAdd}) {
     function SimpleDialog(props) {
         const { onClose, selectedValue, ...other } = props;
 
@@ -55,18 +55,18 @@ export default function ProductbyUser({userAdd}) {
                         </TableHead>
                         <TableBody>
 
-                                    <TableRow>
+                            <TableRow>
 
-                                        <TableCell align="center"><ListItemAvatar>
-                                            <Avatar src={userImageAction}>
+                                <TableCell align="center"><ListItemAvatar>
+                                    <Avatar src={userImageAction}>
 
-                                            </Avatar>
-                                        </ListItemAvatar></TableCell>
-                                        <TableCell align="center">{userAction.firstName}</TableCell>
-                                        <TableCell align="center">{userAction.lastName}</TableCell>
-                                        <TableCell align="center">{userAction.role}</TableCell>
+                                    </Avatar>
+                                </ListItemAvatar></TableCell>
+                                <TableCell align="center">{userAction.firstName}</TableCell>
+                                <TableCell align="center">{userAction.lastName}</TableCell>
+                                <TableCell align="center">{userAction.role}</TableCell>
 
-                                    </TableRow>
+                            </TableRow>
 
                         </TableBody>
                     </StyledTable>
@@ -114,7 +114,7 @@ export default function ProductbyUser({userAdd}) {
         <Box>
 
             <Fab variant="extended" aria-label="Delete" className="button"  onClick={handleClickOpen}>
-               show user
+                show user
             </Fab>
             <SimpleDialog selectedValue={selectedValue} open={open} onClose={handleClose}/>
         </Box>

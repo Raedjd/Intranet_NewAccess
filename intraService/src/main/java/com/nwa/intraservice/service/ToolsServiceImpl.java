@@ -25,12 +25,8 @@ public class ToolsServiceImpl implements  IToolsService{
     @Autowired
     DepartmentRepository departmentRepository;
     @Override
-    public void addToolsAndAssignToUserAndToDepartment(Tools tools, Long idUser, Long idDepartment) {
-
-        User user= userRepository.findById(idUser).orElse(null);
-        Department department = departmentRepository.findById(idDepartment).orElse(null);
-
-        tools.setUser(user);
+    public void addToolsAndAssignToUserAndToDepartment(Tools tools, String nameDepart) {
+        Department department = departmentRepository.findDepartmentByNameDepart(nameDepart);
         tools.setDepartment(department);
         toolsRepository.save(tools);
 

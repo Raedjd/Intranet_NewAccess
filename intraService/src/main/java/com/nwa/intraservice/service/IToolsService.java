@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface IToolsService {
 
-    void addToolsAndAssignToUserAndToDepartment(Tools tools , Long idUser ,Long idDepartment);
+    void addToolsAndAssignToUserAndToDepartment(Tools tools ,String nameDepart);
 
     List<Tools> getToolsByDepartement(Long idDep);
 

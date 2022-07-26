@@ -50,4 +50,23 @@ export const fetchProductsData=(authRequest)=> {
         }
     })
 }
+export const fetchToolssData=(authRequest)=> {
+    return axios({
+        method: 'GET',
+        url: `http://localhost:8082/tools/findAll`,
+        headers: {
+            'Authorization': 'Bearer ' + getToken()
+        }
+    })
+}
+
+export const fetchEventsData=(authRequest)=> {
+    return axios({
+        method: 'GET',
+        url: `http://localhost:8082/event/findAll`,
+        headers: {
+            'Authorization': 'Bearer ' + getToken()
+        }
+    })
+}
 

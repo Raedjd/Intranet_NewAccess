@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 @Service
 public class EventServiceImpl implements IEventService{
@@ -18,17 +19,9 @@ public class EventServiceImpl implements IEventService{
     @Autowired
     private EventRepository eventRepository;
     @Override
-    public void addEventAndAssignToUser(List<Event> e, Long iduser) {
-        User u = userRepository.findById(iduser).orElse(null);
-
-        for(Event event:e){
-            event.setUser(u);
-            eventRepository.save(event);
+    public void addEvent(Event e) {
+            eventRepository.save(e);
         }
-
-
-
-    }
 
     @Override
     public List<Event> findAll() {

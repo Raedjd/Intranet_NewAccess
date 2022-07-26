@@ -63,7 +63,7 @@ export default function FormDialogProduct() {
 
             <Fab variant="extended" aria-label="Delete" className="button" onClick={handleClickOpen} disabled={!rl}>
                 <Icon sx={{ mr: 4 }}>add_circle_outline</Icon>
-                Add product
+                Add product(Except that Enginner)
             </Fab>
 
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
@@ -81,7 +81,7 @@ export default function FormDialogProduct() {
                         fullWidth
                         onChange={(e) =>setNameProduct(e.target.value)}
                         value={nameProduct}
-                        sx={{ width: 300}}
+                        sx={{ width: 400}}
                     />
                     <Autocomplete
                         options={depData}
@@ -89,7 +89,7 @@ export default function FormDialogProduct() {
                         onChange={(e , v) => setNameDep(v.nameDepart) }
                         renderInput={(params) => (
                             <TextField {...params} label="Assign to department" variant="outlined" fullWidth
-                                       sx={{ width: 300}}
+                                       sx={{ width: 400}}
 
 
                             />

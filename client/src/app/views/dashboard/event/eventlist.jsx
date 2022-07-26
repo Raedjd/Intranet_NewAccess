@@ -11,13 +11,11 @@ import {
 } from '@mui/material';
 
 import React, {useState} from "react";
-import {fetchProductsData, fetchUserData, getToken} from "../../../auth/authRoles";
-import axios from "axios";
-import ProductbyUser from "./SimpleDialogUser";
-import FormDialogProd from "./FormDialogProdupdate";
-import FormDialogProdupdate from "./FormDialogProdupdate";
-import FormDialogProddelete from "./FormDialogProddelete";
-
+import {fetchEventsData, fetchUserData,} from "../../../auth/authRoles";
+import EventbyUser from "./SimpleDialogUserevent";
+import FormDialogEventupdate from "./FormDialogEventupdate";
+import FormDialogEventdelete from "./FormDialogEventdelete";
+import Participation from "./participation";
 
 const CardHeader = styled(Box)(() => ({
     display: 'flex',
@@ -47,7 +45,7 @@ const StyledTable = styled(Table)(({ theme }) => ({
 
 
 
-const Productlist = ({iduser}) => {
+const Eventlist = ({iduser}) => {
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
 
@@ -58,14 +56,14 @@ const Productlist = ({iduser}) => {
         setRowsPerPage(+event.target.value);
         setPage(0);
     };
-    const [productsData,setProductsData]=useState({});
+    const [EventsData,setEventsData]=useState({});
     React.useEffect(()=>{
-        fetchProductsData().then((response)=>{
-            setProductsData(response.data);
+        fetchEventsData().then((response)=>{
+            setEventsData(response.data);
 
         })
     },[])
-    const products = Object.keys(productsData).map((key) => productsData[key]);
+    const events = Object.keys(EventsData).map((key) => EventsData[key]);
 
     const [userData,setUserData]=useState("");
     React.useEffect(()=>{
@@ -79,7 +77,7 @@ const Productlist = ({iduser}) => {
     return (
         <Card elevation={3} sx={{ pt: '20px', mb: 3 }}>
             <CardHeader>
-                <Title>All products</Title>
+                <Title>All Events</Title>
 
             </CardHeader>
 
@@ -90,24 +88,34 @@ const Productlist = ({iduser}) => {
                     <TableHead>
                         <TableRow>
                             <TableCell align="center">Number</TableCell>
-                            <TableCell align="center">Name of Product</TableCell>
+                            <TableCell align="center">Title</TableCell>
+                            <TableCell align="center">Desciption</TableCell>
+                            <TableCell align="center">Place</TableCell>
                             <TableCell align="center">date Added</TableCell>
+                            <TableCell align="center">Start event</TableCell>
+                            <TableCell align="center">End event</TableCell>
                             <TableCell align="center">Added by</TableCell>
                             <TableCell align="center">Update product</TableCell>
                             <TableCell align="center">Delete product</TableCell>
+                            <TableCell align="left">Participation</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {products
+                        {events
                             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                            .map((p, index) => (
+                            .map((e, index) => (
                                 <TableRow key={index}>
                                     <TableCell align="center">   <Fab variant="extended" aria-label="Delete" className="button"  >{index+1}   </Fab></TableCell>
-                                    <TableCell align="center">{p.nameProduct}</TableCell>
-                                    <TableCell align="center">{p.dateCreation}</TableCell>
-                                    <TableCell align="center" ><ProductbyUser key={index}  userAdd={p.userid}></ProductbyUser></TableCell>
-                                    <TableCell align="center"><FormDialogProdupdate key={index} idProd={p.id}  Add={p.userid}></FormDialogProdupdate></TableCell>
-                                    <TableCell align="center"><FormDialogProddelete key={index} idProd={p.id}  Add={p.userid}></FormDialogProddelete></TableCell>
+                                    <TableCell align="center">{e.title}</TableCell>
+                                    <TableCell align="center">{e.description}</TableCell>
+                                    <TableCell align="center">{e.place}</TableCell>
+                                    <TableCell align="center">{e.dateCreation}</TableCell>
+                                    <TableCell align="center">{e.startDate}</TableCell>
+                                    <TableCell align="center">{e.endDate}</TableCell>
+                                  <TableCell align="center" ><EventbyUser key={index}  userAdd={e.userid}></EventbyUser></TableCell>
+                                   <TableCell align="center"><FormDialogEventupdate key={index} idEvent={e.id}  Add={e.userid}></FormDialogEventupdate></TableCell>
+                                   <TableCell align="center"><FormDialogEventdelete key={index} idEvent={e.id}  Add={e.userid}></FormDialogEventdelete></TableCell>
+                                    <TableCell align="center"><Participation key={index} idEvent={e.id}  Add={e.userid}></Participation></TableCell>
                                 </TableRow>
                             ))}
                     </TableBody>
@@ -118,7 +126,7 @@ const Productlist = ({iduser}) => {
                     page={page}
                     component="div"
                     rowsPerPage={rowsPerPage}
-                    count={products.length}
+                    count={events.length}
                     onPageChange={handleChangePage}
                     rowsPerPageOptions={[5, 10, 25]}
                     onRowsPerPageChange={handleChangeRowsPerPage}
@@ -130,4 +138,4 @@ const Productlist = ({iduser}) => {
     );
 };
 
-export default Productlist;
+export default Eventlist;

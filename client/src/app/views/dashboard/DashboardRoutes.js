@@ -5,7 +5,6 @@ import Profiluser from "./user/Profiluser";
 import Product from "./Prouduct/product";
 import Event from "./event/event";
 import Tools from "./tools/tools";
-import Listevent from "./event/Listevent";
 import Actuality from "./Actuality/actuality";
 import Admin from "./admin/admin";
 
@@ -18,7 +17,6 @@ const dashboardRoutes = [
   { path: '/dashboard/listusers', element: <Listusers />},
   { path: '/dashboard/profil', element: <Profiluser />},
   { path: '/dashboard/event', element: <Event />},
-  { path: '/dashboard/listevents', element: <Listevent/>},
   { path: '/dashboard/product', element: <Product />},
   { path: '/dashboard/tools', element: <Tools />},
 ];

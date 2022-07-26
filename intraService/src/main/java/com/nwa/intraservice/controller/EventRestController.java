@@ -17,10 +17,10 @@ public class EventRestController {
  @Autowired
     private IEventService iEventService;
 
-    @PostMapping("/add/{id}")
+    @PostMapping("/add")
     @ResponseBody
-    public void addEventAndAssignToUser(@RequestBody List<Event> event, @PathVariable("id") Long iduser){
-       iEventService.addEventAndAssignToUser(event , iduser);
+    public void addEventAndAssignToUser(@RequestBody Event event){
+       iEventService.addEvent(event );
     }
 
    @GetMapping("/findAll")
