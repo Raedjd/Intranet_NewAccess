@@ -50,63 +50,62 @@ const Android12Switch = styled(Switch)(({ theme }) => ({
 
 
 
-export default function Participation({idEvent, userId}) {
+export default function DoneEvent({idEvent, Add}) {
 
-    const participationEvent = async (e) => {
+    const updateEventdone = async (e) => {
         e.preventDefault();
+
         await axios({
-            method: "patch",
-            url: `http://localhost:8082/event/participation/${userId}/${idEvent}`,
+            method: "put",
+            url: `http://localhost:8082/event/done/${idEvent}`,
+
+            data: {
+              done:true
+
+            },
             headers: {
                 'Authorization': 'Bearer ' + getToken()
             }
         }).then((response)=>{
+            console.log(response.data)
+
         })
 
     }
-    const [idData,setIdData]=useState({});
-    React.useEffect(()=>{
-        fetchEventsData().then((response)=>{
-            setIdData(response.data.map((e)=>e.users.map((i)=>i.id)));
 
-
-        })
-    },[])
-
-    const [userData,setUserData]=useState("");
-
-    React.useEffect(()=>{
-        fetchUserData().then((response)=>{
-            setUserData(response.data.id);
-
-
-        })
-    },[])
-    const ids= Object.keys(idData).map((key) => idData[key]);
-
-
-
-
-    const [participantsData,setParticapantsData]=useState({});
-    React.useEffect(()=>{
-        axios({
-            method: 'GET',
+    const [event,setEvent]=useState({});
+    React.useEffect( async()=>{
+        await axios({
+            method: "get",
             url: `http://localhost:8082/event/findOne/${idEvent}`,
+
+            data: {
+                done:true
+
+            },
             headers: {
                 'Authorization': 'Bearer ' + getToken()
             }
         }).then((response)=>{
-            setParticapantsData(response.data.users);
+           setEvent(response.data)
 
 
         })
     },[])
-    const participants = Object.keys(participantsData).map((key) => participantsData[key]);
- const part= participants.map((i)=>i.id)
+
+
+    const [yes,setYes]=useState(false);
+    React.useEffect(()=>{
+        fetchUserData().then((response)=>{
+            setYes(response.data.id==Add)
+
+
+        })
+    },[])
 
     return (
-        <Fab color="primary" aria-label="Add" className="button" onClick={participationEvent} disabled={part.includes(userId)}  >
-            <Icon>add</Icon>
+        <Fab color="primary" aria-label="Add" className="button" onClick={updateEventdone} disabled={!yes || event.done}  >
+            <Icon>check</Icon>
         </Fab>
     );
 }

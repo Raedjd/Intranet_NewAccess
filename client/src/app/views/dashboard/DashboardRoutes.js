@@ -7,6 +7,7 @@ import Event from "./event/event";
 import Tools from "./tools/tools";
 import Actuality from "./Actuality/actuality";
 import Admin from "./admin/admin";
+import Eventsdone from "./event/eventsdone";
 
 const Analytics = Loadable(lazy(() => import('./Analytics')));
 
@@ -17,6 +18,7 @@ const dashboardRoutes = [
   { path: '/dashboard/listusers', element: <Listusers />},
   { path: '/dashboard/profil', element: <Profiluser />},
   { path: '/dashboard/event', element: <Event />},
+  { path: '/dashboard/eventsdone', element: <Eventsdone />},
   { path: '/dashboard/product', element: <Product />},
   { path: '/dashboard/tools', element: <Tools />},
 ];

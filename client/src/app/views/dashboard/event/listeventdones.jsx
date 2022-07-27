@@ -12,11 +12,11 @@ import {
 
 import React, {useState} from "react";
 import {fetchEventsData, fetchUserData,} from "../../../auth/authRoles";
+import Rating from '@mui/material/Rating';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import EventbyUser from "./SimpleDialogUserevent";
-import FormDialogEventupdate from "./FormDialogEventupdate";
-import FormDialogEventdelete from "./FormDialogEventdelete";
-import Participation from "./participation";
-import DoneEvent from "./done";
+import EventByparticipant from "./EventByparticipant";
 
 const CardHeader = styled(Box)(() => ({
     display: 'flex',
@@ -44,11 +44,19 @@ const StyledTable = styled(Table)(({ theme }) => ({
     },
 }));
 
+const StyledRating = styled(Rating)({
+    '& .MuiRating-iconFilled': {
+        color: '#ff6d75',
+    },
+    '& .MuiRating-iconHover': {
+        color: '#ff3d47',
+    },
+});
 
-
-const Eventlist = ({iduser}) => {
+const Eventlistdone= ({iduser}) =>{
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
+
 
     const handleChangePage = (_, newPage) => {
         setPage(newPage);
@@ -66,15 +74,9 @@ const Eventlist = ({iduser}) => {
     },[])
     const events = Object.keys(EventsData).map((key) => EventsData[key]);
 
-    const [userData,setUserData]=useState("");
-    React.useEffect(()=>{
-        fetchUserData().then((response)=>{
-            setUserData(response.data);
-
-
-        })
-    },[])
-
+   const eventsDatadone=events.filter((e)=>e.done===true)
+    const [rate,setRate]=useState(0);
+console.log(rate)
     return (
         <Card elevation={3} sx={{ pt: '20px', mb: 3 }}>
             <CardHeader>
@@ -90,33 +92,30 @@ const Eventlist = ({iduser}) => {
                         <TableRow>
                             <TableCell align="center">Number</TableCell>
                             <TableCell align="center">Title</TableCell>
-                            <TableCell align="center">Place</TableCell>
-                            <TableCell align="center">date Added</TableCell>
-                            <TableCell align="center">Start event</TableCell>
-                            <TableCell align="center">End event</TableCell>
-                            <TableCell align="center">Added by</TableCell>
-                            <TableCell align="center">Update product</TableCell>
-                            <TableCell align="center">Delete product</TableCell>
-                            <TableCell align="center">Participation</TableCell>
-                            <TableCell align="center">Done</TableCell>
+                            <TableCell align="center">Rating</TableCell>
+                            <TableCell align="center">The participants</TableCell>
+
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {events
+                        {eventsDatadone
                             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                             .map((e, index) => (
                                 <TableRow key={index}>
                                     <TableCell align="center">   <Fab variant="extended" aria-label="Delete" className="button"  >{index+1}   </Fab></TableCell>
                                     <TableCell align="center">{e.title}</TableCell>
-                                    <TableCell align="center">{e.place}</TableCell>
-                                    <TableCell align="center">{e.dateCreation}</TableCell>
-                                    <TableCell align="center">{e.startDate}</TableCell>
-                                    <TableCell align="center">{e.endDate}</TableCell>
-                                  <TableCell align="center" ><EventbyUser key={index}  userAdd={e.userid}></EventbyUser></TableCell>
-                                   <TableCell align="center"><FormDialogEventupdate key={index} idEvent={e.id}  Add={e.userid}></FormDialogEventupdate></TableCell>
-                                   <TableCell align="center"><FormDialogEventdelete key={index} idEvent={e.id}  Add={e.userid}></FormDialogEventdelete></TableCell>
-                                    <TableCell align="center"><Participation key={index} idEvent={e.id}  userId={userData.id}></Participation></TableCell>
-                                    <TableCell align="center"><DoneEvent key={index} idEvent={e.id} Add={e.userid}></DoneEvent></TableCell>
+                                    <TableCell align="center">
+                                        <StyledRating
+                                        name="customized-color"
+                                        defaultValue={0}
+                                        getLabelText={(value: number) => `${value} Heart${value !== 1 ? 's' : ''}`}
+                                        precision={0.5}
+                                        icon={<FavoriteIcon fontSize="inherit" />}
+                                        emptyIcon={<FavoriteBorderIcon fontSize="inherit" />}
+                                        onClick={(e) =>setRate(e.target.value)}
+                                    /></TableCell>
+                                    <TableCell align="center" ><EventByparticipant key={index}  idEvent={e.id}></EventByparticipant></TableCell>
+
                                 </TableRow>
                             ))}
                     </TableBody>
@@ -136,7 +135,7 @@ const Eventlist = ({iduser}) => {
                 />
             </Box>
         </Card>
-    );
-};
 
-export default Eventlist;
+    );
+}
+export default Eventlistdone;

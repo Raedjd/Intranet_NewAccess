@@ -59,7 +59,6 @@ export default function FormDialogEventupdate({idEvent, Add}) {
         })
     },[])
 
-    console.log(yes)
 
     return (
         <Box>

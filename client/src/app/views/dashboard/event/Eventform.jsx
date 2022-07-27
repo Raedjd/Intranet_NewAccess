@@ -54,7 +54,7 @@ export default function FormDialogEvent() {
                 'Authorization': 'Bearer ' + getToken()
             }
         }).then((response)=>{
-
+            window.location.reload();
         })
 
     }

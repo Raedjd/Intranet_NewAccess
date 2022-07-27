@@ -12,26 +12,34 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 @Service
-public class EventServiceImpl implements IEventService{
+public class EventServiceImpl implements IEventService {
 
     @Autowired
     private UserRepository userRepository;
     @Autowired
     private EventRepository eventRepository;
+
     @Override
     public void addEvent(Event e) {
-            eventRepository.save(e);
-        }
+        eventRepository.save(e);
+    }
 
     @Override
     public List<Event> findAll() {
         return eventRepository.findAll();
     }
 
+    @Override
+    public Event findById(Long id) {
+        {
+            return eventRepository.findById(id).get();
+        }
+    }
+
 
     @Override
     public Event updateEvent(Event event, Long id) {
-        if(eventRepository.findById(id).isPresent()) {
+        if (eventRepository.findById(id).isPresent()) {
             Event e = eventRepository.findById(id).get();
             e.setTitle(event.getTitle());
             e.setDescription(event.getDescription());
@@ -45,7 +53,7 @@ public class EventServiceImpl implements IEventService{
 
     @Override
     public void deleteEvent(Long id) {
-             eventRepository.deleteById(id);
+        eventRepository.deleteById(id);
     }
 
     @Override
@@ -53,8 +61,8 @@ public class EventServiceImpl implements IEventService{
 
         User user = userRepository.findById(idUser).orElse(null);
 
-        for (Long idEvent : idEvents){
-            Event event =eventRepository.findById(idEvent).orElse(null);
+        for (Long idEvent : idEvents) {
+            Event event = eventRepository.findById(idEvent).orElse(null);
             event.getUsers().add(user);
         }
     }
@@ -67,5 +75,15 @@ public class EventServiceImpl implements IEventService{
         event.getUsers().add(user);
         eventRepository.save(event);
 
+    }
+
+    @Override
+    public Event eventDone(Event event, Long id) {
+        if (eventRepository.findById(id).isPresent()) {
+            Event e = eventRepository.findById(id).get();
+            e.setDone(event.getDone());
+            return eventRepository.save(e);
+        }
+        return null;
     }
 }

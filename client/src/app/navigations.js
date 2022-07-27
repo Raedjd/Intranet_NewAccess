@@ -25,6 +25,7 @@ export const navigations = [
     icon: 'nature_people',
     children: [
       { name: 'Add event', iconText: 'account_circle', path: '/dashboard/event',icon: ' cake' },
+      { name: 'Events done', iconText: 'account_circle', path: '/dashboard/eventsdone',icon: ' offline_pin' },
     ],
   },
 

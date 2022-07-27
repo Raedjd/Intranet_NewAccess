@@ -31,6 +31,9 @@ public class Event extends AbstractEntity{
     @Column(name ="place")
     private String place;
 
+    @Column(name ="done")
+    private Boolean done=false;
+
     @Temporal(TemporalType.TIMESTAMP)
     private Date startDate;
 

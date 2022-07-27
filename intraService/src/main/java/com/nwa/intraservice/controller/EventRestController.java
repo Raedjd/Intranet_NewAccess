@@ -2,6 +2,7 @@ package com.nwa.intraservice.controller;
 
 
 import com.nwa.intraservice.models.Event;
+import com.nwa.intraservice.models.User;
 import com.nwa.intraservice.service.IEventService;
 import lombok.extern.slf4j.Slf4j;
 
@@ -30,10 +31,21 @@ public class EventRestController {
       return iEventService.findAll();
    }
 
+    @GetMapping("/findOne/{id}")
+    @ResponseBody
+    public Event findById(@PathVariable("id") Long id) {
+        return iEventService.findById(id);
+    }
+
     @PutMapping("/update/{id}")
     @ResponseBody
     public Event modify(@RequestBody Event event,@PathVariable("id") Long id) {
         return iEventService.updateEvent(event , id);
+    }
+    @PutMapping("/done/{id}")
+    @ResponseBody
+    public Event eventdone(@RequestBody Event event,@PathVariable("id") Long id) {
+        return iEventService.eventDone(event ,id);
     }
 
     @DeleteMapping("delete/{id}")
