@@ -1,6 +1,8 @@
 import { Stack } from "@mui/material";
 import { Box, styled } from "@mui/system";
 import { Breadcrumb, SimpleCard } from "app/components";
+import PostUser from "./post";
+
 
 
 const Container = styled("div")(({ theme }) => ({
@@ -21,7 +23,7 @@ const AppForm = () => {
 
             <Stack spacing={3}>
                 <SimpleCard title="Write post">
-
+                <PostUser></PostUser>
                 </SimpleCard>
 
                 <SimpleCard title="All posts">

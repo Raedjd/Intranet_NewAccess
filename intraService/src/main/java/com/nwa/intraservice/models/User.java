@@ -83,4 +83,9 @@ public class User extends AbstractEntity{
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idimage")
     private Image image;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "iduser")
+    @JsonIgnore
+    private List<Rating> ratings;
 }

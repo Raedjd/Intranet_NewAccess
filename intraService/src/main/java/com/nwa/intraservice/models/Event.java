@@ -50,4 +50,9 @@ public class Event extends AbstractEntity{
             @JoinColumn(name = "idevent") }, inverseJoinColumns = {
             @JoinColumn(name = "iduser") })
     private List<User> users;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "idevent")
+    @JsonIgnore
+    private List<Rating> ratings;
 }

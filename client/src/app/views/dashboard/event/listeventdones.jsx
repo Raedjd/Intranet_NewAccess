@@ -17,6 +17,8 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import EventbyUser from "./SimpleDialogUserevent";
 import EventByparticipant from "./EventByparticipant";
+import EventRating from "./rating";
+import ScoreEvent from "./score";
 
 const CardHeader = styled(Box)(() => ({
     display: 'flex',
@@ -44,14 +46,7 @@ const StyledTable = styled(Table)(({ theme }) => ({
     },
 }));
 
-const StyledRating = styled(Rating)({
-    '& .MuiRating-iconFilled': {
-        color: '#ff6d75',
-    },
-    '& .MuiRating-iconHover': {
-        color: '#ff3d47',
-    },
-});
+
 
 const Eventlistdone= ({iduser}) =>{
     const [page, setPage] = useState(0);
@@ -75,8 +70,7 @@ const Eventlistdone= ({iduser}) =>{
     const events = Object.keys(EventsData).map((key) => EventsData[key]);
 
    const eventsDatadone=events.filter((e)=>e.done===true)
-    const [rate,setRate]=useState(0);
-console.log(rate)
+
     return (
         <Card elevation={3} sx={{ pt: '20px', mb: 3 }}>
             <CardHeader>
@@ -92,8 +86,9 @@ console.log(rate)
                         <TableRow>
                             <TableCell align="center">Number</TableCell>
                             <TableCell align="center">Title</TableCell>
-                            <TableCell align="center">Rating</TableCell>
                             <TableCell align="center">The participants</TableCell>
+                            <TableCell align="center">Rating</TableCell>
+                            <TableCell align="center">Score of Rating</TableCell>
 
                         </TableRow>
                     </TableHead>
@@ -104,17 +99,10 @@ console.log(rate)
                                 <TableRow key={index}>
                                     <TableCell align="center">   <Fab variant="extended" aria-label="Delete" className="button"  >{index+1}   </Fab></TableCell>
                                     <TableCell align="center">{e.title}</TableCell>
-                                    <TableCell align="center">
-                                        <StyledRating
-                                        name="customized-color"
-                                        defaultValue={0}
-                                        getLabelText={(value: number) => `${value} Heart${value !== 1 ? 's' : ''}`}
-                                        precision={0.5}
-                                        icon={<FavoriteIcon fontSize="inherit" />}
-                                        emptyIcon={<FavoriteBorderIcon fontSize="inherit" />}
-                                        onClick={(e) =>setRate(e.target.value)}
-                                    /></TableCell>
-                                    <TableCell align="center" ><EventByparticipant key={index}  idEvent={e.id}></EventByparticipant></TableCell>
+                                    <TableCell align="center" > <EventByparticipant key={index}  idEvent={e.id}></EventByparticipant></TableCell>
+                                    <TableCell align="center"><EventRating key={index}  idEvent={e.id}></EventRating>
+                                        </TableCell>
+                                    <TableCell align="center" ><ScoreEvent key={index}  idEvent={e.id}></ScoreEvent></TableCell>
 
                                 </TableRow>
                             ))}

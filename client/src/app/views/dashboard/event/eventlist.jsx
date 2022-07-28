@@ -17,6 +17,7 @@ import FormDialogEventupdate from "./FormDialogEventupdate";
 import FormDialogEventdelete from "./FormDialogEventdelete";
 import Participation from "./participation";
 import DoneEvent from "./done";
+import EventDescription from "./descriptionEvent";
 
 const CardHeader = styled(Box)(() => ({
     display: 'flex',
@@ -91,6 +92,7 @@ const Eventlist = ({iduser}) => {
                             <TableCell align="center">Number</TableCell>
                             <TableCell align="center">Title</TableCell>
                             <TableCell align="center">Place</TableCell>
+                            <TableCell align="center">Description</TableCell>
                             <TableCell align="center">date Added</TableCell>
                             <TableCell align="center">Start event</TableCell>
                             <TableCell align="center">End event</TableCell>
@@ -109,6 +111,7 @@ const Eventlist = ({iduser}) => {
                                     <TableCell align="center">   <Fab variant="extended" aria-label="Delete" className="button"  >{index+1}   </Fab></TableCell>
                                     <TableCell align="center">{e.title}</TableCell>
                                     <TableCell align="center">{e.place}</TableCell>
+                                    <TableCell align="center"><EventDescription key={index} idEvent={e.id} ></EventDescription> </TableCell>
                                     <TableCell align="center">{e.dateCreation}</TableCell>
                                     <TableCell align="center">{e.startDate}</TableCell>
                                     <TableCell align="center">{e.endDate}</TableCell>
