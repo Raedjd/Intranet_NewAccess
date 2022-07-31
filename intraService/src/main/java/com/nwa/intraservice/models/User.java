@@ -87,4 +87,10 @@ public class User extends AbstractEntity{
     @JoinColumn(name = "iduser")
     @JsonIgnore
     private List<Rating> ratings;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "iduser")
+    @JsonIgnore
+    private List<Love> loves;
+
 }

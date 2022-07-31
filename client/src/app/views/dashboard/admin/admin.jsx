@@ -4,7 +4,7 @@ import TopSellingDepartment from './TopSellingDepartment';
 
 import {Span} from "../../../components/Typography";
 import axios from "../../../../axios";
-import {fetchDepartmentData, fetchUserData, getToken} from "../../../auth/authRoles";
+import {fetchDepartmentData, fetchUserData, getToken} from "../../../auth/RoutsData";
 import {SimpleCard} from "../../../components";
 import {Navigate} from "react-router-dom";
 import { TextValidator, ValidatorForm } from "react-material-ui-form-validator";
@@ -133,13 +133,9 @@ export const Admin = () => {
 
    }
 
-
-
-    const [userData,setUserData]=useState("");
     const [rl,setRl]=useState(true);
     React.useEffect(()=>{
         fetchUserData().then((response)=>{
-            setUserData(response.data.role);
             setRl(response.data.role=="Admin")
         })
     },[])

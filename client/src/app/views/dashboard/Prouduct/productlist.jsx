@@ -11,7 +11,7 @@ import {
 } from '@mui/material';
 
 import React, {useState} from "react";
-import {fetchProductsData, fetchUserData, getToken} from "../../../auth/authRoles";
+import {fetchProductsData, fetchUserData, getToken} from "../../../auth/RoutsData";
 import axios from "axios";
 import ProductbyUser from "./SimpleDialogUser";
 import FormDialogProd from "./FormDialogProdupdate";

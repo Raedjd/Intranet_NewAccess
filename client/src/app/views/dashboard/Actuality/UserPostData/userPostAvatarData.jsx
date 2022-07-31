@@ -7,7 +7,7 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import axios from "axios";
-import {getToken} from "../../../auth/authRoles";
+import {getToken} from "../../../../auth/RoutsData";
 
 
 const StyledTable = styled(Table)(() => ({
@@ -21,10 +21,7 @@ const StyledTable = styled(Table)(() => ({
 }));
 
 
-export default function UserPostData({userAdd}) {
-console.log(userAdd)
-
-    const [userAction,setUserAction]=useState({});
+export default function UserPostAvatarData({userAdd}) {
     const [userImageAction,setUserImageAction]=useState("");
     React.useEffect(()=>{
         axios({
@@ -34,7 +31,6 @@ console.log(userAdd)
                 'Authorization': 'Bearer ' + getToken()
             }
         }).then((response)=>{
-            setUserAction(response.data);
             setUserImageAction(response.data.image.imageUrl)
 
         })
@@ -42,7 +38,7 @@ console.log(userAdd)
 
 
         return (
-            <Avatar src={userImageAction} >
+            <Avatar src={userImageAction}   >
             </Avatar>
         );
     }

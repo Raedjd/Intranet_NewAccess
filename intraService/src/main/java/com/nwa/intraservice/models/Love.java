@@ -1,6 +1,5 @@
 package com.nwa.intraservice.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,15 +13,15 @@ import javax.persistence.*;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @Entity
-@Table(name ="rating")
-public class Rating extends  AbstractEntity {
-
-    @Column(name = "scoreRating")
-    private float scoreRating;
-
+@Table(name ="Love")
+public class Love extends AbstractEntity  {
+    @Column(name = "nbrlike")
+    private Long nbrLike;
 
     @ManyToOne(fetch = FetchType.EAGER)
     private User user;
     @ManyToOne(fetch = FetchType.EAGER)
-    private Event event;
+    private Post post;
+
+
 }

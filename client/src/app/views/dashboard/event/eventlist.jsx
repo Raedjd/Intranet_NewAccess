@@ -11,7 +11,7 @@ import {
 } from '@mui/material';
 
 import React, {useState} from "react";
-import {fetchEventsData, fetchUserData,} from "../../../auth/authRoles";
+import {fetchEventsData, fetchUserData,} from "../../../auth/RoutsData";
 import EventbyUser from "./SimpleDialogUserevent";
 import FormDialogEventupdate from "./FormDialogEventupdate";
 import FormDialogEventdelete from "./FormDialogEventdelete";

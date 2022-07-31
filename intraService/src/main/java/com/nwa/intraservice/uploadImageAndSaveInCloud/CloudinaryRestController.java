@@ -74,6 +74,25 @@ public class CloudinaryRestController {
         return new ResponseEntity("Post Added" , HttpStatus.ACCEPTED);
     }
 
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Map> updatePostupload(@RequestParam MultipartFile multipartFile,@RequestParam String description,@PathVariable("id") Long id) throws IOException {
+        BufferedImage bi = ImageIO.read(multipartFile.getInputStream());
+        if(bi== null){
+            return  new ResponseEntity("invalid image",HttpStatus.BAD_REQUEST);
+        }
+
+        Map result = cloudinaryService.upload(multipartFile);
+        Image image = new Image((String)result.get("original_filename"),
+                (String)result.get("url"),
+                (String)result.get("public_id"));
+        Post post=postRepository.findById(id).orElse(null);
+        post.setImage(image);
+        post.setDescription(description);
+        postRepository.save(post);
+        imageRepository.save(image);
+        return new ResponseEntity("Post Added" , HttpStatus.ACCEPTED);
+    }
+
 
 
 }

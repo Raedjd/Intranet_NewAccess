@@ -18,7 +18,7 @@ import Products from "../admin/SimpleDialogProduct";
 import Tool from "../admin/SimpleDialogTools";
 import FormDialogDep from "../admin/dialogDepartment";
 import React, {useState} from "react";
-import {fetchUserData, fetchUsersData} from "../../../auth/authRoles";
+import {fetchUserData, fetchUsersData} from "../../../auth/RoutsData";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
 import {blue} from "@mui/material/colors";

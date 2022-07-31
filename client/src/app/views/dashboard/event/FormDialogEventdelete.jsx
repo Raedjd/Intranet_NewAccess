@@ -6,7 +6,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogTitle from '@mui/material/DialogTitle';
 import React, {useState} from 'react';
 import axios from "../../../../axios";
-import {fetchUserData, getToken} from "../../../auth/authRoles";
+import {fetchUserData, getToken} from "../../../auth/RoutsData";
 
 export default function FormDialogEventdelete({idEvent, Add}) {
     const [open, setOpen] = React.useState(false);

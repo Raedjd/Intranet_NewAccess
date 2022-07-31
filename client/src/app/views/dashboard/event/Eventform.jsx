@@ -6,7 +6,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import TextField from '@mui/material/TextField';
 import React , {useState} from "react";
-import {fetchDepartmentData, fetchUserData, getToken} from "../../../auth/authRoles";
+import {fetchDepartmentData, fetchUserData, getToken} from "../../../auth/RoutsData";
 import axios from "../../../../axios";
 
 export default function FormDialogEvent() {

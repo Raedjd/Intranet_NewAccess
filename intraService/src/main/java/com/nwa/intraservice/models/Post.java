@@ -7,7 +7,6 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Date;
 import java.util.List;
 
 @Data
@@ -20,9 +19,6 @@ public class Post extends AbstractEntity{
 
     @Column(name ="description")
     private String description;
-
-    @Column(name = "nbrlike")
-    private Long nbrLike;
     private String userid;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy="post")
@@ -36,5 +32,7 @@ public class Post extends AbstractEntity{
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idimage")
     private Image image;
+
+
 
 }

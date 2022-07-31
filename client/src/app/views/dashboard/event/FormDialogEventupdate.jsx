@@ -8,7 +8,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import TextField from '@mui/material/TextField';
 import React, {useState} from 'react';
 import axios from "../../../../axios";
-import {fetchUserData, getToken} from "../../../auth/authRoles";
+import {fetchUserData, getToken} from "../../../auth/RoutsData";
 
 export default function FormDialogEventupdate({idEvent, Add}) {
     const [open, setOpen] = React.useState(false);

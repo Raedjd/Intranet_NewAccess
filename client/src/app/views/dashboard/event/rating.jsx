@@ -4,7 +4,7 @@ import React, {useState} from "react";
 import {styled} from "@mui/material";
 import Rating from "@mui/material/Rating";
 import axios from "../../../../axios";
-import {fetchUserData, getToken} from "../../../auth/authRoles";
+import {fetchUserData, getToken} from "../../../auth/RoutsData";
 
 const StyledRating = styled(Rating)({
     '& .MuiRating-iconFilled': {

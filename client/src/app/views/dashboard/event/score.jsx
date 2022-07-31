@@ -3,7 +3,7 @@ import {Box, Fab} from '@mui/material';
 
 import React, { useState } from 'react';
 import axios from "../../../../axios";
-import {getToken} from "../../../auth/authRoles";
+import {getToken} from "../../../auth/RoutsData";
 
 
 export default function ScoreEvent({idEvent}) {

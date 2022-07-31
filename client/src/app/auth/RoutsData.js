@@ -1,6 +1,6 @@
 import cookie from "js-cookie";
 import axios from "axios";
-export const authRoles = {
+export const routsData = {
     sa: ['SA'], // Only Super Admin has access
     admin: ['SA', 'ADMIN'], // Only SA & Admin has access
     editor: ['SA', 'ADMIN', 'EDITOR'], // Only SA & Admin & Editor has access
@@ -13,7 +13,7 @@ export const getToken=()=>{
 }
 
 export const fetchUserData=(authRequest)=> {
-    return axios({
+    return  axios({
         method: 'GET',
         url: `http://localhost:8082/user/findByToken`,
         headers: {

@@ -11,7 +11,7 @@ import {
   TableRow,
 } from "@mui/material";
 import React, { useState } from "react";
-import {fetchDepartmentData} from "../../../auth/authRoles";
+import {fetchDepartmentData} from "../../../auth/RoutsData";
 
 import Products from "./SimpleDialogProduct";
 import Users from "./SimpleDialogUsers";

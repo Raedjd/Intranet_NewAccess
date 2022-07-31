@@ -1,35 +1,25 @@
 import {
-    Avatar,
-    Badge,
     Card, CardActions,
-    CardContent, CardHeader, CardMedia, Collapse,
+    CardContent, CardHeader, CardMedia,
     Grid,
-    Hidden,
-    Stack,
-    Table,
-    TableCell,
-    TableHead,
-    TableRow,
-    useTheme
+
 } from "@mui/material";
-import {Box, styled} from "@mui/system";
-import {Breadcrumb, SimpleCard} from "app/components";
-import ShareIcon from '@mui/icons-material/Share';
+import {styled} from "@mui/system";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-
-import {fetchEventsData, fetchPostsData, fetchUserData, getToken} from "../../../auth/authRoles";
+import {fetchEventsData, fetchPostsData, fetchUserData, getToken} from "../../../auth/RoutsData";
 import  React ,{useState} from "react";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import {red} from "@mui/material/colors";
 import {IconButtonProps} from "@mui/material";
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import axios from "../../../../axios";
-import UserPostData from "./userPostData";
 
-
-
+import UserPostAvatarData from "./UserPostData/userPostAvatarData";
+import UserPostNameData from "./UserPostData/userPostNameData";
+import {dateParser} from "../utilis";
+import UserPostEdit from "./UserPostData/userPostEdit";
+import UserPostDelete from "./UserPostData/userPostDelete";
+import LikePost from "./UserPostData/likePost";
 
 const Container = styled("div")(({theme}) => ({
     margin: "30px",
@@ -58,7 +48,7 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
         duration: theme.transitions.duration.shortest,
     }),
 }));
-export default function  PostCard (){
+export default function  PostCard ({userAdd}){
 
 
     const [postsData,setPostsData]=useState({});
@@ -77,52 +67,58 @@ export default function  PostCard (){
         setExpanded(!expanded);
     };
 
-
     return (
         <Container>
             <ContentBox className="analytics">
                 <Grid container spacing={3}>
                     {posts.map((p, index) => (
-                    <Grid item lg={3} md={6} sm={10} xs={14} sx={{ bgcolor:"#e6e6e6"  }}   >
+
+                    <Grid item lg={4} md={6} sm={10} xs={14} sx={{ bgcolor:"#fafafa"  }} key={index}  >
 
 
                             <Card sx={{ maxWidth: 345 }}>
                                 <CardHeader
                                     avatar={
-                                  <UserPostData key={index} userAdd={p.userid}></UserPostData>
+                                  <UserPostAvatarData  userAdd={p.userid}></UserPostAvatarData>
                                     }
                                     action={
                                         <IconButton aria-label="settings">
                                             <MoreVertIcon />
                                         </IconButton>
                                     }
-                                    title="Shrimp and Chorizo Paella"
-                                    subheader="September 14, 2016"
+                                    title={<UserPostNameData  userAdd={p.userid}></UserPostNameData>}
+                                    subheader={dateParser(p.dateCreation)}
                                 />
                                 <CardMedia
                                     component="img"
                                     height="194"
-                                    image="/static/images/cards/paella.jpg"
-                                    alt="Paella dish"
+                                    image={p.image.imageUrl}
                                 />
                                 <CardContent>
                                     <Typography variant="body2" color="text.secondary">
-                                        This impressive paella is a perfect party dish and a fun meal to cook
-                                        together with your guests. Add 1 cup of frozen peas along with the mussels,
-                                        if you like.
+                                        {p.description}
                                     </Typography>
                                 </CardContent>
                                 <CardActions disableSpacing>
-                                    <IconButton aria-label="add to favorites">
-                                        <FavoriteIcon />
-                                    </IconButton>
-                                    <IconButton aria-label="share">
-                                        <ShareIcon />
-                                    </IconButton>
+
+                                    <LikePost  userAdd={p.userid} idPost={p.id} ></LikePost>
+                                    <UserPostEdit  userAdd={p.userid} idPost={p.id} ></UserPostEdit>
+                                    <UserPostDelete userAdd={p.userid} idPost={p.id}></UserPostDelete>
+
+                                    <ExpandMore
+                                        expand={expanded}
+                                        onClick={handleExpandClick}
+                                        aria-expanded={expanded}
+                                        aria-label="show more"
+                                    >
+                                        <ExpandMoreIcon />
+                                    </ExpandMore>
+
                                 </CardActions>
                             </Card>
 
                     </Grid>
+
                     ))}
                 </Grid>
             </ContentBox>

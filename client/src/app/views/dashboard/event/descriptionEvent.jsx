@@ -10,7 +10,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import Typography from '@mui/material/Typography';
 import {useState} from "react";
 import axios from "../../../../axios";
-import {getToken} from "../../../auth/authRoles";
+import {getToken} from "../../../auth/RoutsData";
 import {Fab} from "@mui/material";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
