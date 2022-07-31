@@ -19,13 +19,6 @@ public class AbstractEntity implements Serializable {
     @Id
     @GeneratedValue
     private Long id;
-
-
-    @JsonFormat(pattern = "yyyy-MM-dd" )
-    private Date dateCreation= new Date();
-
-    @LastModifiedDate
-    @Column(name = "LastModifiedDate")
-    @JsonIgnore
-    private LocalDate lastUpdateDate;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
+    private Date dateCreation = new Date();
 }

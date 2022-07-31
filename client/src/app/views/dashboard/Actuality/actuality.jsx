@@ -1,7 +1,10 @@
 import { Stack } from "@mui/material";
 import { Box, styled } from "@mui/system";
 import { Breadcrumb, SimpleCard } from "app/components";
-import PostUser from "./post";
+import PostbyUser from "./post";
+import PostCard from "./cardPost";
+
+
 
 
 
@@ -15,23 +18,25 @@ const Container = styled("div")(({ theme }) => ({
 }));
 
 const AppForm = () => {
+
+
+
     return (
         <Container>
             <Box className="breadcrumb">
-                <Breadcrumb routeSegments={[{ name: "Actuality", path: "/post" }, { name: "Post" }]} />
+                <Breadcrumb routeSegments={[{ name: "Posts", path: "/add && liste" }, { name: "Posts" }]} />
             </Box>
 
             <Stack spacing={3}>
-                <SimpleCard title="Write post">
-                <PostUser></PostUser>
+                <SimpleCard title="Add post">
+                  <PostbyUser></PostbyUser>
                 </SimpleCard>
-
-                <SimpleCard title="All posts">
-
-                </SimpleCard>
+                 <PostCard></PostCard>
             </Stack>
         </Container>
     );
 };
+
+
 
 export default AppForm;

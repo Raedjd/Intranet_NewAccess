@@ -21,12 +21,9 @@ public class Post extends AbstractEntity{
     @Column(name ="description")
     private String description;
 
-    @Column(name ="visiblity")
-    private boolean visibility;
-
-
     @Column(name = "nbrlike")
     private Long nbrLike;
+    private String userid;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy="post")
     @JsonIgnore
@@ -35,4 +32,9 @@ public class Post extends AbstractEntity{
     @ManyToOne(fetch = FetchType.EAGER ,cascade = CascadeType.REMOVE)
     @JsonIgnore
     private User user;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "idimage")
+    private Image image;
+
 }

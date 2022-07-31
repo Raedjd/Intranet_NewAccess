@@ -57,7 +57,6 @@ public class ProductServiceImpl implements IProductService{
         if(productRepository.findById(id).isPresent()){
             Product product = productRepository.findById(id).get();
             product.setNameProduct(prod.getNameProduct());
-            product.setLastUpdateDate(LocalDate.now());
             return productRepository.save(product);
         }
 

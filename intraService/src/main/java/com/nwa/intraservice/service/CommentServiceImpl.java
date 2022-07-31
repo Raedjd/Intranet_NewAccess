@@ -40,7 +40,6 @@ public class CommentServiceImpl implements  ICommentService{
         if(commentRepository.findById(id).isPresent()) {
             Comment c = commentRepository.findById(id).get();
             c.setComment(comment.getComment());
-            c.setLastUpdateDate(LocalDate.now());
             return commentRepository.save(c);
         }
         return null;

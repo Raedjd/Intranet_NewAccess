@@ -45,7 +45,6 @@ public class EventServiceImpl implements IEventService {
             e.setDescription(event.getDescription());
             e.setStartDate(event.getStartDate());
             e.setEndDate(event.getEndDate());
-            e.setLastUpdateDate(LocalDate.now());
             return eventRepository.save(e);
         }
         return null;

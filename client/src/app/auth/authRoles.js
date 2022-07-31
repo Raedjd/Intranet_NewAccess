@@ -70,6 +70,16 @@ export const fetchEventsData=(authRequest)=> {
     })
 }
 
+export const fetchPostsData=(authRequest)=> {
+    return axios({
+        method: 'GET',
+        url: `http://localhost:8082/post/findAll`,
+        headers: {
+            'Authorization': 'Bearer ' + getToken()
+        }
+    })
+}
+
 
 
 

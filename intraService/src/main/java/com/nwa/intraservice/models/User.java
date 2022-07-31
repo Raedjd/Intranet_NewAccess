@@ -17,7 +17,6 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name ="user")
-
 public class User extends AbstractEntity{
     @Column(name = "username")
     private String username;

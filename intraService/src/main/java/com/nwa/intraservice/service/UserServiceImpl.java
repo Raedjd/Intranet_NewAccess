@@ -47,7 +47,9 @@ public class UserServiceImpl implements IUserService , UserDetailsService {
 
     @Override
     public User addUser(User user) {
+        String avatar="https://cdn.icon-icons.com/icons2/2643/PNG/512/male_boy_person_people_avatar_icon_159358.png";
         user.setPassword(passwordEncoder().encode(user.getPassword()));
+        user.setImage(new Image("",avatar,""));
         return userRepository.save(user);
     }
 

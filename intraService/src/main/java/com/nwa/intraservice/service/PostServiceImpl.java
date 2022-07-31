@@ -35,7 +35,6 @@ public class PostServiceImpl implements IPostService{
         if(postRepository.findById(id).isPresent()){
             Post ps = postRepository.findById(id).get();
             ps.setDescription(post.getDescription());
-            ps.setLastUpdateDate(LocalDate.now());
             return postRepository.save(ps);
         }
 
