@@ -1,6 +1,6 @@
 import {
     Box,
-    Card, Fab, Icon,
+    Card, Fab,
     styled,
     Table,
     TableBody,
@@ -11,10 +11,8 @@ import {
 } from '@mui/material';
 
 import React, {useState} from "react";
-import {fetchProductsData, fetchUserData, getToken} from "../../../auth/RoutsData";
-import axios from "axios";
+import {fetchProductsData, fetchUserData} from "../../../auth/RoutsData";
 import ProductbyUser from "./SimpleDialogUser";
-import FormDialogProd from "./FormDialogProdupdate";
 import FormDialogProdupdate from "./FormDialogProdupdate";
 import FormDialogProddelete from "./FormDialogProddelete";
 

@@ -3,11 +3,6 @@ import { Box, styled } from "@mui/system";
 import { Breadcrumb, SimpleCard } from "app/components";
 import Eventlistdone from "./listeventdones";
 
-
-
-
-
-
 const Container = styled("div")(({ theme }) => ({
     margin: "30px",
     [theme.breakpoints.down("sm")]: { margin: "16px" },

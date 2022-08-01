@@ -61,7 +61,8 @@ export default function  PostCard ({userAdd}){
     },[])
     const posts = Object.keys(postsData).map((key) => postsData[key]);
 
-
+    const sortPosts=posts.sort((a,b)=>b.id-a.id)
+    console.log(sortPosts)
     const [expanded, setExpanded] = React.useState(false);
 
     const handleExpandClick = () => {

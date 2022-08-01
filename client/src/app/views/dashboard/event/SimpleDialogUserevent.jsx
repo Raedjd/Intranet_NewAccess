@@ -1,7 +1,6 @@
 
 import {Box, Fab, styled, Table, TableBody, TableCell, TableHead, TableRow} from '@mui/material';
 import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import PropTypes from 'prop-types';
@@ -28,12 +27,6 @@ export default function EventbyUser({userAdd}) {
         function handleClose() {
             onClose(selectedValue);
         }
-        function handleListItemClick(value) {
-            onClose(value);
-        }
-
-
-
 
         return (
             <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" {...other}>
@@ -114,7 +107,7 @@ export default function EventbyUser({userAdd}) {
         <Box>
 
             <Fab variant="extended" aria-label="Delete" className="button"  onClick={handleClickOpen}>
-                show user
+                show 
             </Fab>
             <SimpleDialog selectedValue={selectedValue} open={open} onClose={handleClose}/>
         </Box>

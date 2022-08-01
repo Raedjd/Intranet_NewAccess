@@ -1,6 +1,6 @@
 import {
     Box,
-    Card, Fab, Icon,
+    Card, Fab,
     styled,
     Table,
     TableBody,
@@ -97,8 +97,8 @@ const Eventlist = ({iduser}) => {
                             <TableCell align="center">Start event</TableCell>
                             <TableCell align="center">End event</TableCell>
                             <TableCell align="center">Added by</TableCell>
-                            <TableCell align="center">Update product</TableCell>
-                            <TableCell align="center">Delete product</TableCell>
+                            <TableCell align="center">Update </TableCell>
+                            <TableCell align="center">Delete</TableCell>
                             <TableCell align="center">Participation</TableCell>
                             <TableCell align="center">Done</TableCell>
                         </TableRow>

@@ -8,7 +8,7 @@ export default function UserPostDelete({userAdd,idPost}) {
 
     React.useEffect(()=>{
         fetchUserData().then((response)=>{
-            setUserDataId(response.data.id===userAdd);
+            setUserDataId(response.data.id==userAdd);
 
         })
     },[])
@@ -37,4 +37,3 @@ export default function UserPostDelete({userAdd,idPost}) {
         </div>
     );
 }
-

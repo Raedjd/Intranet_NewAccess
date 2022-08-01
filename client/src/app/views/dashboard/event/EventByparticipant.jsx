@@ -27,11 +27,6 @@ export default function EventByparticipant({idEvent}) {
         function handleClose() {
             onClose(selectedValue);
         }
-        function handleListItemClick(value) {
-            onClose(value);
-        }
-
-
 
 
         return (

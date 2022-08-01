@@ -1,6 +1,6 @@
 import {
     Box,
-    Card, Fab, Icon,
+    Card, Fab,
     styled,
     Table,
     TableBody,
@@ -11,11 +11,7 @@ import {
 } from '@mui/material';
 
 import React, {useState} from "react";
-import {fetchEventsData, fetchUserData,} from "../../../auth/RoutsData";
-import Rating from '@mui/material/Rating';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import EventbyUser from "./SimpleDialogUserevent";
+import {fetchEventsData} from "../../../auth/RoutsData";
 import EventByparticipant from "./EventByparticipant";
 import EventRating from "./rating";
 import ScoreEvent from "./score";

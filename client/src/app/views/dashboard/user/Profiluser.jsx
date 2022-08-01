@@ -6,11 +6,6 @@ import Setting from "./setting";
 
 import {fetchUserData} from "../../../auth/RoutsData";
 import  React ,{useState} from "react";
-
-
-
-
-
 const Container = styled("div")(({theme}) => ({
     margin: "30px",
     [theme.breakpoints.down("sm")]: {margin: "16px"},

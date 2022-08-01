@@ -51,7 +51,6 @@ export default function FormDialogProdupdate({idProd, Add}) {
         })
     },[])
 
-    console.log(yes)
 
     return (
         <Box>
