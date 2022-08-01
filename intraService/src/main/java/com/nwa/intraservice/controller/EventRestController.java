@@ -37,6 +37,11 @@ public class EventRestController {
         return iEventService.findById(id);
     }
 
+    @GetMapping("/countevents")
+    public Long countUsers() {
+        return iEventService.countEvents();
+    }
+
     @PutMapping("/update/{id}")
     @ResponseBody
     public Event modify(@RequestBody Event event,@PathVariable("id") Long id) {

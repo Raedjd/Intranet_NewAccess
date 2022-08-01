@@ -19,5 +19,9 @@ public interface UserRepository extends JpaRepository<User , Long> {
      List<User> UserByDep(Long idDep);
 
 
+     @Query("SELECT COUNT(u) FROM User u ")
+     Long getCountUsers();
+
+
 
 }

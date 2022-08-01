@@ -50,4 +50,9 @@ public class PostServiceImpl implements IPostService{
     public void deletePost(Long id) {
            postRepository.deleteById(id);
     }
+
+    @Override
+    public Long countPosts() {
+        return postRepository.getCountPosts();
+    }
 }

@@ -13,4 +13,7 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
 
     @Query("SELECT  P FROM Product  P JOIN  P.department D WHERE D.id=?1")
     List<Product> ProductByDep(Long idDep);
+
+    @Query("SELECT COUNT(u) FROM Product u ")
+    Long getCountProducts();
 }

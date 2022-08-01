@@ -11,6 +11,7 @@ public interface IDepartmentService {
     Department findById(Long id);
     Department updateDepartment(Department dep, Long id);
     void deleteDepartment(long id);
+    Long countDepartments();
 
 
 }

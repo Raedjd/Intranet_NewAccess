@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Data
+
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
@@ -34,4 +34,44 @@ public class Tools extends  AbstractEntity{
     @JsonIgnore
     @JoinColumn(name = "iduser")
     private User user;
+
+    public String getNameTools() {
+        return nameTools;
+    }
+
+    public void setNameTools(String nameTools) {
+        this.nameTools = nameTools;
+    }
+
+    public String getNbrTools() {
+        return nbrTools;
+    }
+
+    public void setNbrTools(String nbrTools) {
+        this.nbrTools = nbrTools;
+    }
+
+    public String getUserid() {
+        return userid;
+    }
+
+    public void setUserid(String userid) {
+        this.userid = userid;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

@@ -1,6 +1,6 @@
 import {
     Box,
-    Card, Fab, Icon,
+    Card, Fab,
     styled,
     Table,
     TableBody,
@@ -11,7 +11,7 @@ import {
 } from '@mui/material';
 
 import React, {useState} from "react";
-import { fetchToolssData, fetchUserData, getToken} from "../../../auth/RoutsData";
+import { fetchToolssData} from "../../../auth/RoutsData";
 import ToolsbyUser from "./SimpleDialogUserTools";
 import FormDialogToolsupdate from "./FormDialogToolsupdate";
 import FormDialogToolsdelete from "./FormDialogToolsdelete";
@@ -67,14 +67,7 @@ const Toolslist = ({iduser}) => {
     },[])
     const tools = Object.keys(toolsData).map((key) => toolsData[key]);
 
-    const [userData,setUserData]=useState("");
-    React.useEffect(()=>{
-        fetchUserData().then((response)=>{
-            setUserData(response.data);
 
-
-        })
-    },[])
 
     return (
         <Card elevation={3} sx={{ pt: '20px', mb: 3 }}>

@@ -35,6 +35,11 @@ public class PostRestController {
         return iPostService.FindAll();
     }
 
+    @GetMapping("/countposts")
+    public Long countUsers() {
+        return iPostService.countPosts();
+    }
+
     @DeleteMapping("delete/{id}")
     @ResponseBody
     public void delete(@PathVariable("id") Long id) {

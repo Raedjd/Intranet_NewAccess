@@ -37,7 +37,10 @@ public class DepartmentRestController {
     public Department findById(@PathVariable("id") Long id) {
         return idepService.findById(id);
     }
-
+    @GetMapping("/countdepartments")
+    public Long countUsers() {
+        return idepService.countDepartments();
+    }
     @PutMapping("/update/{id}")
     @ResponseBody
     public Department modify(@RequestBody Department dep,@PathVariable("id") Long id) {

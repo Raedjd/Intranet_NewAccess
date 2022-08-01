@@ -1,8 +1,6 @@
 import {
     Box,
     Fab,
-    Icon,
-    IconButton,
     styled,
     Table,
     TableBody,
@@ -12,16 +10,11 @@ import {
     TableRow
 } from "@mui/material";
 import { Breadcrumb, SimpleCard } from "app/components";
-import SimpleTable from "../../material-kit/tables/SimpleTable";
-import Users from "../admin/SimpleDialogUsers";
-import Products from "../admin/SimpleDialogProduct";
-import Tool from "../admin/SimpleDialogTools";
-import FormDialogDep from "../admin/dialogDepartment";
 import React, {useState} from "react";
-import {fetchUserData, fetchUsersData} from "../../../auth/RoutsData";
+import {fetchUsersData} from "../../../auth/RoutsData";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
-import {blue} from "@mui/material/colors";
+
 
 
 const Container = styled("div")(({ theme }) => ({

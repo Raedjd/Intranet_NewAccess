@@ -1,15 +1,12 @@
 
 import {Box, Fab, styled, Table, TableBody, TableCell, TableHead, TableRow} from '@mui/material';
 import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import axios from "axios";
 import {getToken} from "../../../auth/RoutsData";
-
-
 const StyledTable = styled(Table)(() => ({
     whiteSpace: "pre",
     "& thead": {
@@ -19,10 +16,6 @@ const StyledTable = styled(Table)(() => ({
         "& tr": { "& td": { paddingLeft: 0, textTransform: "capitalize" } },
     },
 }));
-const StyledButton = styled(Button)(({ theme }) => ({
-    margin: theme.spacing(1),
-}));
-
 export default function Users({user}) {
 
     function SimpleDialog(props) {
@@ -30,9 +23,6 @@ export default function Users({user}) {
 
         function handleClose() {
             onClose(selectedValue);
-        }
-        function handleListItemClick(value) {
-            onClose(value);
         }
 
 

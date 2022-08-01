@@ -1,4 +1,4 @@
-import {Avatar, Badge, Card, Grid, Hidden, Stack, Table, TableCell, TableHead, TableRow, useTheme} from "@mui/material";
+import {Avatar,  Card, Grid,Table, TableCell, TableHead} from "@mui/material";
 import {Box, styled} from "@mui/system";
 import {Breadcrumb, SimpleCard} from "app/components";
 import Settings from "./settings";

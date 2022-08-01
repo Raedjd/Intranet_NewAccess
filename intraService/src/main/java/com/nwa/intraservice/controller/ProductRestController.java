@@ -53,6 +53,11 @@ public class ProductRestController {
         return iProductService.getProductByDepartement(iddep);
     }
 
+    @GetMapping("/countproducts")
+    public Long countUsers() {
+        return iProductService.countProducts();
+    }
+
     @PutMapping("/update/{id}")
     @ResponseBody
     public Product modify(@RequestBody Product prod,@PathVariable("id") Long id) {

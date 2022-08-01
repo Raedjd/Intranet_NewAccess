@@ -1,25 +1,17 @@
-import {Autocomplete, DatePicker} from "@mui/lab";
-import Box from '@mui/material/Box';
-import AdapterDateFns from "@mui/lab/AdapterDateFns";
-import LocalizationProvider from "@mui/lab/LocalizationProvider";
+
 import {
     Button,
-    Checkbox,
-    FormControlLabel,
+
     Grid,
     Icon,
-    Radio,
-    RadioGroup,
-    styled, useTheme,
+
+    styled,
 } from "@mui/material";
 import { Span } from "app/components/Typography";
 import React, { useEffect, useState } from "react";
 import { TextValidator, ValidatorForm } from "react-material-ui-form-validator";
 import axios from "../../../../axios";
 import {fetchUserData, getToken} from "../../../auth/RoutsData";
-import IconButton from "@mui/material/IconButton";
-import {SimpleCard} from "../../../components";
-
 
 
 
@@ -52,10 +44,6 @@ const Setting = () => {
         return () => ValidatorForm.removeValidationRule("isPasswordMatch");
     }, [state.password]);
 
-    const handleSubmit = (event) => {
-        // console.log("submitted");
-        // console.log(event);
-    };
 
     const handleChange = (event) => {
         event.persist();

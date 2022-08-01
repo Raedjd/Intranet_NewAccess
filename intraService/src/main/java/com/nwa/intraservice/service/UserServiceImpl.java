@@ -3,16 +3,12 @@ package com.nwa.intraservice.service;
 
 import com.nwa.intraservice.models.Department;
 import com.nwa.intraservice.models.Image;
-import com.nwa.intraservice.models.Role;
 import com.nwa.intraservice.models.User;
 import com.nwa.intraservice.repository.DepartmentRepository;
-import com.nwa.intraservice.repository.RoleRepository;
 import com.nwa.intraservice.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -36,8 +32,7 @@ public class UserServiceImpl implements IUserService , UserDetailsService {
         private UserRepository userRepository;
         @Autowired
         private DepartmentRepository departmentRepository;
-       @Autowired
-       private RoleRepository roleRepository;
+
     @Autowired
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -53,10 +48,6 @@ public class UserServiceImpl implements IUserService , UserDetailsService {
         return userRepository.save(user);
     }
 
-    @Override
-    public Role addRole(Role role) {
-        return roleRepository.save(role);
-    }
 
     @Override
     public Response addUserAndAssignToDepartment(User user, String nameDepart ) {
@@ -118,6 +109,11 @@ public class UserServiceImpl implements IUserService , UserDetailsService {
     @Override
     public List<User> getUserByDepartement(Long idDep) {
         return userRepository.UserByDep(idDep);
+    }
+
+    @Override
+    public Long countUsers() {
+        return  userRepository.getCountUsers();
     }
 
     @Override

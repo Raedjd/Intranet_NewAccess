@@ -21,5 +21,7 @@ public interface IProductService {
     Product updateProduct(Product prod, Long id);
     void deleteProduct(long id);
 
+    Long countProducts();
+
 
 }

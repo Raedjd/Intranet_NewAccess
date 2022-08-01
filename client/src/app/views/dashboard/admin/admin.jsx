@@ -1,14 +1,12 @@
 import {Autocomplete, Button, Card, Grid, Icon, styled} from '@mui/material';
 import React, {Fragment , useState} from 'react';
 import TopSellingDepartment from './TopSellingDepartment';
-
 import {Span} from "../../../components/Typography";
 import axios from "../../../../axios";
 import {fetchDepartmentData, fetchUserData, getToken} from "../../../auth/RoutsData";
 import {SimpleCard} from "../../../components";
 import {Navigate} from "react-router-dom";
 import { TextValidator, ValidatorForm } from "react-material-ui-form-validator";
-import Box from "@mui/material/Box";
 
 const TextField = styled(TextValidator)(() => ({
     width: "100%",
@@ -21,17 +19,6 @@ const ContentBox = styled('div')(({ theme }) => ({
     margin: '30px',
     [theme.breakpoints.down('sm')]: { margin: '16px' },
 }));
-
-const Title = styled('span')(() => ({
-    fontSize: '1rem',
-    fontWeight: '500',
-    marginRight: '.5rem',
-    textTransform: 'capitalize',
-}));
-
-
-
-
 
 
 

@@ -85,4 +85,9 @@ public class EventServiceImpl implements IEventService {
         }
         return null;
     }
+
+    @Override
+    public Long countEvents() {
+        return eventRepository.getCountEvents();
+    }
 }

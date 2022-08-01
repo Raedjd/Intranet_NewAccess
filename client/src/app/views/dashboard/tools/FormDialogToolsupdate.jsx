@@ -47,7 +47,7 @@ export default function FormDialogToolsupdate({idTools, Add}) {
     const [yes,setYes]=useState(false);
     React.useEffect(()=>{
         fetchUserData().then((response)=>{
-            setYes(response.data.id==Add);
+            setYes(response.data.id===Add);
 
 
         })

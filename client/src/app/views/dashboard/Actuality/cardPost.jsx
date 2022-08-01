@@ -7,12 +7,12 @@ import {
 import {styled} from "@mui/system";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import {fetchEventsData, fetchPostsData, fetchUserData, getToken} from "../../../auth/RoutsData";
+import { fetchPostsData} from "../../../auth/RoutsData";
 import  React ,{useState} from "react";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import {IconButtonProps} from "@mui/material";
-import FavoriteIcon from '@mui/icons-material/Favorite';
+
 
 import UserPostAvatarData from "./UserPostData/userPostAvatarData";
 import UserPostNameData from "./UserPostData/userPostNameData";
@@ -20,6 +20,7 @@ import {dateParser} from "../utilis";
 import UserPostEdit from "./UserPostData/userPostEdit";
 import UserPostDelete from "./UserPostData/userPostDelete";
 import LikePost from "./UserPostData/likePost";
+import ShowLike from "./UserPostData/showLike";
 
 const Container = styled("div")(({theme}) => ({
     margin: "30px",
@@ -102,6 +103,7 @@ export default function  PostCard ({userAdd}){
                                 <CardActions disableSpacing>
 
                                     <LikePost  userAdd={p.userid} idPost={p.id} ></LikePost>
+                                    <ShowLike idPost={p.id} ></ShowLike>
                                     <UserPostEdit  userAdd={p.userid} idPost={p.id} ></UserPostEdit>
                                     <UserPostDelete userAdd={p.userid} idPost={p.id}></UserPostDelete>
 

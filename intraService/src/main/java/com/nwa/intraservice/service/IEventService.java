@@ -23,4 +23,6 @@ public interface IEventService {
     void UserToEvent (Long idUser , Long idEvent);
 
     Event eventDone(Event event ,Long id);
+
+    Long countEvents();
 }

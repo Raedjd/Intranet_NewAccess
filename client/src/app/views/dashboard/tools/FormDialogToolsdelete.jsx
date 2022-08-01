@@ -3,9 +3,7 @@ import {Box, Fab, Icon} from '@mui/material';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
-import TextField from '@mui/material/TextField';
 import React, {useState} from 'react';
 import axios from "../../../../axios";
 import {fetchUserData, getToken} from "../../../auth/RoutsData";
@@ -21,7 +19,6 @@ export default function FormDialogToolsdelete({idtool, Add}) {
         setOpen(false);
     }
 
-    const [nameProduct,setNameProduct]=useState('');
     const deleteTools = async (e) => {
         e.preventDefault();
 
@@ -41,7 +38,7 @@ export default function FormDialogToolsdelete({idtool, Add}) {
     const [yes,setYes]=useState(false);
     React.useEffect(()=>{
         fetchUserData().then((response)=>{
-            setYes(response.data.id==Add);
+            setYes(response.data.id===Add);
 
 
         })

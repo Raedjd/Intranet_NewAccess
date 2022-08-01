@@ -1,7 +1,5 @@
 package com.nwa.intraservice.controller;
 
-import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.nwa.intraservice.models.Role;
 import com.nwa.intraservice.models.User;
 import com.nwa.intraservice.repository.UserRepository;
 import com.nwa.intraservice.service.IUserService;
@@ -41,14 +39,7 @@ public class UserRestController {
 
     }
 
-    @PostMapping("/addrole")
-    @ResponseBody
-    public Role add(@RequestBody Role r) {
-        Role role = iUserService.addRole(r);
 
-        return role;
-
-    }
 
     @PostMapping("/add/{nameDep}")
     @ResponseBody
@@ -103,6 +94,11 @@ public class UserRestController {
     @GetMapping("/userbydepart/{iddepart}")
     public List<User> getUsersByDEpart(@PathVariable("iddepart") Long iddep) {
         return iUserService.getUserByDepartement(iddep);
+    }
+
+    @GetMapping("/countusers")
+    public Long countUsers() {
+        return iUserService.countUsers();
     }
     @Autowired
     public BCryptPasswordEncoder passwordEncoder() {

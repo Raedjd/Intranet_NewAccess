@@ -1,11 +1,6 @@
-import FormControlLabel from "@mui/material/FormControlLabel";
-import FormGroup from "@mui/material/FormGroup";
-import Stack from "@mui/material/Stack";
-import { styled } from "@mui/material/styles";
-import Switch from "@mui/material/Switch";
-import Typography from "@mui/material/Typography";
+
 import axios from "../../../../axios";
-import {fetchEventsData, fetchUserData, getToken} from "../../../auth/RoutsData";
+import {fetchUserData, getToken} from "../../../auth/RoutsData";
 import {Icon,  Fab} from "@mui/material";
 import {useState} from "react";
 import React from "react";

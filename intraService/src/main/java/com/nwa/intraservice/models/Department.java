@@ -12,7 +12,6 @@ import javax.persistence.*;
 
 import java.util.List;
 
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
@@ -35,4 +34,36 @@ public class Department extends AbstractEntity{
     @JoinColumn(name = "idDepartment")
     @JsonIgnoreProperties(value = {"department"}, allowGetters = true)
     private List<User> users;
+
+    public String getNameDepart() {
+        return nameDepart;
+    }
+
+    public void setNameDepart(String nameDepart) {
+        this.nameDepart = nameDepart;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
+
+    public List<Tools> getToolss() {
+        return toolss;
+    }
+
+    public void setToolss(List<Tools> toolss) {
+        this.toolss = toolss;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
 }

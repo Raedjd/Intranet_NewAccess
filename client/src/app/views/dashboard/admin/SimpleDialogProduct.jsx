@@ -1,16 +1,6 @@
-import AddIcon from '@mui/icons-material/Add';
-import PersonIcon from '@mui/icons-material/Person';
-import {Box, styled, Table, TableBody, TableCell, TableHead, TableRow ,Fab, Icon} from '@mui/material';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import { blue } from '@mui/material/colors';
+
+import {Box, styled, Table, TableBody, TableCell, TableHead, TableRow ,Fab} from '@mui/material';
 import Dialog from '@mui/material/Dialog';
-import DialogTitle from '@mui/material/DialogTitle';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import ListItemText from '@mui/material/ListItemText';
-import Typography from '@mui/material/Typography';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import axios from "axios";
@@ -26,9 +16,6 @@ const StyledTable = styled(Table)(() => ({
     "& tr": { "& td": { paddingLeft: 0, textTransform: "capitalize" } },
   },
 }));
-const StyledButton = styled(Button)(({ theme }) => ({
-  margin: theme.spacing(1),
-}));
 
 export default function Products({product}) {
 
@@ -37,9 +24,6 @@ function SimpleDialog(props) {
 
   function handleClose() {
     onClose(selectedValue);
-  }
-  function handleListItemClick(value) {
-    onClose(value);
   }
 
   return (

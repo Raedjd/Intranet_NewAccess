@@ -1,7 +1,6 @@
-import AddIcon from '@mui/icons-material/Add';
-import PersonIcon from '@mui/icons-material/Person';
-import {Box, styled, Table, TableBody, TableCell, TableHead, TableRow ,Fab, Icon} from '@mui/material';
-import Avatar from '@mui/material/Avatar';
+
+import {Box, styled, Table, TableBody, TableCell, TableHead, TableRow ,Fab} from '@mui/material';
+
 import Button from '@mui/material/Button';
 
 import Dialog from '@mui/material/Dialog';
@@ -21,9 +20,7 @@ const StyledTable = styled(Table)(() => ({
         "& tr": { "& td": { paddingLeft: 0, textTransform: "capitalize" } },
     },
 }));
-const StyledButton = styled(Button)(({ theme }) => ({
-    margin: theme.spacing(1),
-}));
+
 
 export default function Tool({tools}) {
 
@@ -32,9 +29,6 @@ export default function Tool({tools}) {
 
         function handleClose() {
             onClose(selectedValue);
-        }
-        function handleListItemClick(value) {
-            onClose(value);
         }
 
         return (

@@ -53,5 +53,10 @@ public class DepartmentServiceImpl implements IDepartmentService {
 
     }
 
+    @Override
+    public Long countDepartments() {
+        return departmentRepository.getCountDepartments();
+    }
+
 
 }

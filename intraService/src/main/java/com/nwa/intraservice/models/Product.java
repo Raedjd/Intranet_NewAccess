@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Data
+
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
@@ -24,7 +24,30 @@ public class Product extends AbstractEntity {{}
         @JsonIgnore
         private Department department;
 
-    }
+        public Department getDepartment() {
+                return department;
+        }
+
+        public void setDepartment(Department department) {
+                this.department = department;
+        }
+
+        public String getNameProduct() {
+                return nameProduct;
+        }
+
+        public void setNameProduct(String nameProduct) {
+                this.nameProduct = nameProduct;
+        }
+
+        public String getUserid() {
+                return userid;
+        }
+
+        public void setUserid(String userid) {
+                this.userid = userid;
+        }
+}
 
 
 

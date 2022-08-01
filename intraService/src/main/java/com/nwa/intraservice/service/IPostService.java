@@ -14,4 +14,5 @@ public interface IPostService {
     List<Post> FindAll();
 
     void deletePost( Long id);
+    Long countPosts();
 }

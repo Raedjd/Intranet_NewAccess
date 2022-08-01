@@ -18,7 +18,7 @@ public interface IToolsService {
 
     void deleteTools(Long id);
 
-
+    Long countTools();
 
 
 

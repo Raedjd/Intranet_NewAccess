@@ -57,4 +57,9 @@ public class ToolsServiceImpl implements  IToolsService{
     public void deleteTools(Long id) {
            toolsRepository.deleteById(id);
     }
+
+    @Override
+    public Long countTools() {
+        return toolsRepository.getCountTools();
+    }
 }

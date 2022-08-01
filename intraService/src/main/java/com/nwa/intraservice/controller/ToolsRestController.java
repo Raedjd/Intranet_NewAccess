@@ -34,6 +34,10 @@ public class ToolsRestController {
 
         return iToolsService.findAll();
     }
+    @GetMapping("/counttools")
+    public Long countUsers() {
+        return iToolsService.countTools();
+    }
 
     @PutMapping("/update/{id}")
     @ResponseBody

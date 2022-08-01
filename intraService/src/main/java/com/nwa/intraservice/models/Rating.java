@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Data
+
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
@@ -25,4 +25,28 @@ public class Rating extends  AbstractEntity {
     private User user;
     @ManyToOne(fetch = FetchType.EAGER)
     private Event event;
+
+    public Event getEvent() {
+        return event;
+    }
+
+    public void setEvent(Event event) {
+        this.event = event;
+    }
+
+    public float getScoreRating() {
+        return scoreRating;
+    }
+
+    public void setScoreRating(float scoreRating) {
+        this.scoreRating = scoreRating;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

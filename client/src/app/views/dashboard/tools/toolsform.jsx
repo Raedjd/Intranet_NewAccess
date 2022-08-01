@@ -1,4 +1,4 @@
-import {Autocomplete, Box, Fab, Icon, styled} from '@mui/material';
+import {Autocomplete, Box, Fab, Icon} from '@mui/material';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -25,7 +25,7 @@ export default function FormDialogTools() {
     React.useEffect(()=>{
         fetchUserData().then((response)=>{
             setUserData(response.data);
-            setRl(response.data.role=="Admin");
+            setRl(response.data.role==="Admin");
 
         })
     },[])

@@ -3,7 +3,6 @@ import axios from "axios";
 import {fetchUserData, getToken} from "../../../../auth/RoutsData";
 import EditIcon from '@mui/icons-material/Edit';
 import IconButton from "@mui/material/IconButton";
-import {Fab, Icon} from "@mui/material";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
@@ -25,7 +24,7 @@ export default function UserPostEdit({userAdd,idPost}) {
 
     React.useEffect(()=>{
         fetchUserData().then((response)=>{
-            setUserDataId(response.data.id==userAdd);
+            setUserDataId(response.data.id===userAdd);
 
         })
     },[])

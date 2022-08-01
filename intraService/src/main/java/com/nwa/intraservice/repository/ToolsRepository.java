@@ -14,4 +14,7 @@ public interface ToolsRepository extends JpaRepository<Tools, Long> {
 
        @Query("SELECT  T FROM Tools  T JOIN  T.department D WHERE D.id=?1")
         List<Tools> toolsByDep(Long idDep);
+
+    @Query("SELECT COUNT(u) FROM Tools u ")
+    Long getCountTools();
 }
