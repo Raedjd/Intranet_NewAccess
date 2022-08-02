@@ -24,7 +24,7 @@ export default function FormDialogEventdelete({idEvent, Add}) {
 
         await axios({
             method: "delete",
-            url: `http://localhost:8082/event/delete/${idEvent}`,
+            url: `http://localhost:8080/event/delete/${idEvent}`,
             headers: {
                 'Authorization': 'Bearer ' + getToken()
             }

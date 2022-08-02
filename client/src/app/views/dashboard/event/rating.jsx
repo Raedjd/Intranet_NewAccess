@@ -33,7 +33,7 @@ export default function EventRating({idEvent}) {
     React.useEffect(()=>{
         axios({
             method: 'GET',
-            url: `http://localhost:8082/rating/ratingbyevent/${idEvent}`,
+            url: `http://localhost:8080/rating/ratingbyevent/${idEvent}`,
             headers: {
                 'Authorization': 'Bearer ' + getToken()
             }
@@ -76,7 +76,7 @@ console.log(s)
             onClick={(e) => {
                 axios({
                     method: "post",
-                    url: `http://localhost:8082/rating/add/${userData.id}/${idEvent}`,
+                    url: `http://localhost:8080/rating/add/${userData.id}/${idEvent}`,
                     data: {
                         scoreRating:e.target.value
 

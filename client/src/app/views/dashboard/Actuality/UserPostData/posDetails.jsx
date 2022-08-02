@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from "axios";
-import {fetchUserData, getToken} from "../../../../auth/RoutsData";
-import EditIcon from '@mui/icons-material/Edit';
+import { fetchUserData, getToken} from "../../../../auth/RoutsData";
+import Feedback from '@mui/icons-material/Feedback';
 import IconButton from "@mui/material/IconButton";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
@@ -11,6 +11,11 @@ import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
 import {TransitionProps} from "@mui/material/transitions";
 import Slide from "@mui/material/Slide";
+import Avatar from "@mui/material/Avatar";
+import {Divider, Grid, Paper} from "@mui/material";
+import {red} from "@mui/material/colors";
+import FeedbackComment from "./cardFeedback";
+
 const Transition = React.forwardRef(function Transition(
     props: TransitionProps & {
         children: React.ReactElement<any, any>;
@@ -19,7 +24,7 @@ const Transition = React.forwardRef(function Transition(
 ) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
-export default function UserPostEdit({userAdd,idPost}) {
+export default function FeedbackPost({userAdd,idPost}) {
     const [userDataId,setUserDataId]=useState(false);
 
     React.useEffect(()=>{
@@ -42,40 +47,40 @@ export default function UserPostEdit({userAdd,idPost}) {
     const [userData,setUserData]=useState("");
     React.useEffect(()=>{
         fetchUserData().then((response)=>{
-            setUserData(response.data);;
+            setUserData(response.data);
+
 
         })
     },[])
-    const [image, setImage] = useState("");
-    const [description,setDescription]=useState("");
-    const addPost = async (e) => {
+
+
+    const [feedback,setFeedback]=useState("");
+    const idUser=userData.id
+    const addFeedback = async (e) => {
         e.preventDefault();
-
-        if (!image.size > 1024 * 1024) console.log("Size too large.");
-
-        let data = new FormData();
-        data.append("multipartFile", image);
-        data.append("description", description);
         await axios({
-            method: "put",
-            url: `http://localhost:8080/cloudinary/update/${idPost}`,
-            data,
-            headers: { "content-type": "multipartFile/form-data",
-                'Authorization': 'Bearer ' + getToken()},
+            method: "post",
+            url: `http://localhost:8080/comment/add/${idUser}/${idPost}`,
 
+            data: {
+                comment:feedback
+
+            },
+            headers: {
+                'Authorization': 'Bearer ' + getToken()
+            }
+        }).then((response)=>{
+            window.location.reload();
         })
-            .then((res) => {
-                window.location.reload();
-            })
-    };
 
+    }
 
     return (
         <div>
 
-            <div  hidden={!userDataId} onClick={handleClickOpen}>
-                <IconButton aria-label="share" >
-                    <EditIcon></EditIcon>
+            <div   onClick={handleClickOpen}>
+                <IconButton aria-label="feedback" >
+                 <Feedback></Feedback>
                 </IconButton>
             </div>
             <Dialog
@@ -87,7 +92,7 @@ export default function UserPostEdit({userAdd,idPost}) {
             >
 
                 <form>
-                    <DialogTitle>{"Edit post (File is required)"}</DialogTitle>
+                    <DialogTitle>{"Add Feedback"}</DialogTitle>
                     <DialogContent>
 
 
@@ -95,30 +100,28 @@ export default function UserPostEdit({userAdd,idPost}) {
                             autoFocus
                             margin="dense"
                             id="title"
+                            label="Feedback"
                             type="text"
                             fullWidth
-                            sx={{ width: 550}}
+                            onChange={(e) =>setFeedback(e.target.value)}
+                            value={feedback}
+                            sx={{ width: 530}}
                             placeholder={"Write here..."}
-                            onChange={(e) =>setDescription(e.target.value)}
-                            value={description}
 
                         />
-                        <input
-                            name="avatar"
-                            type="file"
-                            onChange={(e) => setImage(e.target.files[0])}
-                        />
-                        <p>File size should be under 1024MB .</p>
+
                     </DialogContent>
                     <DialogActions>
                         <Button variant="outlined" color="secondary" onClick={handleClose}>
                             Cancel
                         </Button>
-                        <Button  color="primary" onClick={addPost} disabled={!description} >
+                        <Button  color="primary" onClick={addFeedback}  >
                             save
                         </Button>
                     </DialogActions>
                 </form>
+                <FeedbackComment idPost={idPost}></FeedbackComment>
+
             </Dialog>
         </div>
     )

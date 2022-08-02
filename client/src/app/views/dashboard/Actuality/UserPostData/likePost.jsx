@@ -22,7 +22,7 @@ export default function LikePost({idPost}) {
     React.useEffect(()=>{
         axios({
             method: 'GET',
-            url: `http://localhost:8082/love/lovebypost/${idPost}`,
+            url: `http://localhost:8080/love/lovebypost/${idPost}`,
             headers: {
                 'Authorization': 'Bearer ' + getToken()
             }
@@ -40,7 +40,7 @@ export default function LikePost({idPost}) {
                         onClick={(e) => {
                             axios({
                                 method: "post",
-                                url: `http://localhost:8082/love/add/${userData.id}/${idPost}`,
+                                url: `http://localhost:8080/love/add/${userData.id}/${idPost}`,
                                 data: {
                                     nbrLike:1
 

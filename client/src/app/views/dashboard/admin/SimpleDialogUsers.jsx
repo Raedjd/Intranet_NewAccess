@@ -91,7 +91,7 @@ export default function Users({user}) {
     const fetchUserByDep=(authRequest)=> {
         return axios({
             method: 'GET',
-            url: `http://localhost:8082/user/userbydepart/${user}`,
+            url: `http://localhost:8080/user/userbydepart/${user}`,
             headers: {
                 'Authorization': 'Bearer ' + getToken()
             }

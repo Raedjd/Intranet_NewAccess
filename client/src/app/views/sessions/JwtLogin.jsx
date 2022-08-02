@@ -49,7 +49,7 @@ const JwtLogin = () => {
 
     await axios({
       method: "post",
-      url: `http://localhost:8082/auth/login`,
+      url: `http://localhost:8080/auth/login`,
 
       data: {
         username: username,

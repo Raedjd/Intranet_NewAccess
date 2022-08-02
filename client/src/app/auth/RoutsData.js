@@ -15,7 +15,7 @@ export const getToken=()=>{
 export const fetchUserData=(authRequest)=> {
     return  axios({
         method: 'GET',
-        url: `http://localhost:8082/user/findByToken`,
+        url: `http://localhost:8080/user/findByToken`,
         headers: {
             'Authorization': 'Bearer ' + getToken()
         }
@@ -24,7 +24,7 @@ export const fetchUserData=(authRequest)=> {
 export const fetchUsersData=(authRequest)=> {
     return axios({
         method: 'GET',
-        url: `http://localhost:8082/user/findAll`,
+        url: `http://localhost:8080/user/findAll`,
         headers: {
             'Authorization': 'Bearer ' + getToken()
         }
@@ -34,7 +34,7 @@ export const fetchUsersData=(authRequest)=> {
 export const fetchDepartmentData=(authRequest)=> {
     return axios({
         method: 'GET',
-        url: `http://localhost:8082/dep/findAll`,
+        url: `http://localhost:8080/dep/findAll`,
         headers: {
             'Authorization': 'Bearer ' + getToken()
         }
@@ -44,7 +44,7 @@ export const fetchDepartmentData=(authRequest)=> {
 export const fetchProductsData=(authRequest)=> {
     return axios({
         method: 'GET',
-        url: `http://localhost:8082/product/findAll`,
+        url: `http://localhost:8080/product/findAll`,
         headers: {
             'Authorization': 'Bearer ' + getToken()
         }
@@ -53,7 +53,7 @@ export const fetchProductsData=(authRequest)=> {
 export const fetchToolssData=(authRequest)=> {
     return axios({
         method: 'GET',
-        url: `http://localhost:8082/tools/findAll`,
+        url: `http://localhost:8080/tools/findAll`,
         headers: {
             'Authorization': 'Bearer ' + getToken()
         }
@@ -63,7 +63,7 @@ export const fetchToolssData=(authRequest)=> {
 export const fetchEventsData=(authRequest)=> {
     return axios({
         method: 'GET',
-        url: `http://localhost:8082/event/findAll`,
+        url: `http://localhost:8080/event/findAll`,
         headers: {
             'Authorization': 'Bearer ' + getToken()
         }
@@ -73,7 +73,7 @@ export const fetchEventsData=(authRequest)=> {
 export const fetchPostsData=(authRequest)=> {
     return axios({
         method: 'GET',
-        url: `http://localhost:8082/post/findAll`,
+        url: `http://localhost:8080/post/findAll`,
         headers: {
             'Authorization': 'Bearer ' + getToken()
         }

@@ -5,7 +5,6 @@ import {
 
 } from "@mui/material";
 import {styled} from "@mui/system";
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { fetchPostsData} from "../../../auth/RoutsData";
 import  React ,{useState} from "react";
@@ -21,6 +20,7 @@ import UserPostEdit from "./UserPostData/userPostEdit";
 import UserPostDelete from "./UserPostData/userPostDelete";
 import LikePost from "./UserPostData/likePost";
 import ShowLike from "./UserPostData/showLike";
+import FeedbackPost from "./UserPostData/posDetails";
 
 const Container = styled("div")(({theme}) => ({
     margin: "30px",
@@ -35,20 +35,8 @@ const ContentBox = styled('div')(({theme}) => ({
     [theme.breakpoints.down('sm')]: {margin: '16px'},
 }));
 
-interface ExpandMoreProps extends IconButtonProps {
-    expand: boolean;
-}
 
-const ExpandMore = styled((props: ExpandMoreProps) => {
-    const { expand, ...other } = props;
-    return <IconButton {...other} />;
-})(({ theme, expand }) => ({
-    transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
-    marginLeft: 'auto',
-    transition: theme.transitions.create('transform', {
-        duration: theme.transitions.duration.shortest,
-    }),
-}));
+
 export default function  PostCard ({userAdd}){
 
 
@@ -62,12 +50,7 @@ export default function  PostCard ({userAdd}){
     const posts = Object.keys(postsData).map((key) => postsData[key]);
 
     const sortPosts=posts.sort((a,b)=>b.id-a.id)
-    console.log(sortPosts)
-    const [expanded, setExpanded] = React.useState(false);
 
-    const handleExpandClick = () => {
-        setExpanded(!expanded);
-    };
 
     return (
         <Container>
@@ -107,17 +90,9 @@ export default function  PostCard ({userAdd}){
                                     <ShowLike idPost={p.id} ></ShowLike>
                                     <UserPostEdit  userAdd={p.userid} idPost={p.id} ></UserPostEdit>
                                     <UserPostDelete userAdd={p.userid} idPost={p.id}></UserPostDelete>
-
-                                    <ExpandMore
-                                        expand={expanded}
-                                        onClick={handleExpandClick}
-                                        aria-expanded={expanded}
-                                        aria-label="show more"
-                                    >
-                                        <ExpandMoreIcon />
-                                    </ExpandMore>
-
+                                 <FeedbackPost idPost={p.id}></FeedbackPost>
                                 </CardActions>
+
                             </Card>
 
                     </Grid>

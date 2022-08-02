@@ -93,7 +93,7 @@ export default function EventByparticipant({idEvent}) {
     React.useEffect(()=>{
         axios({
             method: 'GET',
-            url: `http://localhost:8082/event/findOne/${idEvent}`,
+            url: `http://localhost:8080/event/findOne/${idEvent}`,
             headers: {
                 'Authorization': 'Bearer ' + getToken()
             }

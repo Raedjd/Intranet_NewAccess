@@ -64,7 +64,7 @@ const Setting = () => {
         data.append("multipartFile", image);
        await axios({
             method: "patch",
-            url: `http://localhost:8082/cloudinary/upload/${id}`,
+            url: `http://localhost:8080/cloudinary/upload/${id}`,
             data,
             headers: { "content-type": "multipartFile/form-data",
            'Authorization': 'Bearer ' + getToken()},
@@ -84,7 +84,7 @@ const Setting = () => {
         const change = document.querySelector(".password");
         await axios({
             method: "put",
-            url: `http://localhost:8082/user/changepwd/${id}`,
+            url: `http://localhost:8080/user/changepwd/${id}`,
 
             data: {
                 oldPassword:oldPassword,

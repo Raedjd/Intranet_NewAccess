@@ -24,7 +24,7 @@ export default function FormDialogToolsdelete({idtool, Add}) {
 
         await axios({
             method: "delete",
-            url: `http://localhost:8082/tools/delete/${idtool}`,
+            url: `http://localhost:8080/tools/delete/${idtool}`,
 
             headers: {
                 'Authorization': 'Bearer ' + getToken()

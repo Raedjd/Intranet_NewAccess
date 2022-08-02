@@ -86,7 +86,7 @@ export default function Tool({tools}) {
     const fetchToolsByDep=(authRequest)=> {
         return axios({
             method: 'GET',
-            url: `http://localhost:8082/tools/toolsbydepart/${tools}`,
+            url: `http://localhost:8080/tools/toolsbydepart/${tools}`,
             headers: {
                 'Authorization': 'Bearer ' + getToken()
             }

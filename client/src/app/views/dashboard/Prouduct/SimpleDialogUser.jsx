@@ -92,7 +92,7 @@ export default function ProductbyUser({userAdd}) {
     React.useEffect(()=>{
         axios({
             method: 'GET',
-            url: `http://localhost:8082/user/findOne/${userAdd}`,
+            url: `http://localhost:8080/user/findOne/${userAdd}`,
             headers: {
                 'Authorization': 'Bearer ' + getToken()
             }

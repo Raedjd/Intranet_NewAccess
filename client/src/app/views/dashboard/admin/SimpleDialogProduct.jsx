@@ -79,7 +79,7 @@ SimpleDialog.propTypes = {
   const fetchProductByDep=(authRequest)=> {
     return axios({
       method: 'GET',
-      url: `http://localhost:8082/product/productbydepart/${product}`,
+      url: `http://localhost:8080/product/productbydepart/${product}`,
       headers: {
         'Authorization': 'Bearer ' + getToken()
       }

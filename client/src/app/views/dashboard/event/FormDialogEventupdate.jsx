@@ -31,7 +31,7 @@ export default function FormDialogEventupdate({idEvent, Add}) {
 
         await axios({
             method: "put",
-            url: `http://localhost:8082/event/update/${idEvent}`,
+            url: `http://localhost:8080/event/update/${idEvent}`,
 
             data: {
                 title:title,

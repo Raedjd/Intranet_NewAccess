@@ -10,7 +10,7 @@ ReactDOM.render(
   <StyledEngineProvider injectFirst>
     <BrowserRouter>
       <CssBaseline />
-      <App />
+      <App/>
     </BrowserRouter>
   </StyledEngineProvider>,
   document.getElementById('root')

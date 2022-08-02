@@ -61,7 +61,7 @@ export const Admin = () => {
 
             await axios({
                 method: "post",
-                url: `http://localhost:8082/dep/add`,
+                url: `http://localhost:8080/dep/add`,
 
                 data: {
                     nameDepart: namedepartment
@@ -99,7 +99,7 @@ export const Admin = () => {
        const userSuccess = document.querySelector(".user");
        await axios({
            method: "post",
-           url: `http://localhost:8082/user/add/${nameDep}`,
+           url: `http://localhost:8080/user/add/${nameDep}`,
 
            data: {
                username:username,

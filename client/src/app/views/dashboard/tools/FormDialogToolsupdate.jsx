@@ -1,4 +1,3 @@
-
 import {Box, Fab, Icon} from '@mui/material';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
@@ -12,28 +11,22 @@ import {fetchUserData, getToken} from "../../../auth/RoutsData";
 
 export default function FormDialogToolsupdate({idTools, Add}) {
     const [open, setOpen] = React.useState(false);
-
     function handleClickOpen() {
         setOpen(true);
     }
-
     function handleClose() {
         setOpen(false);
     }
-
     const [nameTools,setNameTools]=useState('');
     const [nbrTools,setNbrTools]=useState('');
     const updateTools = async (e) => {
         e.preventDefault();
-
         await axios({
             method: "put",
-            url: `http://localhost:8082/tools/update/${idTools}`,
-
+            url: `http://localhost:8080/tools/update/${idTools}`,
             data: {
                 nameTools: nameTools,
                 nbrTools:nbrTools
-
             },
             headers: {
                 'Authorization': 'Bearer ' + getToken()
@@ -41,32 +34,23 @@ export default function FormDialogToolsupdate({idTools, Add}) {
         }).then((response)=>{
             window.location.reload();
         })
-
     }
-
     const [yes,setYes]=useState(false);
     React.useEffect(()=>{
         fetchUserData().then((response)=>{
-            setYes(response.data.id===Add);
-
-
+            setYes(response.data.id==Add);
         })
     },[])
-
     console.log(yes)
-
     return (
         <Box>
             <Fab variant="outlined" aria-label="Edit" className="button" onClick={handleClickOpen} disabled={!yes}>
                 <Icon>edit_icon</Icon>
-
             </Fab>
-
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
                 <DialogTitle id="form-dialog-title">Update tools</DialogTitle>
                 <form >
                     <DialogContent>
-
                         <TextField
                             autoFocus
                             margin="dense"
@@ -77,7 +61,6 @@ export default function FormDialogToolsupdate({idTools, Add}) {
                             id="nameTools"
                             onChange={(e) =>setNameTools(e.target.value)}
                             value={nameTools}
-
                         />
                         <TextField
                             autoFocus
@@ -89,7 +72,6 @@ export default function FormDialogToolsupdate({idTools, Add}) {
                             id="numberTools"
                             onChange={(e) =>setNbrTools(e.target.value)}
                             value={nbrTools}
-
                         />
                     </DialogContent>
                     <DialogActions>
@@ -99,7 +81,6 @@ export default function FormDialogToolsupdate({idTools, Add}) {
                         <Button onClick={updateTools}   color="primary" disabled={!nameTools}>
                             update
                         </Button>
-
                     </DialogActions>
                 </form>
             </Dialog>

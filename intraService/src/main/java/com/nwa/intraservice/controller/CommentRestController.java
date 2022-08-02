@@ -1,6 +1,7 @@
 package com.nwa.intraservice.controller;
 
 import com.nwa.intraservice.models.Comment;
+import com.nwa.intraservice.models.Love;
 import com.nwa.intraservice.models.Post;
 import com.nwa.intraservice.models.Tools;
 import com.nwa.intraservice.service.ICommentService;
@@ -42,5 +43,10 @@ public class CommentRestController {
     public void delete(@PathVariable("id") Long id) {
         iCommentService.deleteComment(id);
 
+    }
+
+    @GetMapping("/commentbypost/{idPost}")
+    public List<Comment> getCommnetsByPost(@PathVariable("idPost") Long idPost) {
+        return iCommentService.getCommentByPost(idPost);
     }
 }

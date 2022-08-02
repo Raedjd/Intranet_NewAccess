@@ -27,7 +27,7 @@ export default function FormDialogProdupdate({idProd, Add}) {
 
         await axios({
             method: "put",
-            url: `http://localhost:8082/product/update/${idProd}`,
+            url: `http://localhost:8080/product/update/${idProd}`,
 
             data: {
                 nameProduct: nameProduct

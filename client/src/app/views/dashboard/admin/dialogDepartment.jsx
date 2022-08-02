@@ -27,7 +27,7 @@ export default function FormDialogDep({idDep}) {
 
         await axios({
             method: "put",
-            url: `http://localhost:8082/dep/update/${idDep}`,
+            url: `http://localhost:8080/dep/update/${idDep}`,
 
             data: {
                 nameDepart: nameDepart

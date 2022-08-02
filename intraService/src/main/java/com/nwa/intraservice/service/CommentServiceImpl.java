@@ -54,4 +54,9 @@ public class CommentServiceImpl implements  ICommentService{
     public void deleteComment(Long id) {
             commentRepository.deleteById(id);
     }
+
+    @Override
+    public List<Comment> getCommentByPost(Long idPost) {
+        return commentRepository.CommentByPost(idPost);
+    }
 }
