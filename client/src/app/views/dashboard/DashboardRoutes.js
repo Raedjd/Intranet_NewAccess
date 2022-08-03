@@ -1,5 +1,5 @@
-import Loadable from 'app/components/Loadable';
-import { lazy } from 'react';
+
+
 import Listusers from "./user/Listusers";
 import Profiluser from "./user/Profiluser";
 import Product from "./Prouduct/product";
@@ -8,9 +8,7 @@ import Tools from "./tools/tools";
 import Actuality from "./Actuality/actuality";
 import Admin from "./admin/admin";
 import Eventsdone from "./event/eventsdone";
-
-const Analytics = Loadable(lazy(() => import('./Analytics')));
-
+import Analytics from "./Analytics";
 const dashboardRoutes = [
   { path: '/dashboard', element: <Analytics /> },
   { path: '/dashboard/admin', element: <Admin />    },
