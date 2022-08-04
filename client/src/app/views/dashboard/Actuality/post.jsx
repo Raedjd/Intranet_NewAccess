@@ -70,7 +70,7 @@ const [description,setDescription]=useState("");
     return (
         <div>
 
-            <Fab variant="extended" aria-label="Delete" className="button" onClick={handleClickOpen} >
+            <Fab variant="extended"  aria-label="Delete" className="button" onClick={handleClickOpen} >
                 <Icon sx={{ mr: 4 }}>add_circle_outline</Icon>
                 Add post
             </Fab>

@@ -29,13 +29,13 @@ const NotFound = () => {
   return (
     <NotFoundRoot>
       <JustifyBox>
-     <IMG src={"/assets/illustrations/404.svg"} alt="404"   />
+     <p> 404 not found  </p>
 
         <Button
-          color="primary"
+            style={{background:"#FF4500"}}
           variant="contained"
           sx={{ textTransform: 'capitalize' }}
-          onClick={() => navigate("dashboard")}
+          onClick={() => navigate("/dashboard")}
         >
           Go Back
         </Button>

@@ -16,8 +16,8 @@ const routes = [
     children: [...dashboardRoutes],
   },
   ...sessionRoutes,
-  { path: '/login', element: <Navigate to="login" />},
-  { path: '*', element: <NotFound /> },
+  { path: '*', element: <Navigate to="login" />},
+
 ];
 
 export default routes;

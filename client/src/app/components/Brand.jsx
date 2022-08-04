@@ -25,8 +25,6 @@ const Brand = ({ children }) => {
     <BrandRoot>
       <Box display="flex" alignItems="center">
 
-              <img src="/src/illustrations/newaccess.jfif" width="25%" alt="NWA"  />
-
         <StyledSpan mode={mode} className="sidenavHoverShow">
          New Access
         </StyledSpan>

@@ -127,7 +127,7 @@ const Layout1Topbar = () => {
        setAvatarData(response.data.image.imageUrl)
     }).catch((e)=>{
       removeCookie("jwt");
-      navigate("/login");
+      navigate("*");
     })
   },[])
 
@@ -139,8 +139,15 @@ const Layout1Topbar = () => {
   const navigate = useNavigate();
   const handleLogout =  () => {
     removeCookie("jwt");
-    navigate("/login");
+    navigate("*");
   }
+
+  const [rl,setRl]=useState(true);
+  React.useEffect(()=>{
+    fetchUserData().then((response)=>{
+      setRl(response.data.role=="Admin")
+    })
+  },[])
   return (
     <TopbarRoot>
       <TopbarContainer>
@@ -187,13 +194,14 @@ const Layout1Topbar = () => {
               </UserMenu>
             }
           >
-            <StyledItem>
-              <Link to="/">
-                <Icon> home </Icon>
-                <Span> Home </Span>
-              </Link>
-            </StyledItem>
-
+            <div hidden={!rl}>
+              <StyledItem >
+                <Link to="/dashboard/admin">
+                  <Icon> home </Icon>
+                  <Span> Admin space </Span>
+                </Link>
+              </StyledItem>
+            </div>
             <StyledItem>
               <Link to="/dashboard/profil">
                 <Icon> person </Icon>
@@ -201,10 +209,6 @@ const Layout1Topbar = () => {
               </Link>
             </StyledItem>
 
-            <StyledItem>
-              <Icon> settings </Icon>
-              <Span> Settings </Span>
-            </StyledItem>
 
             <StyledItem onClick={() =>logout()}>
               <Icon> power_settings_new </Icon>
