@@ -1,5 +1,5 @@
 
-import {Box, styled, Table, TableBody, TableCell, TableHead, TableRow ,Fab} from '@mui/material';
+import {Box, styled, Table, TableBody, TableCell, TableHead, TableRow, Fab, Icon} from '@mui/material';
 import Dialog from '@mui/material/Dialog';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
@@ -99,8 +99,7 @@ const products = Object.keys(prodData).map((key) => prodData[key]);
 
 
         <Fab variant="extended" aria-label="Delete" className="button"  onClick={handleClickOpen}>
-
-          products
+          <Icon>visibility</Icon>
         </Fab>
         <SimpleDialog selectedValue={selectedValue} open={open} onClose={handleClose}/>
       </Box>

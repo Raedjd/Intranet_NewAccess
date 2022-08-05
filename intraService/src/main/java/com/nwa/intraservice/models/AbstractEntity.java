@@ -12,7 +12,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Date;
 
-
+@Data
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 public class AbstractEntity implements Serializable {
@@ -22,11 +22,5 @@ public class AbstractEntity implements Serializable {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     private Date dateCreation = new Date();
 
-    public Long getId() {
-        return id;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 }

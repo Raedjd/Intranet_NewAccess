@@ -5,13 +5,9 @@ import {
 
 } from "@mui/material";
 import {styled} from "@mui/system";
-import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { fetchPostsData} from "../../../auth/RoutsData";
 import  React ,{useState} from "react";
-import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import {IconButtonProps} from "@mui/material";
-
 
 import UserPostAvatarData from "./UserPostData/userPostAvatarData";
 import UserPostNameData from "./UserPostData/userPostNameData";
@@ -47,9 +43,8 @@ export default function  PostCard ({userAdd}){
 
         })
     },[])
-    const posts = Object.keys(postsData).map((key) => postsData[key]);
+    const posts = Object.keys(postsData).map((key) => postsData[key]).sort((a,b)=>b.id-a.id);
 
-    const sortPosts=posts.sort((a,b)=>b.id-a.id)
 
 
     return (
@@ -66,11 +61,7 @@ export default function  PostCard ({userAdd}){
                                     avatar={
                                   <UserPostAvatarData  userAdd={p.userid}></UserPostAvatarData>
                                     }
-                                    action={
-                                        <IconButton aria-label="settings">
-                                            <MoreVertIcon />
-                                        </IconButton>
-                                    }
+
                                     title={<UserPostNameData  userAdd={p.userid}></UserPostNameData>}
                                     subheader={dateParser(p.dateCreation)}
                                 />

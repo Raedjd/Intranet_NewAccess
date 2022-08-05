@@ -82,6 +82,7 @@ export const Admin = () => {
        { label: 'Admin' },
        { label: 'RH' },
        { label: 'Enginner' },
+       { label: 'Intern' },
 
    ];
 

@@ -9,7 +9,7 @@ import Typography from '@mui/material/Typography';
 import {useState} from "react";
 import axios from "../../../../axios";
 import {getToken} from "../../../auth/RoutsData";
-import {Fab} from "@mui/material";
+import {Fab, Icon} from "@mui/material";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialogContent-root': {
@@ -77,7 +77,7 @@ export default function EventDescription({idEvent}) {
         <div>
 
             <Fab variant="extended" aria-label="Delete" className="button"  onClick={handleClickOpen}>
-               Show
+                <Icon>visibility</Icon>
             </Fab>
             <BootstrapDialog
                 onClose={handleClose}

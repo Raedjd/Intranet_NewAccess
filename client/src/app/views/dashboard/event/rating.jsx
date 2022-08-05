@@ -49,7 +49,6 @@ const rat= Object.keys(ratings).map((key) => ratings[key]);
     const sum = s.reduce((accumulator, value) => {
         return accumulator + value;
     }, 0);
-console.log(s)
    const arr= r.map((u)=>u.user.id)
    const exit= arr.includes(userData.id)
 

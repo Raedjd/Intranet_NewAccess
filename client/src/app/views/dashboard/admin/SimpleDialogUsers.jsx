@@ -1,5 +1,5 @@
 
-import {Box, Fab, styled, Table, TableBody, TableCell, TableHead, TableRow} from '@mui/material';
+import {alpha, Box, Fab, Icon, styled, Switch, Table, TableBody, TableCell, TableHead, TableRow} from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import Dialog from '@mui/material/Dialog';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import axios from "axios";
 import {getToken} from "../../../auth/RoutsData";
+import {pink} from "@mui/material/colors";
 const StyledTable = styled(Table)(() => ({
     whiteSpace: "pre",
     "& thead": {
@@ -16,6 +17,21 @@ const StyledTable = styled(Table)(() => ({
         "& tr": { "& td": { paddingLeft: 0, textTransform: "capitalize" } },
     },
 }));
+
+
+const GreenSwitch = styled(Switch)(({ theme }) => ({
+    '& .MuiSwitch-switchBase.Mui-checked': {
+        color: pink[600],
+        '&:hover': {
+            backgroundColor: alpha(pink[600], theme.palette.action.hoverOpacity),
+        },
+    },
+    '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': {
+        backgroundColor: pink[600],
+    },
+}));
+
+const label = { inputProps: { 'aria-label': 'Switch demo' } };
 export default function Users({user}) {
 
     function SimpleDialog(props) {
@@ -43,6 +59,7 @@ export default function Users({user}) {
                                 <TableCell align="center">First Name</TableCell>
                                 <TableCell align="center">Last Name</TableCell>
                                 <TableCell align="center">Role</TableCell>
+                                <TableCell align="center">Blocked</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -58,6 +75,74 @@ export default function Users({user}) {
                                         <TableCell align="center">{u.firstName}</TableCell>
                                         <TableCell align="center">{u.lastName}</TableCell>
                                         <TableCell align="center">{u.role}</TableCell>
+                                        <TableCell align="center"> {/* <Fab variant="extended" aria-label="Delete"  className="button"
+                                                                         disabled={ u.isBlocked }
+                                                                         onClick={() => {
+                                                                             axios({
+                                                                                 method: "put",
+                                                                                 url: `http://localhost:8080/user/blocked/${u.id}`,
+
+                                                                                 data: {
+                                                                                     isBlocked:true
+
+                                                                                 },
+                                                                                 headers: {
+                                                                                     'Authorization': 'Bearer ' + getToken()
+                                                                                 }
+
+                                                                             })
+                                                                                 .then((response) => {
+                                                                                     setIstrue(true)
+                                                                                 })
+
+
+                                                                         }}>
+                                       OK
+                                        </Fab>*/}
+                                            {u.isBlocked ? (<Switch {...label} color="warning" checked={u.isBlocked}
+                                                                    onClick={() => {
+                                                                        axios({
+                                                                            method: "put",
+                                                                            url: `http://localhost:8080/user/blocked/${u.id}`,
+
+                                                                            data: {
+                                                                                isBlocked:false
+
+                                                                            },
+                                                                            headers: {
+                                                                                'Authorization': 'Bearer ' + getToken()
+                                                                            }
+
+                                                                        })
+                                                                            .then((response) => {
+                                                                                window.location.reload();
+                                                                            })
+
+
+                                                                    }}
+                                            />):(<Switch {...label} color="warning"
+                                                                       onClick={() => {
+                                                                           axios({
+                                                                               method: "put",
+                                                                               url: `http://localhost:8080/user/blocked/${u.id}`,
+
+                                                                               data: {
+                                                                                   isBlocked:true
+
+                                                                               },
+                                                                               headers: {
+                                                                                   'Authorization': 'Bearer ' + getToken()
+                                                                               }
+
+                                                                           })
+                                                                               .then((response) => {
+
+                                                                               })
+
+
+                                                                       }}
+                                            />)}
+                                            </TableCell>
 
                                     </TableRow>
                                 ))}
@@ -109,7 +194,7 @@ export default function Users({user}) {
         <Box>
 
             <Fab variant="extended" aria-label="Delete" className="button"  onClick={handleClickOpen}>
-                users
+                <Icon>visibility</Icon>
             </Fab>
             <SimpleDialog selectedValue={selectedValue} open={open} onClose={handleClose}/>
         </Box>

@@ -82,13 +82,13 @@ const Toolslist = ({iduser}) => {
 
                     <TableHead>
                         <TableRow>
-                            <TableCell align="center">Number</TableCell>
-                            <TableCell align="center">Name of Tools</TableCell>
-                            <TableCell align="center">Number of Tools</TableCell>
+                            <TableCell align="center"></TableCell>
+                            <TableCell align="center">Name </TableCell>
+                            <TableCell align="center">Number </TableCell>
                             <TableCell align="center">date Added</TableCell>
                             <TableCell align="center">Added by</TableCell>
-                            <TableCell align="center">Update product</TableCell>
-                            <TableCell align="center">Delete product</TableCell>
+                            <TableCell align="center">Update </TableCell>
+                            <TableCell align="center">Delete </TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>

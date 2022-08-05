@@ -1,53 +1,16 @@
-import { LoadingButton } from '@mui/lab';
-import {Card, Container, CssBaseline, FormControlLabel, Grid, Link, TextField, ThemeProvider} from '@mui/material';
-import { Box, styled, useTheme } from '@mui/system';
-import { Paragraph } from 'app/components/Typography';
-import { Formik } from 'formik';
+
 import { useState } from 'react';
 import {Navigate, NavLink, useNavigate} from 'react-router-dom';
-
 import axios from "axios";
 import cookie from "js-cookie";
-import Button from "@mui/material/Button";
-import {Copyright} from "@mui/icons-material";
-import Avatar from "@mui/material/Avatar";
-import Typography from "@mui/material/Typography";
-const FlexBox = styled(Box)(() => ({ display: 'flex', alignItems: 'center' }));
-
-const JustifyBox = styled(FlexBox)(() => ({ justifyContent: 'center' }));
-
-const ContentBox = styled(Box)(() => ({
-  height: '100%',
-  padding: '32px',
-  position: 'relative',
-  background: 'rgba(0, 0, 0, 0.01)',
-}));
-
-const JWTRoot = styled(JustifyBox)(() => ({
-  background: '#1A2038',
-  minHeight: '100% !important',
-  '& .card': {
-    maxWidth: 800,
-    minHeight: 400,
-    margin: '1rem',
-    display: 'flex',
-    borderRadius: 12,
-    alignItems: 'center',
-  },
-}));
-
-
-
-
-
+import React from "react";
 const JwtLogin = () => {
-  const theme = useTheme();
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
-
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const handleLogin = async (e) => {
+    const authError = document.querySelector(".auth");
+    const blockedError = document.querySelector(".blocked");
     e.preventDefault();
 
 
@@ -61,9 +24,15 @@ const JwtLogin = () => {
       },
     })
         .then((response) => {
-          console.log(response);
-       cookie.set("jwt", response.data.token);
-      navigate("/dashboard");
+          if(response.data.token) {
+            cookie.set("jwt", response.data.token);
+            navigate("/dashboard")}
+            else{
+              blockedError.innerHTML=response.data;
+            }
+
+        }).catch((err)=>{
+          authError.innerHTML = "Verify your username or password"
         })
   }
 
@@ -91,7 +60,6 @@ const JwtLogin = () => {
 
           </div>
 
-              <i className="bi bi-list mobile-nav-toggle"></i>
             </nav>
 
 
@@ -106,9 +74,9 @@ const JwtLogin = () => {
               <div className="carousel-item active" style={{backgroundImage:`url(assets/img/slide/slide-1.jpg)` }} >
                 <div className="carousel-container">
                   <div className="carousel-content animate__animated animate__fadeInUp">
-                    <h2 className="text-center">Welcome to <span>Intranet</span></h2>
+                    <h2 className="text-center">Welcome to <span>Intranet New Access </span></h2>
                     <form className="text-center" onSubmit={handleLogin}>
-                     <div >
+                     <div className="opacity-50" >
                        <input type="text"  name="username"
                               placeholder="username"
                               id="username"
@@ -117,14 +85,17 @@ const JwtLogin = () => {
                               aria-describedby="inputGroupPrepend"
                               required
                        /></div>
-                     <div>
+
+                     <div className="opacity-50" >
                   <input type="password" name="password"
                          placeholder="password"
                          onChange={(e) => setPassword(e.target.value)}
                          value={password}
                          aria-describedby="inputGroupPrepend"
                          required/></div>
-                      <input type="submit" className="text-center btn-get-started" value="Login" />
+                      <input type="submit" className="text-center bg-dark btn-get-started" value="Login" />
+                      <div className="auth text-error"></div>
+                      <div className="blocked text-error"></div>
                     </form>
 
                   </div>
@@ -132,15 +103,7 @@ const JwtLogin = () => {
               </div>
             </div>
 
-            <a className="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
-              <span className="carousel-control-prev-icon bx bx-left-arrow" aria-hidden="true"></span>
-            </a>
 
-            <a className="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
-              <span className="carousel-control-next-icon bx bx-right-arrow" aria-hidden="true"></span>
-            </a>
-
-            <ol className="carousel-indicators" id="hero-carousel-indicators"></ol>
 
           </div>
         </section>
@@ -179,13 +142,9 @@ const JwtLogin = () => {
 
                 </div>
 
-
-
-
-
                 <div className="col-lg-4 col-md-6 footer-newsletter">
                   <h4>New Access an FNZ company</h4>
-                  <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
+                  <p>Subscribe to our latest news and content:</p>
                   <form action="" method="post">
                     <input type="email" name="email"/><input type="submit" value="Subscribe" />
                   </form>

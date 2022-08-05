@@ -1,5 +1,4 @@
 package com.nwa.intraservice.controller;
-
 import com.nwa.intraservice.models.User;
 import com.nwa.intraservice.repository.UserRepository;
 import com.nwa.intraservice.service.IUserService;
@@ -94,6 +93,12 @@ public class UserRestController {
     @GetMapping("/userbydepart/{iddepart}")
     public List<User> getUsersByDEpart(@PathVariable("iddepart") Long iddep) {
         return iUserService.getUserByDepartement(iddep);
+    }
+
+    @PutMapping("/blocked/{id}")
+    @ResponseBody
+    public User userBlocked(@RequestBody User user, @PathVariable("id") Long id) {
+        return iUserService.userBlocked(user ,id);
     }
 
     @GetMapping("/countusers")

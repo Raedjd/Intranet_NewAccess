@@ -130,7 +130,7 @@ const Setting = () => {
                 </Grid>
                 <p>Image size should be under 1024MB .</p>
 
-                <Button color="primary" variant="contained" type="submit">
+                <Button style={{background:"#FF4500"}} variant="contained" type="submit">
                     <Icon>send</Icon>
                     <Span sx={{ pl: 1, textTransform: "capitalize" }}>Change avatar</Span>
                 </Button>
@@ -174,7 +174,7 @@ const Setting = () => {
                     </Grid>
                 </Grid>
 
-                <Button color="primary" variant="contained" type="submit">
+                <Button style={{background:"#FF4500"}} variant="contained" type="submit">
                     <Icon>send</Icon>
                     <Span sx={{ pl: 1, textTransform: "capitalize" }}>Change password</Span>
                 </Button>

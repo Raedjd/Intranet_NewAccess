@@ -8,13 +8,14 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 @SpringBootApplication
 public class IntraServiceApplication extends SpringBootServletInitializer {
 
-    public static void main(String[] args) {
-        SpringApplication.run(IntraServiceApplication.class, args);
-    }
-
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder builder){
         return builder.sources(IntraServiceApplication.class);
     }
+
+    public static void main(String[] args) {
+        SpringApplication.run(IntraServiceApplication.class, args);
+    }
+
 
 }

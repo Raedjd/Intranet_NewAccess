@@ -2,6 +2,7 @@ package com.nwa.intraservice.service;
 
 
 import com.nwa.intraservice.models.Department;
+import com.nwa.intraservice.models.Event;
 import com.nwa.intraservice.models.Image;
 import com.nwa.intraservice.models.User;
 import com.nwa.intraservice.repository.DepartmentRepository;
@@ -125,6 +126,16 @@ public class UserServiceImpl implements IUserService , UserDetailsService {
             u.setPassword(passwordEncoder().encode(user.getPassword()));
             return (Response) userRepository.save(u);
 
+    }
+
+    @Override
+    public User userBlocked(User user, Long id) {
+        if (userRepository.findById(id).isPresent()) {
+            User u = userRepository.findById(id).get();
+            u.setIsBlocked(user.getIsBlocked());
+            return userRepository.save(u);
+        }
+        return null;
     }
 
 

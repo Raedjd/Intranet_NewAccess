@@ -1,5 +1,5 @@
 
-import {Box, styled, Table, TableBody, TableCell, TableHead, TableRow ,Fab} from '@mui/material';
+import {Box, styled, Table, TableBody, TableCell, TableHead, TableRow, Fab, Icon} from '@mui/material';
 
 import Button from '@mui/material/Button';
 
@@ -106,8 +106,7 @@ export default function Tool({tools}) {
 
 
             <Fab variant="extended" aria-label="Delete" className="button"  onClick={handleClickOpen}>
-
-              tools
+                <Icon>visibility</Icon>
             </Fab>
             <SimpleDialog selectedValue={selectedValue} open={open} onClose={handleClose}/>
         </Box>

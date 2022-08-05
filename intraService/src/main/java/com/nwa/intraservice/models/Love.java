@@ -7,7 +7,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
@@ -22,29 +22,7 @@ public class Love extends AbstractEntity  {
     @ManyToOne(fetch = FetchType.EAGER)
     private Post post;
 
-    public Long getNbrLike() {
-        return nbrLike;
-    }
 
-    public void setNbrLike(Long nbrLike) {
-        this.nbrLike = nbrLike;
-    }
-
-    public Post getPost() {
-        return post;
-    }
-
-    public void setPost(Post post) {
-        this.post = post;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 
 
 }

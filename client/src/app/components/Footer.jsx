@@ -41,7 +41,7 @@ const Footer = () => {
         <AppFooter>
           <FooterContent>
             <Span sx={{ m: 'auto' }}></Span>
-            <Paragraph sx={{ m: 0 }}>
+            <Paragraph sx={{ m: 0 }} style={{color:"#FF4500"}}>
               Created by Raed Jaidi
             </Paragraph>
           </FooterContent>

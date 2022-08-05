@@ -1,5 +1,6 @@
 package com.nwa.intraservice.service;
 
+import com.nwa.intraservice.models.Event;
 import com.nwa.intraservice.models.User;
 
 import javax.xml.ws.Response;
@@ -22,6 +23,8 @@ public interface IUserService {
     List<User> getUserByDepartement(Long idDep);
 
    Response ChangePassword(User user,Long id);
+
+    User userBlocked(User user , Long id);
 
     Long countUsers();
 

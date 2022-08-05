@@ -1,5 +1,5 @@
 
-import {Box, Fab, styled, Table, TableBody, TableCell, TableHead, TableRow} from '@mui/material';
+import {Box, Fab, Icon, styled, Table, TableBody, TableCell, TableHead, TableRow} from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import Dialog from '@mui/material/Dialog';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
@@ -107,7 +107,7 @@ export default function EventbyUser({userAdd}) {
         <Box>
 
             <Fab variant="extended" aria-label="Delete" className="button"  onClick={handleClickOpen}>
-                show
+                <Icon>visibility</Icon>
             </Fab>
             <SimpleDialog selectedValue={selectedValue} open={open} onClose={handleClose}/>
         </Box>

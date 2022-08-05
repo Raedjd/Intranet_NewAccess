@@ -2,7 +2,6 @@ import {Avatar, Badge, Hidden, Icon, IconButton, MenuItem, useMediaQuery} from '
 import { Box, styled, useTheme } from '@mui/system';
 import { MatxMenu, MatxSearchBox } from 'app/components';
 import { themeShadows } from 'app/components/MatxTheme/themeColors';
-import useAuth from 'app/hooks/useAuth';
 import useSettings from 'app/hooks/useSettings';
 import { topBarHeight } from 'app/utils/constant';
 import React, {useState} from 'react';
@@ -63,10 +62,7 @@ const StyledItem = styled(MenuItem)(({ theme }) => ({
   '& span': { marginRight: '10px', color: theme.palette.text.primary },
 }));
 
-const IconBox = styled('div')(({ theme }) => ({
-  display: 'inherit',
-  [theme.breakpoints.down('md')]: { display: 'none !important' },
-}));
+
 const StyledBadge = styled(Badge)(({ theme }) => ({
   '& .MuiBadge-badge': {
     backgroundColor: '#44b700',
@@ -98,7 +94,6 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 const Layout1Topbar = () => {
   const theme = useTheme();
   const { settings, updateSettings } = useSettings();
-  const { logout, user } = useAuth();
   const isMdScreen = useMediaQuery(theme.breakpoints.down('md'));
 
   const updateSidebarMode = (sidebarSettings) => {
@@ -127,6 +122,7 @@ const Layout1Topbar = () => {
        setAvatarData(response.data.image.imageUrl)
     }).catch((e)=>{
       removeCookie("jwt");
+      window.location.reload();
       navigate("*");
     })
   },[])
@@ -137,15 +133,18 @@ const Layout1Topbar = () => {
     }
   };
   const navigate = useNavigate();
-  const handleLogout =  () => {
+  const handlelogout =  () => {
+
     removeCookie("jwt");
+    window.location.reload();
     navigate("*");
+
   }
 
   const [rl,setRl]=useState(true);
   React.useEffect(()=>{
     fetchUserData().then((response)=>{
-      setRl(response.data.role=="Admin")
+      setRl(response.data.role==="Admin")
     })
   },[])
   return (
@@ -156,19 +155,6 @@ const Layout1Topbar = () => {
             <Icon>menu</Icon>
           </StyledIconButton>
 
-          <IconBox>
-            <StyledIconButton>
-              <Icon>mail_outline</Icon>
-            </StyledIconButton>
-
-            <StyledIconButton>
-              <Icon>web_asset</Icon>
-            </StyledIconButton>
-
-            <StyledIconButton>
-              <Icon>star_outline</Icon>
-            </StyledIconButton>
-          </IconBox>
         </Box>
 
         <Box display="flex" alignItems="center">
@@ -210,9 +196,9 @@ const Layout1Topbar = () => {
             </StyledItem>
 
 
-            <StyledItem onClick={() =>logout()}>
+            <StyledItem onClick={handlelogout} >
               <Icon> power_settings_new </Icon>
-              <Span onClick={handleLogout}> Logout </Span>
+              <Span > Logout </Span>
             </StyledItem>
           </MatxMenu>
         </Box>
