@@ -2,19 +2,16 @@ package com.nwa.intraservice.service;
 
 import com.nwa.intraservice.models.Department;
 import com.nwa.intraservice.models.Product;
-import com.nwa.intraservice.models.User;
 import com.nwa.intraservice.repository.DepartmentRepository;
 import com.nwa.intraservice.repository.ProductRepository;
 import com.nwa.intraservice.repository.UserRepository;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Service
-@Slf4j
+
 public class ProductServiceImpl implements IProductService{
 
     @Autowired

@@ -1,6 +1,5 @@
 package com.nwa.intraservice.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -21,8 +20,5 @@ public class Love extends AbstractEntity  {
     private User user;
     @ManyToOne(fetch = FetchType.EAGER)
     private Post post;
-
-
-
 
 }

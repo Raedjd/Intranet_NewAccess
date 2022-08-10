@@ -1,11 +1,10 @@
 package com.nwa.intraservice.controller;
+
 import com.nwa.intraservice.models.User;
 import com.nwa.intraservice.repository.UserRepository;
 import com.nwa.intraservice.service.IUserService;
 import com.nwa.intraservice.service.UserServiceImpl;
 import com.nwa.intraservice.utils.ChangePasswordModel;
-import io.swagger.annotations.Api;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -18,8 +17,7 @@ import java.util.List;
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/user")
-@Api("/user")
-@Slf4j
+
 public class UserRestController {
     @Autowired
     IUserService iUserService;

@@ -1,4 +1,4 @@
-package com.nwa.intraservice.config;
+package com.nwa.intraservice.configuration.swagger;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

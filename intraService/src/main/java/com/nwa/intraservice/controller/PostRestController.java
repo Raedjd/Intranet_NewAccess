@@ -1,7 +1,6 @@
 package com.nwa.intraservice.controller;
 
 import com.nwa.intraservice.models.Post;
-import com.nwa.intraservice.models.Product;
 import com.nwa.intraservice.service.IPostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

@@ -2,10 +2,8 @@ package com.nwa.intraservice.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -77,7 +75,7 @@ public class User extends AbstractEntity{
     private Department department;
 
     @Enumerated(EnumType.STRING)
-    private Rolee role;
+    private Role role;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idimage")
@@ -92,6 +90,5 @@ public class User extends AbstractEntity{
     @JoinColumn(name = "iduser")
     @JsonIgnore
     private List<Love> loves;
-
 
 }

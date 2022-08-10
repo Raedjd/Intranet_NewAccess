@@ -2,13 +2,10 @@ package com.nwa.intraservice.service;
 
 
 import com.nwa.intraservice.models.Department;
-import com.nwa.intraservice.models.Event;
 import com.nwa.intraservice.models.Image;
 import com.nwa.intraservice.models.User;
 import com.nwa.intraservice.repository.DepartmentRepository;
 import com.nwa.intraservice.repository.UserRepository;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -23,9 +20,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 @Service
-@RequiredArgsConstructor
 @Transactional
-@Slf4j
 public class UserServiceImpl implements IUserService , UserDetailsService {
 
 
@@ -142,14 +137,7 @@ public class UserServiceImpl implements IUserService , UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(username);
-        if(user == null){
-            log.error("User not found in the database");
 
-            throw new UsernameNotFoundException("User not found in the database");
-        }
-        else{
-            log.info("User found in the databse:" , username);
-        }
         Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
 
         return new org.springframework.security.core.userdetails.User(user.getUsername() , user.getPassword() , authorities);

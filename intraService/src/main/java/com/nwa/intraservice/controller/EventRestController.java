@@ -2,10 +2,7 @@ package com.nwa.intraservice.controller;
 
 
 import com.nwa.intraservice.models.Event;
-import com.nwa.intraservice.models.User;
 import com.nwa.intraservice.service.IEventService;
-import lombok.extern.slf4j.Slf4j;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +10,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/event")
-@Slf4j
 public class EventRestController {
  @Autowired
     private IEventService iEventService;

@@ -26,6 +26,3 @@ public class Product extends AbstractEntity {{}
 
 
 }
-
-
-

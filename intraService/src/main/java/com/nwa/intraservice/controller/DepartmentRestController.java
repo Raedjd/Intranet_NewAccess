@@ -2,7 +2,6 @@ package com.nwa.intraservice.controller;
 
 import com.nwa.intraservice.models.Department;
 import com.nwa.intraservice.service.IDepartmentService;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,7 +11,7 @@ import java.util.List;
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/dep")
-@Slf4j
+
 public class DepartmentRestController {
     @Autowired
     IDepartmentService idepService;
@@ -51,7 +50,6 @@ public class DepartmentRestController {
     @ResponseBody
     public void delete(@PathVariable("id") Long id) {
         idepService.deleteDepartment(id);
-        log.info("Department removed!");
     }
 
 }

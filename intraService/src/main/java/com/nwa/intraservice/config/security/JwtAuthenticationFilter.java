@@ -1,3 +1,4 @@
+
 package com.nwa.intraservice.config.security;
 import com.nwa.intraservice.service.UserServiceImpl;
 import io.jsonwebtoken.ExpiredJwtException;
@@ -24,7 +25,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private UserServiceImpl userDetailsService;
 
     @Autowired
-    private TokenProvider jwtTokenUtil;
+    TokenProvider jwtTokenUtil;
 
     @Override
     protected void doFilterInternal(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {

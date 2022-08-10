@@ -2,10 +2,7 @@
 package com.nwa.intraservice.controller;
 
 import com.nwa.intraservice.models.Love;
-import com.nwa.intraservice.models.Rating;
 import com.nwa.intraservice.service.ILoveService;
-import io.swagger.annotations.Api;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,8 +11,6 @@ import java.util.List;
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/love")
-@Api("/rating")
-@Slf4j
 public class LoveRestController {
 
     @Autowired

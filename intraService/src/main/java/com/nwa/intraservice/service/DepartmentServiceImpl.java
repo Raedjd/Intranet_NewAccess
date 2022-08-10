@@ -1,17 +1,13 @@
 package com.nwa.intraservice.service;
 
 import com.nwa.intraservice.models.Department;
-import com.nwa.intraservice.models.User;
 import com.nwa.intraservice.repository.DepartmentRepository;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Service
-@Slf4j
 public class DepartmentServiceImpl implements IDepartmentService {
     @Autowired
     private DepartmentRepository  departmentRepository ;

@@ -122,7 +122,6 @@ const Layout1Topbar = () => {
        setAvatarData(response.data.image.imageUrl)
     }).catch((e)=>{
       removeCookie("jwt");
-      window.location.reload();
       navigate("*");
     })
   },[])
@@ -136,7 +135,6 @@ const Layout1Topbar = () => {
   const handlelogout =  () => {
 
     removeCookie("jwt");
-    window.location.reload();
     navigate("*");
 
   }

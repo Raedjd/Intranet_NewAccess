@@ -6,14 +6,12 @@ import com.nwa.intraservice.models.User;
 import com.nwa.intraservice.repository.EventRepository;
 import com.nwa.intraservice.repository.RatingRepository;
 import com.nwa.intraservice.repository.UserRepository;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@Slf4j
 public class RatingServiceImpl implements  IRatingService {
     @Autowired
     private UserRepository userRepository;

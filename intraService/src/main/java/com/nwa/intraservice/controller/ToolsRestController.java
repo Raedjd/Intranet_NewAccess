@@ -1,10 +1,7 @@
 package com.nwa.intraservice.controller;
 
-import com.nwa.intraservice.models.Department;
 import com.nwa.intraservice.models.Tools;
-import com.nwa.intraservice.models.User;
 import com.nwa.intraservice.service.IToolsService;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,7 +9,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/tools")
-@Slf4j
 public class ToolsRestController {
 
     @Autowired

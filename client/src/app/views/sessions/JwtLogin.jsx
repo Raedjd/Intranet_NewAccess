@@ -142,13 +142,6 @@ const JwtLogin = () => {
 
                 </div>
 
-                <div className="col-lg-4 col-md-6 footer-newsletter">
-                  <h4>New Access an FNZ company</h4>
-                  <p>Subscribe to our latest news and content:</p>
-                  <form action="" method="post">
-                    <input type="email" name="email"/><input type="submit" value="Subscribe" />
-                  </form>
-                </div>
 
               </div>
             </div>

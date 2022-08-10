@@ -1,6 +1,6 @@
 package com.nwa.intraservice.models;
 
-public enum Rolee {
+public enum Role {
 
     Admin , RH , Enginner , Intern
 }

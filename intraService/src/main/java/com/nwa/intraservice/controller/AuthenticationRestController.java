@@ -1,3 +1,4 @@
+
 package com.nwa.intraservice.controller;
 
 
@@ -8,7 +9,6 @@ import com.nwa.intraservice.service.UserServiceImpl;
 import com.nwa.intraservice.utils.JwtRespone;
 import com.nwa.intraservice.utils.LoginModel;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -26,7 +26,7 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping("/auth")
 public class AuthenticationRestController {
 
-@Autowired
+    @Autowired
     private  AuthenticationManager authenticationManager;
 
     @Autowired
@@ -34,14 +34,10 @@ public class AuthenticationRestController {
 
     @Autowired
     private UserServiceImpl userDetailsService;
-    private Object response;
+
 
     @Autowired
     UserRepository userRepository;
-
-//    @PostMapping("login/{isRemembered}")
-//    public ResponseEntity<?> authenticate(@RequestBody LoginModel loginModel, @PathVariable("isRemembered") boolean isRemembered){
-
 
     @PostMapping("/login")
     public ResponseEntity<?> authenticate(@RequestBody LoginModel loginModel ,       HttpServletResponse response ){
