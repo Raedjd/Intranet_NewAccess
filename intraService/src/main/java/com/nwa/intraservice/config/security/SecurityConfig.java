@@ -43,7 +43,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements WebM
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/auth/login").permitAll()
-                .anyRequest().authenticated()
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.addFilterBefore(authenticationFilter, UsernamePasswordAuthenticationFilter.class);
         http.csrf().disable().cors().and().headers().frameOptions().disable();
