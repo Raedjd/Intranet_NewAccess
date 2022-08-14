@@ -1,7 +1,4 @@
 FROM openjdk:8
-
-ADD target/raedjd.war raedjd.war
-
+ADD target/raedjd.jar raedjd.jar
 EXPOSE 8080
-
-ENTRYPOINT ["java", "-war", "raedjd.war"]
+ENTRYPOINT ["java", "-jar", "raedjd.jar"]
