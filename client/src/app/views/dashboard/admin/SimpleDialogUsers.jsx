@@ -75,35 +75,12 @@ export default function Users({user}) {
                                         <TableCell align="center">{u.firstName}</TableCell>
                                         <TableCell align="center">{u.lastName}</TableCell>
                                         <TableCell align="center">{u.role}</TableCell>
-                                        <TableCell align="center"> {/* <Fab variant="extended" aria-label="Delete"  className="button"
-                                                                         disabled={ u.isBlocked }
-                                                                         onClick={() => {
-                                                                             axios({
-                                                                                 method: "put",
-                                                                                 url: `http://localhost:8080/user/blocked/${u.id}`,
-
-                                                                                 data: {
-                                                                                     isBlocked:true
-
-                                                                                 },
-                                                                                 headers: {
-                                                                                     'Authorization': 'Bearer ' + getToken()
-                                                                                 }
-
-                                                                             })
-                                                                                 .then((response) => {
-                                                                                     setIstrue(true)
-                                                                                 })
-
-
-                                                                         }}>
-                                       OK
-                                        </Fab>*/}
+                                        <TableCell align="center">
                                             {u.isBlocked ? (<Switch {...label} color="warning" checked={u.isBlocked}
                                                                     onClick={() => {
                                                                         axios({
                                                                             method: "put",
-                                                                            url: `http://localhost:8080/user/blocked/${u.id}`,
+                                                                            url: `${process.env.REACT_APP_API_URL}/user/blocked/${u.id}`,
 
                                                                             data: {
                                                                                 isBlocked:false
@@ -124,7 +101,7 @@ export default function Users({user}) {
                                                                        onClick={() => {
                                                                            axios({
                                                                                method: "put",
-                                                                               url: `http://localhost:8080/user/blocked/${u.id}`,
+                                                                               url: `${process.env.REACT_APP_API_URL}/user/blocked/${u.id}`,
 
                                                                                data: {
                                                                                    isBlocked:true
@@ -176,7 +153,7 @@ export default function Users({user}) {
     const fetchUserByDep=(authRequest)=> {
         return axios({
             method: 'GET',
-            url: `http://localhost:8080/user/userbydepart/${user}`,
+            url: `${process.env.REACT_APP_API_URL}/user/userbydepart/${user}`,
             headers: {
                 'Authorization': 'Bearer ' + getToken()
             }

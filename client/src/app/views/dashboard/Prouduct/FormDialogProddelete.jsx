@@ -25,7 +25,7 @@ export default function FormDialogProddelete({idProd, Add}) {
 
         await axios({
             method: "delete",
-            url: `http://localhost:8080/product/delete/${idProd}`,
+            url: `${process.env.REACT_APP_API_URL}/product/delete/${idProd}`,
 
             data: {
                 nameProduct: nameProduct

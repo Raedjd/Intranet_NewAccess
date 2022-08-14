@@ -17,7 +17,7 @@ export default function UserPostDelete({userAdd,idPost}) {
         e.preventDefault();
         await axios({
             method: "delete",
-            url: `http://localhost:8080/post/delete/${idPost}`,
+            url: `${process.env.REACT_APP_API_URL}/post/delete/${idPost}`,
             headers: {
                 'Authorization': 'Bearer ' + getToken()},
 

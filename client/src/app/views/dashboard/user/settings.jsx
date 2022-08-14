@@ -45,7 +45,7 @@ const Settings = () => {
 
       await axios({
         method: "put",
-        url: `http://localhost:8080/user/update/${id}`,
+        url: `${process.env.REACT_APP_API_URL}/user/update/${id}`,
 
         data: {
          firstName:firstName,

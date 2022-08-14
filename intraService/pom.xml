@@ -76,7 +76,6 @@
     </dependencies>
 
     <build>
-        <finalName>RaedjdNewAccess</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

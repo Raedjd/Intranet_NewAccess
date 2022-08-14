@@ -58,7 +58,7 @@ export default function UserPostEdit({userAdd,idPost}) {
         data.append("description", description);
         await axios({
             method: "put",
-            url: `http://localhost:8080/cloudinary/update/${idPost}`,
+            url: `${process.env.REACT_APP_API_URL}/cloudinary/update/${idPost}`,
             data,
             headers: { "content-type": "multipartFile/form-data",
                 'Authorization': 'Bearer ' + getToken()},

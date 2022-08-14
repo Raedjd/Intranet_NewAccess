@@ -54,7 +54,7 @@ const [description,setDescription]=useState("");
 
         await axios({
             method: "post",
-            url: `http://localhost:8080/cloudinary/addpost`,
+            url: `${process.env.REACT_APP_API_URL}/cloudinary/addpost`,
              data,
             headers: { "content-type": "multipartFile/form-data",
                 'Authorization': 'Bearer ' + getToken()},

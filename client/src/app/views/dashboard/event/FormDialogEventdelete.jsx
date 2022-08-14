@@ -24,7 +24,7 @@ export default function FormDialogEventdelete({idEvent, Add}) {
 
         await axios({
             method: "delete",
-            url: `http://localhost:8080/event/delete/${idEvent}`,
+            url: `${process.env.REACT_APP_API_URL}/event/delete/${idEvent}`,
             headers: {
                 'Authorization': 'Bearer ' + getToken()
             }

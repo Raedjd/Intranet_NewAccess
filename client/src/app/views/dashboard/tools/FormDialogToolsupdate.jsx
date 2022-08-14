@@ -23,7 +23,7 @@ export default function FormDialogToolsupdate({idTools, Add}) {
         e.preventDefault();
         await axios({
             method: "put",
-            url: `http://localhost:8080/tools/update/${idTools}`,
+            url: `${process.env.REACT_APP_API_URL}/tools/update/${idTools}`,
             data: {
                 nameTools: nameTools,
                 nbrTools:nbrTools

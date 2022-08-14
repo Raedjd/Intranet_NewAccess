@@ -92,7 +92,7 @@ export default function EventbyUser({userAdd}) {
     React.useEffect(()=>{
         axios({
             method: 'GET',
-            url: `http://localhost:8080/user/findOne/${userAdd}`,
+            url: `${process.env.REACT_APP_API_URL}/user/findOne/${userAdd}`,
             headers: {
                 'Authorization': 'Bearer ' + getToken()
             }

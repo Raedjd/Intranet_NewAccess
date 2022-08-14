@@ -64,7 +64,7 @@ export default function EventDescription({idEvent}) {
     React.useEffect(()=>{
         axios({
             method: 'GET',
-            url: `http://localhost:8080/event/findOne/${idEvent}`,
+            url: `${process.env.REACT_APP_API_URL}/event/findOne/${idEvent}`,
             headers: {
                 'Authorization': 'Bearer ' + getToken()
             }

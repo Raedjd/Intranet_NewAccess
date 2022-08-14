@@ -35,7 +35,7 @@ const StatCards = () => {
   React.useEffect(()=>{
     axios({
       method: 'GET',
-      url: `http://localhost:8080/user/countusers`,
+      url: `${process.env.REACT_APP_API_URL}/user/countusers`,
       headers: {
         'Authorization': 'Bearer ' + getToken()
       }
@@ -49,7 +49,7 @@ const StatCards = () => {
   React.useEffect(()=>{
     axios({
       method: 'GET',
-      url: `http://localhost:8080/dep/countdepartments`,
+      url: `${process.env.REACT_APP_API_URL}/dep/countdepartments`,
       headers: {
         'Authorization': 'Bearer ' + getToken()
       }
@@ -64,7 +64,7 @@ const StatCards = () => {
   React.useEffect(()=>{
     axios({
       method: 'GET',
-      url: `http://localhost:8080/event/countevents`,
+      url: `${process.env.REACT_APP_API_URL}/event/countevents`,
       headers: {
         'Authorization': 'Bearer ' + getToken()
       }
@@ -78,7 +78,7 @@ const StatCards = () => {
   React.useEffect(()=>{
     axios({
       method: 'GET',
-      url: `http://localhost:8080/tools/counttools`,
+      url: `${process.env.REACT_APP_API_URL}/tools/counttools`,
       headers: {
         'Authorization': 'Bearer ' + getToken()
       }
@@ -92,7 +92,7 @@ const StatCards = () => {
   React.useEffect(()=>{
     axios({
       method: 'GET',
-      url: `http://localhost:8080/post/countposts`,
+      url: `${process.env.REACT_APP_API_URL}/post/countposts`,
       headers: {
         'Authorization': 'Bearer ' + getToken()
       }
@@ -106,7 +106,7 @@ const StatCards = () => {
   React.useEffect(()=>{
     axios({
       method: 'GET',
-      url: `http://localhost:8080/product/countproducts`,
+      url: `${process.env.REACT_APP_API_URL}/product/countproducts`,
       headers: {
         'Authorization': 'Bearer ' + getToken()
       }

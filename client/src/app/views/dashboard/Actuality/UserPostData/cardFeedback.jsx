@@ -30,7 +30,7 @@ export default function FeedbackComment({idPost}) {
     React.useEffect(()=>{
         axios({
             method: 'GET',
-            url: `http://localhost:8080/comment/commentbypost/${idPost}`,
+            url: `${process.env.REACT_APP_API_URL}/comment/commentbypost/${idPost}`,
             headers: {
                 'Authorization': 'Bearer ' + getToken()
             }
@@ -71,7 +71,7 @@ return(
                                             onClick={() => {
                                                 axios({
                                                     method: "delete",
-                                                    url: `http://localhost:8080/comment/delete/${f.id}`,
+                                                    url: `${process.env.REACT_APP_API_URL}/comment/delete/${f.id}`,
                                                 })
                                                     .then((response) => {
                                                         window.location.reload();
@@ -90,7 +90,7 @@ return(
                                                 onClick={() => {
                                                     axios({
                                                         method: "put",
-                                                        url: `http://localhost:8080/comment/update/${f.id}`,
+                                                        url: `${process.env.REACT_APP_API_URL}/comment/update/${f.id}`,
                                                         data: {
                                                             comment: com
                                                         },

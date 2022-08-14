@@ -86,7 +86,7 @@ export default function Tool({tools}) {
     const fetchToolsByDep=(authRequest)=> {
         return axios({
             method: 'GET',
-            url: `http://localhost:8080/tools/toolsbydepart/${tools}`,
+            url: `${process.env.REACT_APP_API_URL}/tools/toolsbydepart/${tools}`,
             headers: {
                 'Authorization': 'Bearer ' + getToken()
             }

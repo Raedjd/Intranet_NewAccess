@@ -11,7 +11,7 @@ export default function ScoreEvent({idEvent}) {
     React.useEffect(()=>{
         axios({
             method: 'GET',
-            url: `http://localhost:8080/rating/ratingbyevent/${idEvent}`,
+            url: `${process.env.REACT_APP_API_URL}/rating/ratingbyevent/${idEvent}`,
             headers: {
                 'Authorization': 'Bearer ' + getToken()
             }

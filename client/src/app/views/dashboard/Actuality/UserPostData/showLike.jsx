@@ -9,7 +9,7 @@ export default function ShowLike({idPost}) {
     React.useEffect(()=>{
         axios({
             method: 'GET',
-            url: `http://localhost:8080/love/lovebypost/${idPost}`,
+            url: `${process.env.REACT_APP_API_URL}/love/lovebypost/${idPost}`,
             headers: {
                 'Authorization': 'Bearer ' + getToken()
             }

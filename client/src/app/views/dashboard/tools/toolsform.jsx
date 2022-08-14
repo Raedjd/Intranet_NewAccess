@@ -42,7 +42,7 @@ export default function FormDialogTools() {
         e.preventDefault();
         await axios({
             method: "post",
-            url: `http://localhost:8080/tools/add/${nameDep}`,
+            url: `${process.env.REACT_APP_API_URL}/tools/add/${nameDep}`,
 
             data: {
                 nameTools:nameTools,

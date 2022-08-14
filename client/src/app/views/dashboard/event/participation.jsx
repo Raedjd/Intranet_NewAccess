@@ -13,7 +13,7 @@ export default function Participation({idEvent, userId}) {
         e.preventDefault();
         await axios({
             method: "patch",
-            url: `http://localhost:8080/event/participation/${userId}/${idEvent}`,
+            url: `${process.env.REACT_APP_API_URL}/event/participation/${userId}/${idEvent}`,
             headers: {
                 'Authorization': 'Bearer ' + getToken()
             }
@@ -49,7 +49,7 @@ export default function Participation({idEvent, userId}) {
     React.useEffect(()=>{
         axios({
             method: 'GET',
-            url: `http://localhost:8080/event/findOne/${idEvent}`,
+            url: `${process.env.REACT_APP_API_URL}/event/findOne/${idEvent}`,
             headers: {
                 'Authorization': 'Bearer ' + getToken()
             }

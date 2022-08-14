@@ -41,7 +41,7 @@ export default function FormDialogProduct() {
         e.preventDefault();
         await axios({
             method: "post",
-            url: `http://localhost:8080/product/add/${nameDep}`,
+            url: `${process.env.REACT_APP_API_URL}/product/add/${nameDep}`,
 
             data: {
                 nameProduct:nameProduct,

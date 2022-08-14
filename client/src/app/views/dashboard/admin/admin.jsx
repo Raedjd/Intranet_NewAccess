@@ -61,7 +61,7 @@ export const Admin = () => {
 
             await axios({
                 method: "post",
-                url: `http://localhost:8080/dep/add`,
+                url: `${process.env.REACT_APP_API_URL}/dep/add`,
 
                 data: {
                     nameDepart: namedepartment
@@ -100,7 +100,7 @@ export const Admin = () => {
        const userSuccess = document.querySelector(".user");
        await axios({
            method: "post",
-           url: `http://localhost:8080/user/add/${nameDep}`,
+           url: `${process.env.REACT_APP_API_URL}/user/add/${nameDep}`,
 
            data: {
                username:username,

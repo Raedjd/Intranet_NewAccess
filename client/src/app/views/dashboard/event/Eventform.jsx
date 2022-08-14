@@ -38,7 +38,7 @@ export default function FormDialogEvent() {
         e.preventDefault();
         await axios({
             method: "post",
-            url: `http://localhost:8080/event/add`,
+            url: `${process.env.REACT_APP_API_URL}/event/add`,
 
             data: {
                 title:title,

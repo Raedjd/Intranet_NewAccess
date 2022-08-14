@@ -11,9 +11,6 @@ import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
 import {TransitionProps} from "@mui/material/transitions";
 import Slide from "@mui/material/Slide";
-import Avatar from "@mui/material/Avatar";
-import {Divider, Grid, Paper} from "@mui/material";
-import {red} from "@mui/material/colors";
 import FeedbackComment from "./cardFeedback";
 
 const Transition = React.forwardRef(function Transition(
@@ -60,7 +57,7 @@ export default function FeedbackPost({userAdd,idPost}) {
         e.preventDefault();
         await axios({
             method: "post",
-            url: `http://localhost:8080/comment/add/${idUser}/${idPost}`,
+            url: `${process.env.REACT_APP_API_URL}/comment/add/${idUser}/${idPost}`,
 
             data: {
                 comment:feedback

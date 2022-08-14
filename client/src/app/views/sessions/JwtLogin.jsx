@@ -16,7 +16,7 @@ const JwtLogin = () => {
 
     await axios({
       method: "post",
-      url: `http://localhost:8080/auth/login`,
+      url: `${process.env.REACT_APP_API_URL}/auth/login`,
 
       data: {
         username: username,

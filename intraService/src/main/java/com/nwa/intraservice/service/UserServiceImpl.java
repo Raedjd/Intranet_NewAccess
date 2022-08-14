@@ -38,7 +38,7 @@ public class UserServiceImpl implements IUserService , UserDetailsService {
 
     @Override
     public User addUser(User user) {
-        String avatar="https://cdn.icon-icons.com/icons2/2643/PNG/512/male_boy_person_people_avatar_icon_159358.png";
+        String avatar="https://mudgallery.com.au/images/nicepage-images/palceholder.png";
         user.setPassword(passwordEncoder().encode(user.getPassword()));
         user.setImage(new Image("",avatar,""));
         return userRepository.save(user);
@@ -49,7 +49,7 @@ public class UserServiceImpl implements IUserService , UserDetailsService {
     public Response addUserAndAssignToDepartment(User user, String nameDepart ) {
         Department department = departmentRepository.findDepartmentByNameDepart(nameDepart);
          user.setDepartment(department);
-            String avatar="https://cdn.icon-icons.com/icons2/2643/PNG/512/male_boy_person_people_avatar_icon_159358.png";
+            String avatar="https://mudgallery.com.au/images/nicepage-images/palceholder.png";
             user.setPassword(passwordEncoder().encode(user.getPassword()));
             user.setImage(new Image("",avatar,""));
             userRepository.save(user);

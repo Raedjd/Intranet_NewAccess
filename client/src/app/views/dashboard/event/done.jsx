@@ -12,7 +12,7 @@ export default function DoneEvent({idEvent, Add}) {
 
         await axios({
             method: "put",
-            url: `http://localhost:8080/event/done/${idEvent}`,
+            url: `${process.env.REACT_APP_API_URL}/event/done/${idEvent}`,
 
             data: {
               done:true
@@ -32,7 +32,7 @@ export default function DoneEvent({idEvent, Add}) {
     React.useEffect( async()=>{
         await axios({
             method: "get",
-            url: `http://localhost:8080/event/findOne/${idEvent}`,
+            url: `${process.env.REACT_APP_API_URL}/event/findOne/${idEvent}`,
 
             data: {
                 done:true
