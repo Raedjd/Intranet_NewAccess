@@ -10,7 +10,7 @@ Intranet for New Access – an FNZ company <g-emoji class="g-emoji" alias="rocke
 
 Intranet is a local network used internally in a company. The functionalities remain the same, i.e. this space allows employees to share documents or private information. These employees can, for example, consult internal documents on their salary scale, consult information on their salary situation (leave request for example), download expense report documents or information from the works council, etc. The intranet therefore allows the exchange of documents internally, to access business applications helping the life of the company.
 
-<a href="https://630b7e36801d6f54438c8667--frolicking-semolina-797b9d.netlify.app/"><img alt="Intranet" src="https://github.com/Raedjd/Intranet_NewAccess/blob/master/client/public/assets/img/slide/scr1.png" />
+<a href="https://new-access.netlify.app/"><img alt="Intranet" src="https://github.com/Raedjd/Intranet_NewAccess/blob/master/client/public/assets/img/slide/scr1.png" />
 </a>
 
 <hr data-sourcepos="19:1-20:2">
